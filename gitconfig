@@ -1,0 +1,19 @@
+[user]
+    name = Miroslav Gajdos
+    email = miroslav.gajdos@firma.seznam.cz
+[status]
+    showuntrackedfiles = no
+[alias]
+    st = status
+    ap = add -p
+    d = diff
+    dc = diff --cached
+    lg = log --graph -n 25 --abbrev-commit --date=relative --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %C(dim blue)-%C(reset) %s %C(blue)<%an>%C(reset) %C(green)(%ar)'
+    lga = log --graph --all --abbrev-commit --date=relative --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %C(dim blue)-%C(reset) %s %C(blue)<%an>%C(reset) %C(green)(%ar)'
+[color]
+    ui = true
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+    pager = less -FRSX
+    autocrlf = input
