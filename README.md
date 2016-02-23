@@ -7,7 +7,7 @@ Inspired by [this howto][1].
 - checkout
 - symlink desired configuration files from checkouted directory to it's normal location, i.e.
 ```bash
-ln -s .vimrc ~/
+ln -sr `pwd`/.gitconfig ~/.gitconfig
 ```
 
 
