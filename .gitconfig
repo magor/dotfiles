@@ -1,6 +1,8 @@
 [user]
     name = Miroslav Gajdos
     email = miroslav.gajdos@firma.seznam.cz
+[push]
+	default = simple
 [status]
     showuntrackedfiles = no
 [alias]
