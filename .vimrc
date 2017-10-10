@@ -12,9 +12,9 @@ set term=xterm-256color
 set background=light
 
 " solarized
-"let g:solarized_termtrans=1
+let g:solarized_termtrans=1
 "let g:solarized_termcolors=256
-"colorscheme solarized
+colorscheme solarized
 
 " indentation
 set ts=4 " tabstop
