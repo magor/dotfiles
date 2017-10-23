@@ -87,3 +87,9 @@ source $ZSH/oh-my-zsh.sh
 
 # https://wiki.archlinux.org/index.php/SSH_keys#Start_ssh-agent_with_systemd_user
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# debian environment variables
+export DEBFULLNAME="Miroslav Gajdos"
+export DEBEMAIL="miroslav.gajdos@firma.seznam.cz"
+
+export EDITOR='vim'
