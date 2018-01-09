@@ -90,3 +90,5 @@ export DEBFULLNAME="Miroslav Gajdos"
 export DEBEMAIL="miroslav.gajdos@firma.seznam.cz"
 
 export EDITOR='vim'
+
+PROMPT="%{$fg[yellow]%}%n@%{$fg[green]%}%m%{$reset_color%} ${PROMPT}"
