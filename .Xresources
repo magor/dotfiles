@@ -1,0 +1,6 @@
+#include ".Xresources.d/solarized/Xresources.light"
+
+! XTerm.vt100.faceName: Mono:size=10
+! XTerm.*.faceName: Mono:size=10
+XTerm.vt100.renderFont: true
+! XTerm.*.renderFont: true

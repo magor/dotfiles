@@ -23,5 +23,10 @@ ln -sr `pwd`/solarized.vim/colors/solarized.vim ~/.vim/colors
 ln -sr `pwd`/.oh-my-zsh ~/.oh-my-zsh
 ```
 
+### others
+
+ln -sr `pwd`/terminal.conf ~/.config/environment.d/terminal.conf
+
+
 
 [1]: https://www.digitalocean.com/community/tutorials/how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps#creating-a-configuration-directory-to-store-files
