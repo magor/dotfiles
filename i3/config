@@ -55,9 +55,7 @@ font pango:monospace 8
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+    floating_modifier $mod
 
     # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
     bindsym $mod+Shift+r restart
@@ -188,7 +186,7 @@ bar {
 # Custom section
 
 #bindsym $mod+l exec "i3lock -c 000000 -f; sleep1; set dpms force off"
-bindsym $mod+l exec ~/bin/lock
+bindsym Mod4+l exec ~/bin/lock
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volume.sh up #increase sound volume
