@@ -197,11 +197,12 @@ bindsym XF86AudioMute exec --no-startup-id ~/bin/volume.sh mute # mute sound
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-# notify daemon
-exec --no-startup-id dunst
-
-# network manager applet
-exec --no-startup-id nm-applet
-
+# Moving workspaces accross screens
 bindsym Mod4+Left exec --no-startup-id i3-msg move workspace to output left
 bindsym Mod4+Right exec --no-startup-id i3-msg move workspace to output right
+
+# autostart apps
+exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec --no-startup-id redshift-gkt
+
