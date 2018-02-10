@@ -200,5 +200,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 # notify daemon
 exec --no-startup-id dunst
 
+# network manager applet
+exec --no-startup-id nm-applet
+
 bindsym Mod4+Left exec --no-startup-id i3-msg move workspace to output left
 bindsym Mod4+Right exec --no-startup-id i3-msg move workspace to output right
