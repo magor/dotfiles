@@ -189,6 +189,7 @@ bindsym Mod4+Right exec --no-startup-id i3-msg move workspace to output right
 # autostart apps
 exec dunst
 exec nm-applet
-exec redshift-gkt
+#exec redshift-gkt
 exec xautolock -time 3 -locker '~/bin/lock.sh' &
+exec lxsession
 
