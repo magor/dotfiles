@@ -8,7 +8,7 @@ set ruler
 set showcmd
 syntax on
 "syntax enable
-set term=xterm-256color
+"set term=xterm-256color
 set background=light
 
 " solarized

@@ -8,6 +8,7 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod1
+set $mod2 Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -16,7 +17,9 @@ set $right l
 # Your preferred terminal emulator
 set $term termite
 # Your preferred application launcher
-set $menu dmenu_run
+# Note: it's recommended that you pass the final command to sway
+set $menu rofi -show drun
+set $lock "swaylock -c 101010"
 
 ### Output configuration
 #
@@ -42,13 +45,22 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+input "2:8:AlpsPS/2_ALPS_DualPoint_TouchPad" {
+    tap enabled
+    natural_scroll enabled
+}
+input "1133:50184:Logitech_USB_Trackball" {
+    natural_scroll enabled
+    scroll_method on_button_down
+    scroll_button 8
+}
 
 ### Key bindings
 #
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
@@ -66,8 +78,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # exit sway (logs you out of your wayland session)
-    bindsym $mod+Shift+e exit
+    # exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -119,6 +131,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+0 move container to workspace 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    bindsym $mod2+Left move workspace to output left
+    bindsym $mod2+Right move workspace to output right
 #
 # Layout stuff:
 #
@@ -156,18 +170,24 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-
+#
+# Resizing containers:
+#
 mode "resize" {
-    bindsym $left resize shrink width 10 px or 10 ppt
-    bindsym $down resize grow height 10 px or 10 ppt
-    bindsym $up resize shrink height 10 px or 10 ppt
-    bindsym $right resize grow width 10 px or 10 ppt
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
 
     # ditto, with arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
 
     # return to default mode
     bindsym Return mode "default"
@@ -181,24 +201,31 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    #status_command while date +'%Y-%m-%d %k:%M:%S %p'; do sleep 1; done
+    status_command i3status
+    font Monospace 9
+
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        #inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #323232ff #323232cc #aaaaaa
     }
-    status_command i3status
 }
 
 
 # Custom section
 
-input "2:8:AlpsPS/2_ALPS_DualPoint_TouchPad" {
-    tap enabled
-    natural_scroll enabled
-}
+font Monospace 10
 
 bindsym XF86AudioRaiseVolume exec ~/bin/volume.sh up
 bindsym XF86AudioLowerVolume exec ~/bin/volume.sh down
 bindsym XF86AudioMute exec ~/bin/volume.sh mute
+bindsym $mod2+l exec $lock
+
+exec mako
 
 include /etc/sway/config.d/*
