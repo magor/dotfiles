@@ -73,6 +73,9 @@ input "1133:50184:Logitech_USB_Trackball" {
     scroll_method on_button_down
     scroll_button 8
 }
+input "1133:49222:Logitech_USB_Optical" {
+    natural_scroll enabled
+}
 
 ### Key bindings
 #
