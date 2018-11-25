@@ -3,6 +3,8 @@
     email = miroslav.gajdos@firma.seznam.cz
 [push]
     default = simple
+[pull]
+    ff = only
 [status]
     showuntrackedfiles = no
 [alias]
@@ -20,3 +22,8 @@
     editor = vim
     pager = less -FRSX
     autocrlf = input
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
