@@ -16,7 +16,8 @@ set $right l
 # Your preferred terminal emulator
 set $term termite
 # Your preferred application launcher
-set $menu dmenu_run
+#set $menu dmenu_run
+set $menu rofi -show drun
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
