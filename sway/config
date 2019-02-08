@@ -19,7 +19,7 @@ set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu rofi -show drun
-set $lock "swaylock -c 101010"
+set $lock swaylock -c 101010
 
 ### Output configuration
 #
@@ -31,25 +31,26 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+output eDP-1 pos 0,0 scale 1.0
 
 ### Idle configuration
 #
 # Example configuration:
 #
-#exec swayidle \
-#    timeout 300 'swaylock -c 000000' \
-#    timeout 600 'swaymsg "output * dpms off"' \
-#       resume 'swaymsg "output * dpms on"' \
-#    before-sleep 'swaylock -c 000000'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 600 seconds, and turn your screens back on when
+# your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-exec swayidle \
-    timeout 300 '$lock' \
+exec swayidle -w \
+    timeout 300 '$lock -f' \
     timeout 600 'swaymsg "output * dpms off"' \
-       resume 'swaymsg "output * dpms on"' \
-    before-sleep '$lock'
+         resume 'swaymsg "output * dpms on"' \
+    before-sleep '$lock -f'
 
 ### Input configuration
 #
@@ -64,14 +65,14 @@ exec swayidle \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-input "2:8:AlpsPS/2_ALPS_DualPoint_TouchPad" {
+input "1102:4639:DELL081C:00_044E:121F_Touchpad" {
     tap enabled
     natural_scroll enabled
 }
 input "1133:50184:Logitech_USB_Trackball" {
     natural_scroll enabled
     scroll_method on_button_down
-    scroll_button 8
+    #scroll_button 8
 }
 input "1133:49222:Logitech_USB_Optical" {
     natural_scroll enabled
@@ -110,22 +111,12 @@ input "1133:49222:Logitech_USB_Optical" {
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
     # _move_ the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
@@ -241,13 +232,19 @@ bar {
 
 # Custom section
 
-font Monospace 10
+font Monospace 9
 
 bindsym XF86AudioRaiseVolume exec ~/bin/volume.sh up
 bindsym XF86AudioLowerVolume exec ~/bin/volume.sh down
 bindsym XF86AudioMute exec ~/bin/volume.sh mute
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
+bindsym Print exec grim ~/`date +%FT%H-%M-%S`.png
+
 bindsym $mod2+l exec $lock
 
 exec mako
+exec lxsession
 
 include /etc/sway/config.d/*
