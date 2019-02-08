@@ -91,5 +91,7 @@ export DEBFULLNAME="Miroslav Gajdos"
 export DEBEMAIL="miroslav.gajdos@firma.seznam.cz"
 
 export EDITOR='vim'
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 PROMPT="%{$fg[blue]%}%n%{$fg[green]%}@%M%{$reset_color%} ${PROMPT}"
