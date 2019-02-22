@@ -49,5 +49,7 @@ set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
 " NERDTree
-"map <C-n> :NERDTreeToggle<CR>
+"autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
