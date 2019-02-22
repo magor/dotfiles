@@ -8,8 +8,8 @@ endif
 " visual
 set ruler
 set showcmd
-syntax on
-"syntax enable
+"syntax on
+syntax enable
 "set term=xterm-256color
 set background=light
 
