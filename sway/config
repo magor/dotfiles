@@ -20,6 +20,7 @@ set $term termite
 # Note: it's recommended that you pass the final command to sway
 set $menu rofi -show drun
 set $lock swaylock -c 101010
+set $suspend systemctl suspend
 
 ### Output configuration
 #
@@ -243,6 +244,7 @@ bindsym XF86MonBrightnessDown exec light -U 10
 bindsym Print exec grim ~/`date +%FT%H-%M-%S`.png
 
 bindsym $mod2+l exec $lock
+bindsym $mod2+s exec $suspend
 
 exec mako
 exec lxsession
