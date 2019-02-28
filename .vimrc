@@ -8,13 +8,12 @@ endif
 " visual
 set ruler
 set showcmd
-"syntax on
 syntax enable
 "set term=xterm-256color
-set background=light
+set background=dark
 
 " solarized
-let g:solarized_termtrans=1
+"let g:solarized_termtrans=1
 "let g:solarized_termcolors=256
 colorscheme solarized
 
