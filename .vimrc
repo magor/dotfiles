@@ -10,7 +10,7 @@ set ruler
 set showcmd
 syntax enable
 "set term=xterm-256color
-set background=dark
+set background=light
 
 " solarized
 "let g:solarized_termtrans=1
