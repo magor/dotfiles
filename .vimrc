@@ -13,7 +13,7 @@ syntax enable
 set background=light
 
 " solarized
-"let g:solarized_termtrans=1
+let g:solarized_termtrans=1
 "let g:solarized_termcolors=256
 colorscheme solarized
 
@@ -52,3 +52,8 @@ set listchars=tab:>-,trail:~,extends:>,precedes:<
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
