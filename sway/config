@@ -244,7 +244,7 @@ bindsym XF86MonBrightnessDown exec light -U 10
 bindsym Print exec grim ~/`date +%FT%H-%M-%S`.png
 
 bindsym $mod2+l exec $lock
-bindsym $mod2+s exec $suspend
+bindsym --locked $mod2+s exec $suspend
 
 exec mako
 exec lxsession
