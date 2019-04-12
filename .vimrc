@@ -29,7 +29,9 @@ set nobackup
 set nowritebackup
 
 " line wrapping
-set nowrap
+"set nowrap
+set wrap
+set linebreak
 
 " line numbering
 set number

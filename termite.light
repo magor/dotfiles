@@ -1,5 +1,5 @@
 [options]
-font = Monospace 9
+font = Monospace 11
 
 # Solarized light color scheme
 # https://github.com/alpha-omega/termite-colors-solarized
@@ -8,7 +8,8 @@ font = Monospace 9
 foreground = #657b83
 foreground_bold = #073642
 #foreground_dim = #888888
-background = #fdf6e3
+#background = #fdf6e3
+background = rgba(253, 246, 227, 0.95)
 cursor = #586e75
 
 # if unset, will reverse foreground and background

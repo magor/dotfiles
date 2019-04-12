@@ -95,3 +95,15 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 PROMPT="%{$fg[blue]%}%n%{$fg[green]%}@%M%{$reset_color%} ${PROMPT}"
+
+# asdf-vm https://asdf-vm.com/#/core-manage-asdf-vm
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+dch() {
+  docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" docker.dev.dszn.cz/debian:stretch-stable-build dch $@
+}
+
+dick() {
+  docker container run --rm -it -v $(pwd):/mount -w "/mount" $@
+}
