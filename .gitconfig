@@ -15,6 +15,7 @@
     ds = diff --staged
     l = log --graph -n 25 --abbrev-commit --date=relative --pretty=format:'%C(auto)%h%d - %s %C(blue)<%an> %C(green)(%ar)'
     la = log --graph --all --abbrev-commit --date=relative --pretty=format:'%C(auto)%h%d - %s %C(blue)<%an> %C(green)(%ar)'
+    fap = fetch --all -p
 [color]
     ui = true
 [core]
