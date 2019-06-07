@@ -7,7 +7,9 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+SOLARIZED_THEME="light"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -93,8 +95,6 @@ export DEBEMAIL="miroslav.gajdos@firma.seznam.cz"
 export EDITOR='vim'
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-PROMPT="%{$fg[blue]%}%n%{$fg[green]%}@%M%{$reset_color%} ${PROMPT}"
 
 dch() {
   docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" docker.dev.dszn.cz/debian:stretch-stable-build dch $@
