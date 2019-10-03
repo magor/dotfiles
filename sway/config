@@ -246,4 +246,5 @@ bindsym --locked $mod2+s exec $suspend
 exec mako
 exec lxsession
 
+include config.local
 include /etc/sway/config.d/*
