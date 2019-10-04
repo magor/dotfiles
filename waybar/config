@@ -65,9 +65,9 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%Y-%m-%d  |  %H:%M}",
-        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%Y-%m-%d  |  %A  |  %H:%M}",
+        "tooltip-format": "{:%Y-%m-%d  |  week %U  |  %A  |  %H:%M}",
+        "format-alt": "{:%H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
