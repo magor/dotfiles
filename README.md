@@ -1,32 +1,17 @@
-# configs
+# How to use
 
-Inspired by [this howto][1].
-
-## How to use
-
-- checkout
-- symlink desired configuration files from checkouted directory to it's normal location, i.e.
+## setup
 ```bash
-ln -sr `pwd`/.gitconfig ~/.gitconfig
+git clone --separate-git-dir=$HOME/.dotfiles git@github.com:magor/dotfiles.git $HOME/.dotfiles $HOME
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+config config status.showUntrackedFiles no
 ```
 
-### solarized.vim
+## usage
+simply use `config` alias instead of `git` to work with dotfiles repository from your home
 
-```bash
-mkdir -p ~/.vim/colors
-ln -sr `pwd`/solarized.vim/colors/solarized.vim ~/.vim/colors
-```
-
-### oh-my-zsh
-
-```bash
-ln -sr `pwd`/.oh-my-zsh ~/.oh-my-zsh
-```
-
-### others
-
-ln -sr `pwd`/terminal.conf ~/.config/environment.d/terminal.conf
-
-
-
+# inspired by
 [1]: https://www.digitalocean.com/community/tutorials/how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps#creating-a-configuration-directory-to-store-files
+[2]: https://git.sr.ht/~sircmpwn/dotfiles/tree/master
+[3]: https://wiki.archlinux.org/index.php/Dotfiles#Tracking_dotfiles_directly_with_Git
+[4]: https://www.atlassian.com/git/tutorials/dotfiles
