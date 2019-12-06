@@ -1,5 +1,5 @@
 [options]
-font = Monospace 11
+font = Monospace 12
 
 # Solarized light color scheme
 # https://github.com/alpha-omega/termite-colors-solarized
