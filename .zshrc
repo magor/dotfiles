@@ -105,6 +105,10 @@ dick() {
   docker container run --rm -it -v $(pwd):/mount -w "/mount" $@
 }
 
+# include host configuration
+if [ -r ~/.zshrc.`hostname` ]; then
+    source ~/.zshrc.`hostname`
+fi
 # include local configuration
 if [ -r ~/.zshrc.local ]; then
     source ~/.zshrc.local
