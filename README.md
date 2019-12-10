@@ -2,7 +2,8 @@
 
 ## setup
 ```bash
-git clone --separate-git-dir=$HOME/.dotfiles git@github.com:magor/dotfiles.git $HOME/.dotfiles $HOME
+cd $HOME
+git clone --separate-git-dir=$HOME/.dotfiles git@github.com:magor/dotfiles.git
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 ```
