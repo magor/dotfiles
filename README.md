@@ -12,7 +12,7 @@ config config status.showUntrackedFiles no
 simply use `config` alias instead of `git` to work with dotfiles repository from your home
 
 # inspired by
-[1]: https://www.digitalocean.com/community/tutorials/how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps#creating-a-configuration-directory-to-store-files
-[2]: https://git.sr.ht/~sircmpwn/dotfiles/tree/master
-[3]: https://wiki.archlinux.org/index.php/Dotfiles#Tracking_dotfiles_directly_with_Git
-[4]: https://www.atlassian.com/git/tutorials/dotfiles
+- https://www.digitalocean.com/community/tutorials/how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps#creating-a-configuration-directory-to-store-files
+- https://git.sr.ht/~sircmpwn/dotfiles/tree/master
+- https://wiki.archlinux.org/index.php/Dotfiles#Tracking_dotfiles_directly_with_Git
+- https://www.atlassian.com/git/tutorials/dotfiles
