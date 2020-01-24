@@ -7,3 +7,6 @@
 [submodule ".vim/pack/dist/start/vim-airline"]
 	path = .vim/pack/dist/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+[submodule "bin/termite-color-switcher"]
+	path = bin/termite-color-switcher
+	url = https://github.com/NearHuscarl/termite-color-switcher
