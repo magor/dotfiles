@@ -12,12 +12,13 @@ set ruler
 set showcmd
 syntax enable
 "set term=xterm-256color
-set background=light
+set background=dark
 
-" solarized
-let g:solarized_termtrans=1
-"let g:solarized_termcolors=256
-colorscheme solarized
+" colorscheme
+"set termguicolors
+let g:gruvbox_italic = '1'
+colorscheme gruvbox
+highlight Normal ctermbg=None
 
 " indentation
 set ts=4 " tabstop
