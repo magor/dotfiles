@@ -1,0 +1,39 @@
+#!/bin/sh
+#export TERM=alacritty
+export _JAVA_AWT_WM_NONREPARENTING=1
+#export GTK_IM_MOUDLE=xim
+#export XMODIFIERS=@im=ibus
+#export QT_IM_MODULE=ibus
+#export XKB_DEFAULT_OPTIONS=caps:escape
+#export GDK_BACKEND=wayland
+
+#eval `ssh-agent`
+
+#if [ "$XDG_RUNTIME_DIR" == "" ]
+#then
+#	export XDG_RUNTIME_DIR=/tmp
+#fi
+
+export XDG_DESKTOP_DIR="$HOME"
+export XDG_DOWNLOAD_DIR="$HOME/dl"
+export XDG_DOCUMENTS_DIR="$HOME/doc"
+#export XDG_MUSIC_DIR="$HOME/media/music"
+#export XDG_PICTURES_DIR="$HOME/pictures"
+#export XDG_VIDEOS_DIR="$HOME/videos"
+
+rm -f ~/sway.log
+
+case $1 in
+#	debug)
+#		exec ~/sources/sway/build/sway/sway -d -Ddamage=rerender 2>~/sway.log
+#		;;
+#	blind)
+#		WLR_BACKENDS=headless,libinput \
+#		WLR_HEADLESS_OUTPUTS=3 \
+#		exec sway -d -Ddamage=rerender -c ~/.config/sway/blind 2>~/sway.log
+#		;;
+	*)
+#		exec sway -d -Ddamage=rerender 2>~/sway.log
+		exec sway -Ddamage=rerender 2>~/sway.log
+		;;
+esac
