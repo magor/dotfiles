@@ -249,6 +249,18 @@ seat * hide_cursor 5000
 exec mako
 exec lxsession
 
+# colors
+# gruvbox palette, taken from https://github.com/morhetz/gruvbox
+set $foreground #ebdbb2
+set $background #282828
+set $gray #928374
+set $bg2 #504945
+
+client.focused $background $bg2 $foreground $bg2 $bg2
+client.unfocused $background $background $gray $background $background
+client.focused_inactive $gray $gray $background $gray $gray
+
+
 include /etc/sway/config.d/*
 include ~/.config/sway/config.`hostname`
 include ~/.config/sway/config.local
