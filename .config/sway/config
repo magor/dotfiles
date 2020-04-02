@@ -35,6 +35,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # notebook
 output eDP-1 pos 0,0
+output DP-3 scale 1
+
 
 # SAMSUNG
 #output DP-3 scale 1
@@ -251,6 +253,7 @@ bar {
 # window decorations
 #default_border pixel 3
 smart_borders on
+font monospace 15
 
 # key bindings
 ## media
