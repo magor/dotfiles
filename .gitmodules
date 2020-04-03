@@ -10,3 +10,6 @@
 [submodule "bin/termite-color-switcher"]
 	path = bin/termite-color-switcher
 	url = https://github.com/NearHuscarl/termite-color-switcher
+[submodule ".vim/pack/tpope/start/fugitive"]
+	path = .vim/pack/tpope/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
