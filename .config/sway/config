@@ -253,7 +253,7 @@ bar {
 # window decorations
 #default_border pixel 3
 smart_borders on
-font monospace 15
+font monospace 14
 
 # key bindings
 ## media
