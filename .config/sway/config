@@ -254,7 +254,6 @@ bindsym Print exec grim ~/media/`date +"%FT%H-%M-%S"`.png
 seat * hide_cursor 5000
 
 # autorun
-exec mako
 exec lxsession
 
 # colors
