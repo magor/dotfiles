@@ -87,7 +87,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias r="ranger"
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias W="watch"
 
 # debian environment variables
 export DEBFULLNAME="Miroslav Gajdos"
