@@ -84,6 +84,9 @@ input "1133:50184:Logitech_USB_Trackball" {
 input "1133:49222:Logitech_USB_Optical" {
     natural_scroll enabled
 }
+input "1133:16493:Logitech_M705" {
+    natural_scroll enabled
+}
 
 ### Key bindings
 #
