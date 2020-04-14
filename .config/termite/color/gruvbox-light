@@ -1,6 +1,6 @@
 [colors]
 # hard contrast: background = #f9f5d7
-background = rgba(249, 245, 215, 0.9)
+background = rgba(249, 245, 215, 0.95)
 # normal contrast
 #background = rgba(251, 241, 199, 0.9)
 # soft contrast
