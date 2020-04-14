@@ -241,9 +241,14 @@ bindsym XF86AudioMute exec ~/bin/volume.sh mute
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
 ## misc
-bindsym Print exec grim ~/`date +%FT%H-%M-%S`.png
 bindsym $mod2+l exec $lock
 bindsym --locked $mod2+s exec $suspend
+## screenshot
+bindsym Print exec grim ~/media/`date +"%FT%H-%M-%S"`.png
+#bindsym Print exec swaygrab ~/Pictures/screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png")
+#bindsym $mod+Print exec sleep 0.1 && srht
+#bindsym $mod+Shift+Print exec sleep 0.1 && srht -s
+
 
 # hide mouse cursor after ms
 seat * hide_cursor 5000
