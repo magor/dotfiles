@@ -67,7 +67,8 @@
     "clock": {
         "format": "{:%Y-%m-%d  |  %A  |  %H:%M}",
         "tooltip-format": "{:%Y-%m-%d  |  week %U  |  %A  |  %H:%M}",
-        "format-alt": "{:%H:%M}"
+        //"format-alt": "{:%H:%M}"
+        "format-alt": "{:%Y-%m-%d  |  %A  |  %H:%M:%S}",
     },
     "cpu": {
         "format": "{usage}% ",

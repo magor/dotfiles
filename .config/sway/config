@@ -7,7 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod1
+set $mod Mod4
 set $mod2 Mod4
 # Home row direction keys, like vim
 set $left h
@@ -112,7 +112,7 @@ input "1133:16493:Logitech_M705" {
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Shift+Return exec $term
+    bindsym $mod+Return exec $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
@@ -260,8 +260,9 @@ bindsym XF86AudioMute exec ~/bin/volume.sh mute
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
 ## misc
-bindsym $mod2+l exec $lock
-bindsym --locked $mod2+s exec $suspend
+#bindsym $mod2+l exec $lock
+bindsym $mod2+Alt+l exec $lock
+bindsym --locked $mod2+Alt+s exec $suspend
 ## screenshot
 bindsym Print exec grim ~/media/`date +"%FT%H-%M-%S"`.png
 #bindsym Print exec swaygrab ~/Pictures/screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png")
