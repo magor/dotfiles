@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 alias r="ranger"
 alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias W="watch"
+alias t="tig --all"
 
 # debian environment variables
 export DEBFULLNAME="Miroslav Gajdos"
