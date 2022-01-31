@@ -90,6 +90,7 @@ alias r="ranger"
 alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias W="watch"
 alias t="tig --all"
+alias kubectl="kubectl --insecure-skip-tls-verify"
 
 # debian environment variables
 export DEBFULLNAME="Miroslav Gajdos"
@@ -100,11 +101,15 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 dch() {
-  docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" docker.dev.dszn.cz/debian:stretch-stable-build dch $@
+    docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" docker.dev.dszn.cz/debian:stretch-stable-build dch $@
 }
 
 dick() {
-  docker container run --rm -it -v $(pwd):/mount -w "/mount" $@
+    docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" $@ /bin/bash -c "adduser $(whoami) -u $(id -u) --disabled-password --gecos ''; su $(whoami); exec /bin/bash"
+    # todo:
+    # - config git
+    #       git config --global user.email "miroslav.gajdos@firma.seznam.cz"
+    #       git config --global user.name "Gajdos, Miroslav"
 }
 
 # include host configuration
