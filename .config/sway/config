@@ -49,7 +49,7 @@ output DP-3 pos 0,0
 output DP-2 pos 3840,0
 
 # generic
-output * adaptive_sync on
+#output * adaptive_sync on
 #output * max_render_time 1
 #max_render_time 1
 
@@ -257,8 +257,8 @@ smart_borders on
 bindsym XF86AudioRaiseVolume exec ~/bin/volume.sh up
 bindsym XF86AudioLowerVolume exec ~/bin/volume.sh down
 bindsym XF86AudioMute exec ~/bin/volume.sh mute
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 ## misc
 #bindsym $mod2+l exec $lock
 bindsym $mod2+Alt+l exec $lock
@@ -268,7 +268,6 @@ bindsym Print exec grim ~/media/`date +"%FT%H-%M-%S"`.png
 #bindsym Print exec swaygrab ~/Pictures/screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png")
 #bindsym $mod+Print exec sleep 0.1 && srht
 #bindsym $mod+Shift+Print exec sleep 0.1 && srht -s
-
 
 # hide mouse cursor after ms
 seat * hide_cursor 5000
