@@ -7,7 +7,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["sway/window"],
     //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "disk", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -24,6 +24,25 @@
     //         "default": ""
     //     }
     // },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            //"3": "",
+            "3": "",
+            //"4": "",
+            "4": "",
+            //"5": "",
+            "7": "",
+            "8": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
