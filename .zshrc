@@ -90,7 +90,7 @@ alias r="ranger"
 alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias W="watch"
 alias t="tig --all"
-alias kubectl="kubectl --insecure-skip-tls-verify"
+alias kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
 
 # debian environment variables
 export DEBFULLNAME="Miroslav Gajdos"
