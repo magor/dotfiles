@@ -282,6 +282,13 @@ client.focused $background $bg2 $foreground $bg2 $bg2
 client.unfocused $background $background $gray $background $background
 client.focused_inactive $gray $gray $background $gray $gray
 
+#"class": "zoom",
+#"instance": "zoom",
+# see https://wiki.archlinux.org/title/Sway#Floating_windows
+for_window [class="zoom"] floating enable
+for_window [instance="zoom"] floating enable
+for_window [class="REAPER" title="Add FX"] floating enable
+
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.`hostname`
