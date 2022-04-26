@@ -112,6 +112,10 @@ dick() {
     #       git config --global user.name "Gajdos, Miroslav"
 }
 
+kubedick() {
+    kubectl run bash --rm -it --image $@
+}
+
 # include host configuration
 if [ -r ~/.zshrc.`hostname` ]; then
     source ~/.zshrc.`hostname`
