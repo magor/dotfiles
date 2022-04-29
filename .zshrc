@@ -107,6 +107,7 @@ dch() {
 dick() {
     docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" $@ /bin/bash -c "adduser $(whoami) -u $(id -u) --disabled-password --gecos ''; su $(whoami); exec /bin/bash"
     # todo:
+    # apt update && apt install git...
     # - config git
     #       git config --global user.email "miroslav.gajdos@firma.seznam.cz"
     #       git config --global user.name "Gajdos, Miroslav"
