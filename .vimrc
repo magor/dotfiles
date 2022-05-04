@@ -1,4 +1,4 @@
-"filetype plugin on
+" filetype plugin on
 if has("autocmd")
   filetype plugin indent on
 endif
@@ -31,7 +31,6 @@ set nobackup
 set nowritebackup
 
 " line wrapping
-"set nowrap
 set wrap
 set linebreak
 
@@ -47,13 +46,13 @@ set hlsearch
 "set mouse=a
 "set ttymouse=xterm2
 
-"split navitation
+" split navitation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"folding
+" folding
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
@@ -62,6 +61,19 @@ nnoremap <space> za
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 hi SpecialKey guifg=red ctermfg=red
+
+" cursorline in active window only
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
+
+" PLUGINS
+
+" regenerate all tags
+helptags ALL
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -78,12 +90,7 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" cursorline in active window only
-augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
+
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
