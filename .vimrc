@@ -61,6 +61,7 @@ nnoremap <space> za
 " white space chars highlighting
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
+hi SpecialKey guifg=red ctermfg=red
 
 " syntastic
 set statusline+=%#warningmsg#
