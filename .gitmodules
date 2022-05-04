@@ -10,3 +10,6 @@
 [submodule ".vim/pack/default/start/nerdtree"]
 	path = .vim/pack/default/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+[submodule ".vim/pack/default/start/syntastic"]
+	path = .vim/pack/default/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
