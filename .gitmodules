@@ -13,3 +13,9 @@
 [submodule ".vim/pack/default/start/syntastic"]
 	path = .vim/pack/default/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
+[submodule ".vim/pack/default/start/vim-gruvbox8"]
+	path = .vim/pack/default/start/vim-gruvbox8
+	url = https://github.com/lifepillar/vim-gruvbox8.git
+[submodule ".vim/pack/default/start/Sunset"]
+	path = .vim/pack/default/start/Sunset
+	url = https://github.com/vim-scripts/Sunset.git
