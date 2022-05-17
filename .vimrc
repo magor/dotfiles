@@ -93,6 +93,9 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" sunset
+let g:sunset_latitude = 49.2
+let g:sunset_longitude = 16.6
 
 
 "" Include user's local vim config
