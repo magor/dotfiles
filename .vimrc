@@ -79,6 +79,15 @@ augroup END
 helptags ALL
 
 " syntastic
+map <F7> <ESC>:call SyntasticToggle()<CR>
+function! SyntasticToggle()
+  let g:wi = getloclist(2, {'winid' : 1})
+  if g:wi != {}
+    lclose
+  else
+    Errors
+  endif
+endfunction
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
