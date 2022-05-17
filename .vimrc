@@ -14,8 +14,8 @@ set background=dark
 
 " colorscheme
 "set termguicolors
-let g:gruvbox_italic = '1'
-colorscheme gruvbox
+let g:gruvbox_transp_bg = 1
+colorscheme gruvbox8
 highlight Normal ctermbg=None
 
 " indentation
@@ -71,6 +71,9 @@ augroup END
 
 
 " PLUGINS
+
+" gruvbox
+"autocmd vimenter * ++nested colorscheme gruvbox
 
 " regenerate all tags
 helptags ALL
