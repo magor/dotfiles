@@ -191,7 +191,7 @@ window:
 
 schemes:
   # Colors (Gruvbox light)
-  solarized_dark: &light
+  solarized_light: &light
     # Default colors
     primary:
       # hard contrast: background = '#f9f5d7'
@@ -281,7 +281,7 @@ schemes:
       white:   '#928374'
     # indexed_colors: []
 
-colors: *dark
+colors: *light
 
 # Colors (Tomorrow Night)
 #colors:
