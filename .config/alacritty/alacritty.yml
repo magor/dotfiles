@@ -194,9 +194,9 @@ schemes:
   solarized_light: &light
     # Default colors
     primary:
-      # hard contrast: background = '#f9f5d7'
-      background: '#fbf1c7'
-      # soft contrast: background = '#f2e5bc'
+      background: '#f9f5d7' # hard contrast
+      #background: '#fbf1c7' # medium contrast
+      #background: '#f2e5bc' # soft contrast
       foreground: '#3c3836'
 
     # Normal colors
@@ -282,6 +282,7 @@ schemes:
     # indexed_colors: []
 
 colors: *light
+#colors: *dark
 
 # Colors (Tomorrow Night)
 #colors:
