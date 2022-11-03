@@ -18,6 +18,7 @@
     la = log --graph --all --abbrev-commit --date=relative --pretty=format:'%C(auto)%h%d - %s %C(blue)<%an> %C(green)(%ar)'
     fap = fetch --all -p
     lsr = ls-tree --full-tree -r HEAD
+    co = checkout
 [color]
     ui = true
 [core]
