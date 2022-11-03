@@ -288,6 +288,7 @@ client.focused_inactive $gray $gray $background $gray $gray
 for_window [class="zoom"] floating enable
 for_window [instance="zoom"] floating enable
 for_window [class="REAPER" title="Add FX"] floating enable
+for_window [title="splash"] floating enable
 
 
 include /etc/sway/config.d/*
