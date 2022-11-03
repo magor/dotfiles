@@ -10,7 +10,8 @@ set ruler
 set showcmd
 syntax enable
 "set term=xterm-256color
-set background=dark
+set background=light
+"set background=dark
 
 " colorscheme
 "set termguicolors
@@ -103,9 +104,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " sunset
+let g:loaded_sunset = 1 " disable sunset plugin
 let g:sunset_latitude = 49.2
 let g:sunset_longitude = 16.6
-
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
