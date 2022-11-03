@@ -281,6 +281,7 @@ schemes:
       white:   '#928374'
     # indexed_colors: []
 
+# color theme
 colors: *light
 #colors: *dark
 
