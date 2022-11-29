@@ -44,8 +44,8 @@ set ignorecase
 set hlsearch
 
 " mouse control
-"set mouse=a
-"set ttymouse=xterm2
+set mouse=a
+set ttymouse=xterm2
 
 " split navitation
 nnoremap <C-J> <C-W><C-J>
