@@ -19,3 +19,6 @@
 [submodule ".vim/pack/default/start/Sunset"]
 	path = .vim/pack/default/start/Sunset
 	url = https://github.com/vim-scripts/Sunset.git
+[submodule ".config/alacritty/alacritty-theme"]
+	path = .config/alacritty/alacritty-theme
+	url = https://github.com/alacritty/alacritty-theme

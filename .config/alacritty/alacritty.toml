@@ -1,0 +1,10 @@
+import = [
+    "~/.config/alacritty/alacritty-themes/theme/solarized_dark.toml",
+    "~/.config/alacritty/colors.toml"
+]
+
+[font]
+size = 10.0
+
+[window]
+opacity = 0.9
