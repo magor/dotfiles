@@ -86,7 +86,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias r="ranger"
 alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias W="watch"
 alias t="tig --all"
