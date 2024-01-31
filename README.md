@@ -4,6 +4,9 @@
 ```bash
 cd $HOME
 git clone --separate-git-dir=$HOME/.dotfiles git@github.com:magor/dotfiles.git
+mv dotfiles/* . && mv dotfiles/.* . && mv dotfiles/.config/* .config && rm -rf dotfiles
+git submodule init && git submodule update
+# make alias if not using zsh:
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 ```
