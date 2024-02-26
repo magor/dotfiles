@@ -121,8 +121,8 @@ kubedick() {
 }
 
 # include host configuration
-if [ -r ~/.zshrc.`hostname` ]; then
-    source ~/.zshrc.`hostname`
+if [ -r ~/.zshrc.`cat /etc/hostname` ]; then
+    source ~/.zshrc.`cat /etc/hostname`
 fi
 # include local configuration
 if [ -r ~/.zshrc.local ]; then
