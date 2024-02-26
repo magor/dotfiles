@@ -1,9 +1,10 @@
 sudo
-ranger
+lf
 tree
 zsh
-chromium
+firefox
 sway
 rofi
-termite
+alacritty
 htop
+lxsession
