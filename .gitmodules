@@ -22,3 +22,6 @@
 [submodule ".config/alacritty/alacritty-theme"]
 	path = .config/alacritty/alacritty-theme
 	url = https://github.com/alacritty/alacritty-theme
+[submodule ".vim/pack/default/start/vim-lsp"]
+	path = .vim/pack/default/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp.git
