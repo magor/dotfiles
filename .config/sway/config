@@ -240,8 +240,8 @@ smart_borders on
 bindsym XF86AudioRaiseVolume exec ~/bin/volume.sh up
 bindsym XF86AudioLowerVolume exec ~/bin/volume.sh down
 bindsym XF86AudioMute exec ~/bin/volume.sh mute
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 ## misc
 #bindsym $mod2+l exec $lock
 bindsym $mod2+Alt+l exec $lock
