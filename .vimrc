@@ -10,8 +10,8 @@ set ruler
 set showcmd
 syntax enable
 "set term=xterm-256color
-set background=light
-"set background=dark
+"set background=light
+set background=dark
 
 " colorscheme
 "set termguicolors
