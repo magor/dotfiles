@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/alacritty-themes/theme/solarized_dark.toml",
+    "~/.config/alacritty/alacritty-theme/themes/gruvbox_dark.toml",
     "~/.config/alacritty/colors.toml"
 ]
 
@@ -7,4 +7,4 @@ import = [
 size = 10.0
 
 [window]
-opacity = 0.9
+opacity = 0.95
