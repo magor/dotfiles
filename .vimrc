@@ -80,22 +80,22 @@ augroup END
 helptags ALL
 
 " syntastic
-map <F7> <ESC>:call SyntasticToggle()<CR>
-function! SyntasticToggle()
-  let g:wi = getloclist(2, {'winid' : 1})
-  if g:wi != {}
-    lclose
-  else
-    Errors
-  endif
-endfunction
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"map <F7> <ESC>:call SyntasticToggle()<CR>
+"function! SyntasticToggle()
+"  let g:wi = getloclist(2, {'winid' : 1})
+"  if g:wi != {}
+"    lclose
+"  else
+"    Errors
+"  endif
+"endfunction
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " NERDTree
 "autocmd vimenter * NERDTree
@@ -107,6 +107,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:loaded_sunset = 1 " disable sunset plugin
 let g:sunset_latitude = 49.2
 let g:sunset_longitude = 16.6
+
+" vim-lsp
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
