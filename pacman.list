@@ -1,10 +1,37 @@
+# install this list with:
+# pacman -S - < grep -vE "^#" pacman.list
+
+# system
 sudo
+networkmanager
+
+# cmdline
+alacritty
+zsh
 lf
 tree
-zsh
-firefox
-sway
-rofi
-alacritty
 htop
+fzf
+ripgrep
+vim
+
+# de
+# https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway
+sway
+fuzzel
 lxsession
+gammastep
+acpilight
+blueman
+mako
+
+# audio
+pipewire
+helvum
+pavucontrol
+
+# other
+firefox
+
+# https://wiki.archlinux.org/title/Pacman/Tips_and_tricks
+# pacman -Qqe | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
