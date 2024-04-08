@@ -44,8 +44,10 @@ set ignorecase
 set hlsearch
 
 " mouse control
+if $TERM == 'alacritty'
+  set ttymouse=sgr
+endif
 set mouse=a
-set ttymouse=xterm2
 
 " split navitation
 nnoremap <C-J> <C-W><C-J>
