@@ -22,6 +22,11 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     pkgs.btop
+    pkgs.lf
+    pkgs.htop
+    pkgs.tree
+    pkgs.fzf
+    pkgs.ripgrep
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

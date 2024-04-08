@@ -8,11 +8,6 @@ networkmanager
 # cmdline
 alacritty
 zsh
-lf
-tree
-htop
-fzf
-ripgrep
 vim
 
 # de
