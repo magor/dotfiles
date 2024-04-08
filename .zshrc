@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+# nix
+export PATH=$HOME/.nix-profile/bin:$PATH
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -120,6 +123,8 @@ dickto() {
 kubedick() {
     kubectl run bash --rm -it --image $@
 }
+
+source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 # include host configuration
 if [ -r ~/.zshrc.`cat /etc/hostname` ]; then
