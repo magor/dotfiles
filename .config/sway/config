@@ -18,7 +18,8 @@ set $right l
 set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -show drun
+#set $menu rofi -show drun
+set $menu fuzzel -w 60
 set $lock swaylock -c 101010
 set $suspend systemctl suspend
 
@@ -195,6 +196,9 @@ input type:pointer {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+    # https://www.reddit.com/r/swaywm/comments/1bcl7qz/multiple_scratchpads/
+
 #
 # Resizing containers:
 #
@@ -257,6 +261,7 @@ seat * hide_cursor 5000
 
 # autorun
 exec lxsession
+exec nm-applet
 
 # colors
 # gruvbox palette, taken from https://github.com/morhetz/gruvbox
