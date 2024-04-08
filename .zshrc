@@ -104,21 +104,25 @@ export EDITOR='vim'
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-DICK_PREPARE="adduser $(whoami) -u $(id -u); passwd -d $(whoami); su $(whoami); exec /bin/bash"
+DICK_PREPARE="useradd $(whoami) -u $(id -u); passwd -d $(whoami); su $(whoami); exec /bin/bash"
 dch() {
     docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" docker.dev.dszn.cz/debian:stretch-stable-build dch $@
 }
 dick() {
     #docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" $@ /bin/bash -c "adduser $(whoami) -u $(id -u) --disabled-password --gecos ''; su $(whoami); exec /bin/bash"
-    docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount/host -w "/mount/host" $@ /bin/bash -c "$DICK_PREPARE"
+    #docker container run --rm -it -v $(pwd):/mount/host -w "/mount/host" $@ /bin/bash -c "$DICK_PREPARE"
+    docker container run --rm -it -v $(pwd):/mount/host -w "/mount/host" $1 /bin/bash -c "$DICK_PREPARE"
     # todo:
     # apt update && apt install git...
     # - config git
     #       git config --global user.email "miroslav.gajdos@firma.seznam.cz"
     #       git config --global user.name "Gajdos, Miroslav"
 }
-dickto() {
-    docker container run --rm -it -v $(pwd):/mount/host -w "/mount/host" $1 /bin/bash -c "$DICK_PREPARE"
+dicknet() {
+    docker container run --network=$2 --rm -it -v $(pwd):/mount/host -w "/mount/host" $1 /bin/bash -c "$DICK_PREPARE"
+}
+dicksysd() {
+    docker container run --rm -ti --tmpfs /tmp --tmpfs /run -v $(pwd):/mount/host -w "/mount/host" -v /sys/fs/cgroup:/sys/fs/cgroup:ro $1 /bin/bash -c "$DICK_PREPARE"
 }
 kubedick() {
     kubectl run bash --rm -it --image $@
