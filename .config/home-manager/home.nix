@@ -27,6 +27,12 @@
     pkgs.tree
     pkgs.fzf
     pkgs.ripgrep
+    pkgs.iotop
+    pkgs.nethogs
+    pkgs.jq
+    pkgs.lynx
+    pkgs.ncdu
+    pkgs.tig
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
