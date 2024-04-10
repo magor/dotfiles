@@ -21,6 +21,8 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+
+    # utils
     pkgs.btop
     pkgs.lf
     pkgs.htop
@@ -32,7 +34,16 @@
     pkgs.jq
     pkgs.lynx
     pkgs.ncdu
+
+    # dev
     pkgs.tig
+    pkgs.python311Packages.ipython
+    pkgs.jdk8
+    pkgs.dbeaver
+    pkgs.cntr
+
+    # music
+    pkgs.reaper
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
