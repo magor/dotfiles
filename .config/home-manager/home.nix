@@ -93,6 +93,47 @@
     # EDITOR = "emacs";
   };
 
+  programs.neovim = {
+    enable = true;
+    vimAlias=true;
+    vimdiffAlias=true;
+    extraConfig = ''
+    '';
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = gruvbox-material;
+        config = ''
+          " Important!!
+          if has('termguicolors')
+            set termguicolors
+          endif
+          set background=light
+          let g:gruvbox_material_background = 'soft'
+          let g:gruvbox_material_transparent_background = 1
+          " For better performance - causes errors with file permissions
+          "let g:gruvbox_material_better_performance = 1
+
+          colorscheme gruvbox-material
+          '';
+      }
+
+      {
+        plugin = nvim-tree-lua;
+        type = "lua";
+        config = ''
+          require("nvim-tree").setup()
+          vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
+          '';
+      }
+
+      #pkgs.vimPlugins.LazyVim
+      #{
+        #plugin = pkgs.vimPlugins.vim-startify;
+        #config = "let g:startify_change_to_vcs_root = 0";
+      #}
+    ];
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
