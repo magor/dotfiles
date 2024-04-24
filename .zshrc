@@ -57,7 +57,7 @@ SOLARIZED_THEME="dark"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf colored-man-pages gitignore)
+plugins=(git asdf colored-man-pages gitignore fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,7 +90,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias c='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias W="watch"
 alias t="tig --all"
 alias kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
