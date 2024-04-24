@@ -4,26 +4,22 @@
 # system
 sudo
 networkmanager
+nix
 
 # cmdline
-alacritty
 zsh
-vim
 
 # de
 # https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway
 sway
-fuzzel
 lxsession
-gammastep
-acpilight
 blueman
+gammastep
+alacritty
 mako
 
 # audio
 pipewire
-helvum
-pavucontrol
 
 # other
 firefox
