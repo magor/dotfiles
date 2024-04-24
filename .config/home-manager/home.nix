@@ -18,13 +18,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
     # utils
+    #pkgs.zsh # TODO config & problem wiht /etc/shells...
     pkgs.btop
-    pkgs.lf
+    pkgs.lf # TODO config
     pkgs.htop
     pkgs.tree
     pkgs.fzf
@@ -36,11 +33,29 @@
     pkgs.ncdu
 
     # dev
+    pkgs.git # TODO config
     pkgs.tig
     pkgs.python311Packages.ipython
     pkgs.jdk8
     pkgs.dbeaver
     pkgs.cntr
+    pkgs.nerdfonts
+
+    # de
+    # TODO
+    #pkgs.alacritty # TODO config
+    pkgs.fuzzel
+    pkgs.acpilight
+    #pkgs.mako
+
+    # web
+    #pkgs.firefox # TODO
+    pkgs.chromium
+
+    # audio
+    # TODO
+    pkgs.helvum
+    pkgs.pavucontrol
 
     # music
     pkgs.reaper
@@ -90,7 +105,7 @@
   #  /etc/profiles/per-user/mirek/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   programs.neovim = {
