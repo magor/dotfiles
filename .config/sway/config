@@ -282,6 +282,14 @@ for_window [instance="zoom"] floating enable
 for_window [class="REAPER" title="Add FX"] floating enable
 for_window [title="splash"] floating enable
 
+# sway-fzfify
+include sway-fzfify/fzfify_config
+#bindsym $mod+w exec     'THEME=$theme ~/.config/sway/sway-fzfify/sway-workspace-switcher'
+#bindsym $mod+m exec     'THEME=$theme ~/.config/sway/sway-fzfify/sway-marks-switcher'
+bindsym $mod+c exec     'THEME=$theme ~/.config/sway/sway-fzfify/sway-tree-switcher'
+#bindsym $mod+o exec     'THEME=$theme ~/.config/sway/sway-fzfify/sway-workspace-move'
+#bindsym $mod+r exec     '~/.config/sway/sway-fzfify/sway-rename'
+#bindsym $mod+n exec     '~/.config/sway/sway-fzfify/sway-new-workspace'
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config."$(/usr/bin/cat /etc/hostname)"
