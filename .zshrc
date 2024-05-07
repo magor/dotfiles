@@ -130,6 +130,9 @@ kubedick() {
 
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 
+# if you run ie. sway without proper setup/loginmanager
+#dbus-update-activation-environment WAYLAND_DISPLAY
+
 # include host configuration
 if [ -r ~/.zshrc.`cat /etc/hostname` ]; then
     source ~/.zshrc.`cat /etc/hostname`
