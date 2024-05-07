@@ -97,7 +97,15 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    # https://nixos.wiki/wiki/Accelerated_Video_Playback
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      #intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];
+  };
   security.polkit.enable = true;
   security.pam.services.swaylock = {}; # workaround swaylock ignoring correct password to unlock
 
