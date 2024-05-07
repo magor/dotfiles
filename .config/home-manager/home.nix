@@ -17,48 +17,48 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # utils
-    #pkgs.zsh # TODO config & problem wiht /etc/shells...
-    pkgs.btop
-    pkgs.lf # TODO config
-    pkgs.htop
-    pkgs.tree
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.iotop
-    pkgs.nethogs
-    pkgs.jq
-    pkgs.lynx
-    pkgs.ncdu
+    zsh # TODO config
+    lf # TODO config
+    btop
+    htop
+    tree
+    fzf
+    ripgrep
+    iotop
+    nethogs
+    jq
+    ncdu
 
     # dev
-    pkgs.git # TODO config
-    pkgs.tig
-    pkgs.python311Packages.ipython
-    pkgs.jdk8
-    pkgs.dbeaver
-    pkgs.cntr
-    pkgs.nerdfonts
+    git # TODO config
+    git-lfs
+    tig
+    python311Packages.ipython
+    jdk8
+    dbeaver
+    cntr
 
     # de
-    # TODO
-    #pkgs.alacritty # TODO config
-    pkgs.fuzzel
-    pkgs.acpilight
-    #pkgs.mako
-
-    # web
-    #pkgs.firefox # TODO
-    pkgs.chromium
+    # TODO move to system conf?
+    sway
+    swaylock
+    swayidle
+    lxde.lxsession # polkit authentication agent
+    alacritty # TODO config
+    fuzzel
+    brightnessctl
+    mako
+    waybar
+    networkmanagerapplet
 
     # audio
     # TODO
-    pkgs.helvum
-    pkgs.pavucontrol
-
-    # music
-    pkgs.reaper
+    pavucontrol
+    spotify
+    reaper
+    helvum
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -68,9 +68,6 @@
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
     # '')
   ];
 
@@ -90,9 +87,10 @@
   };
 
   # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
+  # 'home.sessionVariables'. These will be explicitly sourced when using a
+  # shell provided by Home Manager. If you don't want to manage your shell
+  # through Home Manager then you have to manually source 'hm-session-vars.sh'
+  # located at either
   #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
   #

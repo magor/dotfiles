@@ -69,9 +69,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
-     neovim
-     lf
-     htop
      lynx
      wget
    ];
@@ -91,6 +88,8 @@
 
   # zsh
   programs.zsh.enable = true;
+
+  programs.firefox.enable = true;
 
   # for sway:
   services.gnome.gnome-keyring.enable = true;
