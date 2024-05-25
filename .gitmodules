@@ -28,3 +28,6 @@
 [submodule ".config/sway/sway-fzfify"]
 	path = .config/sway/sway-fzfify
 	url = https://github.com/ldelossa/sway-fzfify.git
+[submodule ".config/nixos/musnix"]
+	path = .config/nixos/musnix
+	url = https://github.com/musnix/musnix.git

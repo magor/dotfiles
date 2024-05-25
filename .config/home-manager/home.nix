@@ -30,6 +30,7 @@
     nethogs
     jq
     ncdu
+    sshfs
 
     # dev
     git # TODO config
@@ -52,6 +53,16 @@
     mako
     waybar
     networkmanagerapplet
+    #qt5.qtwayland
+    #qt6.qtwayland
+    gnome.nautilus
+    corefonts
+
+    # hyprland
+    wofi
+    hypridle
+    hyprcursor
+    xdg-desktop-portal-hyprland
 
     # audio
     # TODO
@@ -59,6 +70,19 @@
     spotify
     reaper
     helvum
+    qsynth
+    fluidsynth
+    soundfont-fluid
+    carla
+    helm
+    drumgizmo
+    hydrogen
+
+      (writeShellScriptBin "nix-jack" ''
+        exec /usr/bin/env \
+          LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
+          "''$@"
+      '')
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

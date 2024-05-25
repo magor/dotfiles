@@ -8,7 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./musnix
     ];
+  musnix.enable = true;
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -59,7 +62,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.mirek = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "video" "docker" ];
+     extraGroups = [ "wheel" "video" "docker" "audio" ];
      shell = pkgs.zsh;
      packages = with pkgs; [
        #firefox
@@ -71,6 +74,9 @@
    environment.systemPackages = with pkgs; [
      lynx
      wget
+     wineWowPackages.stable
+     #wineWowPackages.waylandFull
+     winetricks
    ];
 
   fonts.packages = with pkgs; [
@@ -108,6 +114,8 @@
   };
   security.polkit.enable = true;
   security.pam.services.swaylock = {}; # workaround swaylock ignoring correct password to unlock
+
+  programs.hyprland.enable = true;
 
   virtualisation.docker = {
     enable = true;
