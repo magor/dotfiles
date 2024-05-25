@@ -241,11 +241,16 @@ smart_borders on
 
 # key bindings
 ## media
-bindsym XF86AudioRaiseVolume exec ~/bin/volume.sh up
-bindsym XF86AudioLowerVolume exec ~/bin/volume.sh down
-bindsym XF86AudioMute exec ~/bin/volume.sh mute
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+#bindsym XF86AudioRaiseVolume exec ~/bin/volume.sh up
+#bindsym XF86AudioLowerVolume exec ~/bin/volume.sh down
+#bindsym XF86AudioMute exec ~/bin/volume.sh mute
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 ## misc
 #bindsym $mod2+l exec $lock
 bindsym $mod2+Alt+l exec $lock
@@ -262,6 +267,7 @@ seat * hide_cursor 5000
 # autorun
 exec lxsession
 exec nm-applet
+exec blueman-applet
 
 # colors
 # gruvbox palette, taken from https://github.com/morhetz/gruvbox
@@ -292,5 +298,6 @@ bindsym $mod+c exec     'THEME=$theme ~/.config/sway/sway-fzfify/sway-tree-switc
 #bindsym $mod+n exec     '~/.config/sway/sway-fzfify/sway-new-workspace'
 
 include /etc/sway/config.d/*
-include ~/.config/sway/config."$(/usr/bin/cat /etc/hostname)"
+#include ~/.config/sway/config."$(/usr/bin/cat /etc/hostname)"
+include ~/.config/sway/config."$(hostname)"
 include ~/.config/sway/config.local
