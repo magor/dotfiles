@@ -108,6 +108,9 @@ DICK_PREPARE="useradd $(whoami) -u $(id -u); passwd -d $(whoami); su $(whoami); 
 dch() {
     docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" docker.dev.dszn.cz/debian:stretch-stable-build dch $@
 }
+dck() {
+    docker container run --rm -it $1 /bin/bash -c "$DICK_PREPARE"
+}
 dick() {
     #docker container run --rm -it -e "DEBFULLNAME" -e "DEBEMAIL" -v $(pwd):/mount -w "/mount" $@ /bin/bash -c "adduser $(whoami) -u $(id -u) --disabled-password --gecos ''; su $(whoami); exec /bin/bash"
     #docker container run --rm -it -v $(pwd):/mount/host -w "/mount/host" $@ /bin/bash -c "$DICK_PREPARE"
