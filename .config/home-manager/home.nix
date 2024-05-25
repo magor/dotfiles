@@ -57,6 +57,7 @@
     #qt6.qtwayland
     gnome.nautilus
     corefonts
+    wlsunset
 
     # hyprland
     wofi
