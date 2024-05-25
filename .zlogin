@@ -2,5 +2,6 @@
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   #XKB_DEFAULT_LAYOUT=us exec sway
   #exec dbus-run-session sway # needed so dbus knows about sway
-  exec bin/sway-run
+  #exec bin/sway-run
+  exec Hyprland &>> ~/hypr.log
 fi
