@@ -12,52 +12,73 @@
     ];
   musnix.enable = true;
 
-
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
-   networking.hostName = "CH-DC2HYZ2-CZ"; # Define your hostname.
-   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "CH-DC2HYZ2-CZ"; # Define your hostname.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    # Open ports in the firewall.
+    # firewall.allowedTCPPorts = [ ... ];
+    # firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # firewall.enable = false;
+  };
 
   # Set your time zone.
-   time.timeZone = "Europe/Prague";
+  time.timeZone = "Europe/Prague";
 
   # Select internationalisation properties.
-   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # sound/pipewire:
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  # List services that you want to enable:
+  services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+    };
+    gnome.gnome-keyring.enable = true; # for sway
+    blueman.enable = true;
+    # Enable CUPS to print documents.
+    # printing.enable = true;
+    # Enable the OpenSSH daemon.
+    # openssh.enable = true;
   };
 
-  # bluetooth
-  hardware.bluetooth = {
-    enable = true; # enables support for Bluetooth
-    powerOnBoot = true; # powers up the default Bluetooth controller on boot
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
-        Experimental = true;
+  hardware = {
+    opengl = {
+      enable = true;
+      # https://nixos.wiki/wiki/Accelerated_Video_Playback
+      extraPackages = with pkgs; [
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        #intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        libvdpau-va-gl
+      ];
+    };
+    # bluetooth
+    bluetooth = {
+      enable = true; # enables support for Bluetooth
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+          Experimental = true;
+        };
       };
     };
   };
-  services.blueman.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.mirek = {
@@ -83,77 +104,45 @@
     nerdfonts
   ];
 
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # zsh
-  programs.zsh.enable = true;
-
-  programs.firefox.enable = true;
-
-  # for sway:
-  services.gnome.gnome-keyring.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
+  programs = {
+    zsh.enable = true;
+    firefox.enable = true;
+    hyprland.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # mtr.enable = true;
+    # gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
   };
-  hardware.opengl = {
-    enable = true;
-    # https://nixos.wiki/wiki/Accelerated_Video_Playback
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      #intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      libvdpau-va-gl
-    ];
-  };
-  security.polkit.enable = true;
-  security.pam.services.swaylock = {}; # workaround swaylock ignoring correct password to unlock
 
-  programs.hyprland.enable = true;
+  security = {
+    polkit.enable = true;
+    pam.services.swaylock = {}; # workaround swaylock ignoring correct password to unlock
+    # sound/pipewire: rtkit is optional but recommended
+    rtkit.enable = true;
+  };
 
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
   };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # Do NOT change this value
+  # unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
   #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  # see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 
 }
