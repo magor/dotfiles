@@ -35,6 +35,11 @@
       fsType = "btrfs";
       options = [ "subvol=/home" "compress=zstd" "noatime" ];
     };
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/57fd8160-0f56-4ac6-aae4-69cef927f244";
+      fsType = "btrfs";
+      options = [ "subvol=@swap" "compress=zstd" "noatime" ];
+    };
 
   boot.initrd.luks.devices."btrfs-crypt".device = "/dev/disk/by-uuid/4bb7ea5a-b14b-447c-b5e4-56a5bc474bf1";
 
@@ -44,7 +49,7 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
