@@ -125,6 +125,9 @@
 
   fonts.packages = with pkgs; [
     nerdfonts
+    (nerdfonts.override { fonts = [ "Hack" "FiraCode" "DroidSansMono" ]; })
+    noto-fonts
+    font-awesome
   ];
 
   programs = {
