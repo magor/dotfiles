@@ -115,13 +115,17 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-   environment.systemPackages = with pkgs; [
-     lynx
-     wget
-     wineWowPackages.stable
-     #wineWowPackages.waylandFull
-     winetricks
-   ];
+  environment.systemPackages = with pkgs; [
+    tree
+    lynx
+    wget
+    wineWowPackages.stable
+    #wineWowPackages.waylandFull
+    winetricks
+    # nix tools
+    nvd
+    gparted
+  ];
 
   fonts.packages = with pkgs; [
     nerdfonts
