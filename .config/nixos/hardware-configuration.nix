@@ -16,24 +16,13 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/57fd8160-0f56-4ac6-aae4-69cef927f244";
       fsType = "btrfs";
-      #options = [ "subvol=root" ];
-      options = [ "subvol=/root" "compress=zstd" "noatime" ];
+      options = [ "subvol=@root" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/home/mirek/media" =
     { device = "/dev/disk/by-uuid/57fd8160-0f56-4ac6-aae4-69cef927f244";
       fsType = "btrfs";
-      options = [ "subvol=/home/mirek/media" "compress=zstd" "noatime" ];
-    };
-  fileSystems."/home/mirek/dev" =
-    { device = "/dev/disk/by-uuid/57fd8160-0f56-4ac6-aae4-69cef927f244";
-      fsType = "btrfs";
-      options = [ "subvol=/home/mirek/dev" "compress=zstd" "noatime" ];
-    };
-  fileSystems."/home/mirek/oldhome" =
-    { device = "/dev/disk/by-uuid/57fd8160-0f56-4ac6-aae4-69cef927f244";
-      fsType = "btrfs";
-      options = [ "subvol=/home" "compress=zstd" "noatime" ];
+      options = [ "subvol=@media" "compress=zstd" "noatime" ];
     };
   fileSystems."/swap" =
     { device = "/dev/disk/by-uuid/57fd8160-0f56-4ac6-aae4-69cef927f244";
