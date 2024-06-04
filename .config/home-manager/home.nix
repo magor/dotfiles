@@ -78,6 +78,7 @@
     helm
     drumgizmo
     hydrogen
+    sfizz
 
       (writeShellScriptBin "nix-jack" ''
         exec /usr/bin/env \
