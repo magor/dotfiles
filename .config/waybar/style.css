@@ -1,7 +1,9 @@
 * {
     border: none;
     border-radius: 0;
+    /*
     font-family: Roboto, Helvetica, Arial, sans-serif;
+    */
     font-size: 13px;
     min-height: 0;
 }
@@ -9,7 +11,6 @@
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
     color: #ebdbb2;
     transition-property: background-color;
     transition-duration: .5s;
@@ -38,23 +39,26 @@ window#waybar.chromium {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 4px;
     background-color: transparent;
-    color: #ffffff;
     color: #ebdbb2;
+    color: #857b65;
+    color: #9c9076;
     border-bottom: 3px solid transparent;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
+    color: white;
     box-shadow: inherit;
+    text-shadow: inherit;
     border-bottom: 3px solid #ffffff;
 }
 
 #workspaces button.active {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    color: #ebdbb2;
+    border-bottom: 3px solid;
 }
 
 #workspaces button.urgent {
@@ -84,31 +88,13 @@ window#waybar.chromium {
     color: #ebdbb2;
 }
 
-/*
-#clock {
-    background-color: #64727D;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-#battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
 #battery.critical:not(.charging) {
+  /*
     background-color: #f53c3c;
     color: #ffffff;
+    */
+  color: #ff8f8f;
+  border-bottom: 3px solid;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -116,40 +102,73 @@ window#waybar.chromium {
     animation-direction: alternate;
 }
 
+#battery.charging {
+  /*
+    color: #ffffff;
+    background-color: #26A65B;
+    */
+    color: #6effaa;
+}
+
+@keyframes blink {
+    to {
+      /*
+        background-color: #ffffff;
+        color: #000000;
+        */
+      color: #ebdbb2;
+      border-bottom: 3px solid transparent;
+    }
+}
+
 label:focus {
     background-color: #000000;
 }
 
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
+#tray {
+  /*
+    background-color: rgba(43, 48, 59, 0.5);
+    */
 }
 
-#memory {
-    background-color: #9b59b6;
-}
-
-#backlight {
-    background-color: #90b1b1;
+#idle_inhibitor.activated {
+    color: white;
 }
 
 #network {
-    background-color: #2980b9;
+    color: #9ed8ff;
 }
 
 #network.disconnected {
     background-color: #f53c3c;
 }
 
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+#cpu,
+#memory,
+#disk {
+    color: #fcb39d;
+}
+
+#backlight {
+    color: #ffed9c;
+}
+
+#temperature {
+    color: #f0932b;
+}
+
+#temperature.critical {
+    color: #eb4d4b;
+}
+
+#clock {
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    color: #d1cfc9;
 }
+
+/*
 
 #custom-media {
     background-color: #66cc99;
@@ -165,43 +184,4 @@ label:focus {
     background-color: #ffa000;
 }
 
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-*/
-
-#tray {
-    background-color: rgba(43, 48, 59, 0.5);
-}
-
-/*
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
 */
