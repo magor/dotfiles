@@ -21,6 +21,7 @@
     # utils
     zsh # TODO config
     lf # TODO config
+    pistol
     btop
     htop
     tree

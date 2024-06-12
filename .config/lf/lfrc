@@ -116,3 +116,5 @@ cmd on-cd &{{
 }}
 # also run at startup
 on-cd
+
+set previewer pistol
