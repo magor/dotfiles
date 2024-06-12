@@ -31,6 +31,10 @@
     jq
     ncdu
     sshfs
+    kmonad
+    nh
+    nix-inspect
+    aria2
 
     # dev
     git # TODO config
@@ -60,10 +64,12 @@
     wlsunset
 
     # hyprland
+    hyprland
     wofi
     hypridle
     hyprcursor
     xdg-desktop-portal-hyprland
+    hyprpaper
 
     # audio
     # TODO
@@ -79,6 +85,7 @@
     drumgizmo
     hydrogen
     sfizz
+    vital
 
       (writeShellScriptBin "nix-jack" ''
         exec /usr/bin/env \
