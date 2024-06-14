@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/submap", "custom/media"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "group/hardware", "backlight", "battery", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "network", "group/hardware", "battery", "clock", "tray"],
 
     "group/hardware": {
       "orientation": "horizontal",
