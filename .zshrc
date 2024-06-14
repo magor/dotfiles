@@ -95,6 +95,7 @@ alias W="watch"
 alias t="tig --all"
 alias kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
 alias docker="sudo docker"
+alias feh="feh --scale-down"
 
 # debian environment variables
 export DEBFULLNAME="Miroslav Gajdos"

@@ -63,6 +63,7 @@
     gnome.nautilus
     corefonts
     wlsunset
+    feh
 
     # hyprland
     hyprland
