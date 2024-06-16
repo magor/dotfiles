@@ -4,9 +4,9 @@
     "spacing": 8,
     "fixed-center": false,
 
-    "modules-left": ["hyprland/workspaces", "hyprland/submap", "custom/media"],
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "network", "group/hardware", "battery", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "group/media", "backlight", "network", "group/hardware", "battery", "clock", "tray"],
 
     "group/hardware": {
       "orientation": "horizontal",
@@ -15,6 +15,10 @@
         "transition-left-to-right": false,
       },
       "modules": ["cpu", "memory", "disk", "temperature"]
+    },
+    "group/media": {
+      "orientation": "horizontal",
+      "modules": ["mpris", "pulseaudio"]
     },
     // Modules configuration
     "hyprland/workspaces": {
@@ -45,8 +49,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": " ",
+            "deactivated": " "
         }
     },
     "tray": {
@@ -125,16 +129,21 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    "mpris": {
+      "format": "{player_icon} {dynamic}",
+      "format-paused": "{status_icon} <i>{dynamic}</i>",
+      "player-icons": {
+           "default": "▶",
+           "spotify": " ",
+           "mpv": "🎵"
+      },
+      "status-icons": {
+           "paused": "⏸"
+      },
+      // "ignored-players": ["firefox"]
+      "interval": 1,
+      "album-len": 0,
+      "artist-len": 0,
+      "rotate": 0
+    },
 }
