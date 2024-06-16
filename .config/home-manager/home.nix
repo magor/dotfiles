@@ -77,7 +77,9 @@
     # TODO
     pavucontrol
     spotify
+    playerctl
     reaper
+    vlc
     helvum
     qsynth
     fluidsynth
