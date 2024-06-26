@@ -5,6 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Enable the Flakes feature and the accompanying new nix command-line tool
+  # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -116,6 +120,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    git # needed for flakes
     tree
     lynx
     wget
