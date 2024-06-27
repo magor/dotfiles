@@ -9,16 +9,18 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
+    nixosConfigurations = {
+      CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/CH-DC2HYZ2-CZ
 
-        # Set all inputs parameters as special arguments for all submodules,
-        # so you can directly use all dependencies in inputs in submodules
-        # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-        { _module.args = { inherit inputs; }; }
-      ];
+          # Set all inputs parameters as special arguments for all submodules,
+          # so you can directly use all dependencies in inputs in submodules
+          # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
+          { _module.args = { inherit inputs; }; }
+        ];
+      };
     };
   };
 }

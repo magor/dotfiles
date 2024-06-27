@@ -29,5 +29,5 @@
 	path = .config/sway/sway-fzfify
 	url = https://github.com/ldelossa/sway-fzfify.git
 [submodule ".config/nixos/musnix"]
-	path = .config/nixos/musnix
+	path = .config/nixos/hosts/CH-DC2HYZ2-CZ/musnix
 	url = https://github.com/musnix/musnix.git
