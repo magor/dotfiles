@@ -14,7 +14,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./musnix
+      ../../modules/musnix
     ];
   musnix.enable = true;
 
