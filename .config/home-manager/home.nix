@@ -36,6 +36,7 @@
     nh
     nix-inspect
     aria2
+    unzip
 
     # dev
     git # TODO config
@@ -64,6 +65,7 @@
     corefonts
     wlsunset
     feh
+    nwg-look
 
     # hyprland
     hyprland
