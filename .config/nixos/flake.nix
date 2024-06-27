@@ -5,6 +5,7 @@
     # NixOS official package source
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
+    musnix.url = "github:musnix/musnix";
     helix.url = "github:helix-editor/helix/master";
   };
 
@@ -14,6 +15,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/CH-DC2HYZ2-CZ
+          inputs.musnix.nixosModules.musnix
 
           # Set all inputs parameters as special arguments for all submodules,
           # so you can directly use all dependencies in inputs in submodules
