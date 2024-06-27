@@ -132,6 +132,7 @@
     # nix tools
     nvd
     gparted
+    inputs.helix.packages."${pkgs.system}".helix
   ];
 
   fonts = {

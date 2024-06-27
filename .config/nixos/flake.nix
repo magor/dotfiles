@@ -4,6 +4,8 @@
   inputs = {
     # NixOS official package source
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+
+    helix.url = "github:helix-editor/helix/master";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
