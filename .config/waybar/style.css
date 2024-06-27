@@ -41,8 +41,6 @@ window#waybar.chromium {
 #workspaces button {
     padding: 0 4px;
     background-color: transparent;
-    color: #ebdbb2;
-    color: #857b65;
     color: #9c9076;
     border-bottom: 3px solid transparent;
 }
@@ -50,10 +48,11 @@ window#waybar.chromium {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
-    color: white;
+    background-color: #403d37;
     box-shadow: inherit;
     text-shadow: inherit;
-    border-bottom: 3px solid #ffffff;
+    color: #ffed9c;
+    border-bottom: 3px solid #ffed9c;
 }
 
 #workspaces button.active {
@@ -140,7 +139,7 @@ label:focus {
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    color: #f53c3c;
 }
 
 #cpu,
