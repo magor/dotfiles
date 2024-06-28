@@ -15,6 +15,15 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/CH-DC2HYZ2-CZ
+          ./modules/common.nix
+          ./modules/user.nix
+          ./modules/network.nix
+          ./modules/pkgs.nix
+          ./modules/notebook.nix
+          ./modules/desktop.nix
+          ./modules/audio.nix
+          ./modules/fonts.nix
+          ./modules/virt.nix
           inputs.musnix.nixosModules.musnix
 
           # Set all inputs parameters as special arguments for all submodules,

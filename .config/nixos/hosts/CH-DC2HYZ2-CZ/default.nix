@@ -5,17 +5,10 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
-  # Enable the Flakes feature and the accompanying new nix command-line tool
-  # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  musnix.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
@@ -25,64 +18,6 @@
 
   networking = {
     hostName = "CH-DC2HYZ2-CZ"; # Define your hostname.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # firewall.enable = false;
-  };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Prague";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  powerManagement.enable = true;
-
-  # List services that you want to enable:
-  services = {
-    # https://nixos.wiki/wiki/Laptop
-    thermald.enable = true;
-    tlp.enable = true;
-    fwupd.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      jack.enable = true;
-    };
-    gnome.gnome-keyring.enable = true; # for sway
-    blueman.enable = true;
-    # Enable CUPS to print documents.
-    # printing.enable = true;
-    # Enable the OpenSSH daemon.
-    # openssh.enable = true;
-    netdata = {
-      enable = true;
-
-      config = {
-        global = {
-          # uncomment to reduce memory to 32 MB
-          #"page cache size" = 32;
-
-          # update interval
-          "update every" = 15;
-        };
-        ml = {
-          # enable machine learning
-          "enabled" = "yes";
-        };
-      };
-    };
   };
 
   hardware = {
@@ -108,83 +43,6 @@
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.users.mirek = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "video" "docker" "audio" "networkmanager" ];
-     shell = pkgs.zsh;
-     packages = with pkgs; [
-       #firefox
-     ];
-   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git # needed for flakes
-    tree
-    lynx
-    wget
-    wineWowPackages.stable
-    #wineWowPackages.waylandFull
-    winetricks
-    # nix tools
-    nvd
-    gparted
-    inputs.helix.packages."${pkgs.system}".helix
-  ];
-
-  fonts = {
-    packages = with pkgs; [
-      nerdfonts
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" "DroidSansMono" ]; })
-      noto-fonts
-      font-awesome
-      #corefonts # ms free fonts
-      #dejavu_fonts
-      #google-fonts
-    ];
-    fontconfig = {
-      antialias = true;
-      hinting = {
-        enable = true;
-        #autohint = true;
-      };
-      subpixel = {
-        rgba = "rgb";
-      };
-    };
-  };
-
-  programs = {
-    zsh.enable = true;
-    firefox.enable = true;
-    hyprland.enable = true;
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # mtr.enable = true;
-    # gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-  };
-
-  security = {
-    polkit.enable = true;
-    pam.services.swaylock = {}; # workaround swaylock ignoring correct password to unlock
-    # sound/pipewire: rtkit is optional but recommended
-    rtkit.enable = true;
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-  };
-
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
@@ -196,6 +54,4 @@
   #
   # see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
-
