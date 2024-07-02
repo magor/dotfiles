@@ -6,7 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     musnix.url = "github:musnix/musnix";
-    helix.url = "github:helix-editor/helix/master";
+    helix.url = "github:helix-editor/helix/24.03";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
