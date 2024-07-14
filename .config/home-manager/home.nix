@@ -74,6 +74,7 @@
     hyprcursor
     xdg-desktop-portal-hyprland
     hyprpaper
+    hyprlock
 
     # audio
     # TODO
