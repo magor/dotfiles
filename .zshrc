@@ -14,7 +14,7 @@ export PISTOL_CHROMA_FORMATTER=terminal256
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
-ZSH_THEME="amuse"
+ZSH_THEME="ys"
 SOLARIZED_THEME="dark"
 
 # Uncomment the following line to use case-sensitive completion.
