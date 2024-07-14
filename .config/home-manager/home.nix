@@ -49,9 +49,6 @@
 
     # de
     # TODO move to system conf?
-    sway
-    swaylock
-    swayidle
     lxde.lxsession # polkit authentication agent
     alacritty # TODO config
     fuzzel
