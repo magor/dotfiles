@@ -37,6 +37,8 @@
     nix-inspect
     aria2
     unzip
+    just
+    yt-dlp
 
     # dev
     git # TODO config
