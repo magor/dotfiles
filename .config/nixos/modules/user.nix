@@ -13,6 +13,8 @@
       tree
       git
       lf
+      pistol
+      fzf
     ];
   };
 
