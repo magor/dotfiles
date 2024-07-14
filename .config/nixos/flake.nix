@@ -37,6 +37,8 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/nixodeos
+          ./modules/common.nix
+          ./modules/network.nix
         ];
       };
     };

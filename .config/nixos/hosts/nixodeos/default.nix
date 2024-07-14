@@ -18,7 +18,6 @@
 
   networking = {
     hostName = "nixodeos"; # Define your hostname.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     interfaces = {
       ens18 = {
         ipv4.addresses = [{
@@ -39,16 +38,6 @@
     nameservers = [ "8.8.8.8" "8.8.4.4"];
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Prague";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mirek = {
     isNormalUser = true;
