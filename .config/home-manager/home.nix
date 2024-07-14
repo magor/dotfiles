@@ -56,7 +56,6 @@
     alacritty # TODO config
     fuzzel
     brightnessctl
-    mako
     waybar
     networkmanagerapplet
     #qt5.qtwayland
@@ -200,9 +199,14 @@
     ];
   };
 
-  services.syncthing = {
-    enable = true;
-    tray.enable = true;
+  services = {
+    swaync = {
+      enable = true;
+    };
+    syncthing = {
+      enable = true;
+      tray.enable = true;
+    };
   };
   # Workaround for Failed to restart syncthingtray.service: Unit tray.target not found.
   # - https://github.com/nix-community/home-manager/issues/2064
