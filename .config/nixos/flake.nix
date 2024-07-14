@@ -33,6 +33,12 @@
           { _module.args = { inherit inputs; }; }
         ];
       };
+      nixodeos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nixodeos
+        ];
+      };
     };
   };
 }
