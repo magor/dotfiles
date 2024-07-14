@@ -38,7 +38,10 @@
         modules = [
           ./hosts/nixodeos
           ./modules/common.nix
+          ./modules/user.nix
           ./modules/network.nix
+          ./modules/sshd.nix
+          ./modules/neovim.nix
         ];
       };
     };

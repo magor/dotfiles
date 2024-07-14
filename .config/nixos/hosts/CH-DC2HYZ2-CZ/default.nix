@@ -20,6 +20,8 @@
     hostName = "CH-DC2HYZ2-CZ"; # Define your hostname.
   };
 
+  users.users.mirek.extraGroups = [ "video" ];
+
   hardware = {
     opengl = {
       enable = true;
