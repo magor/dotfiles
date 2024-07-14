@@ -24,6 +24,7 @@
           ./modules/audio.nix
           ./modules/fonts.nix
           ./modules/virt.nix
+          ./modules/gaming.nix
           inputs.musnix.nixosModules.musnix
 
           # Set all inputs parameters as special arguments for all submodules,
