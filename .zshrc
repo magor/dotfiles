@@ -59,7 +59,7 @@ SOLARIZED_THEME="dark"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf colored-man-pages gitignore fzf)
+plugins=(git asdf colored-man-pages gitignore fzf kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,9 +95,14 @@ source $ZSH/oh-my-zsh.sh
 alias c='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias W="watch"
 alias t="tig --all"
-alias kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
+#alias kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
 alias docker="sudo docker"
 alias feh="feh --scale-down"
+alias k='kubectl'
+
+# >> k3s command completion (start)
+. <(k3s completion zsh)
+# >> k3s command completion (end)
 
 # debian environment variables
 export DEBFULLNAME="Miroslav Gajdos"
@@ -132,6 +137,11 @@ dicksysd() {
 }
 kubedick() {
     kubectl run bash --rm -it --image $@
+}
+
+# https://stackoverflow.com/questions/77124088/how-to-add-bash-auto-completion-to-k3s-kubectl
+kubectl() {
+    sudo k3s kubectl "${@}"
 }
 
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
