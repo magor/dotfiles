@@ -1,22 +1,30 @@
 {config, pkgs, ... }:
 
 {
+  # https://wiki.hyprland.org/Nix/Cachix/
+  #nix.settings = {
+  #  substituters = ["https://hyprland.cachix.org"];
+  #  trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  #};
+
   programs = {
     hyprland.enable = true;
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
   };
+  environment.systemPackages = with pkgs; [
+    waybar
+    hypridle
+    hyprpaper
+    hyprcursor
+    hyprlock
+    xdg-desktop-portal-hyprland
+  ];
 
   services = {
-    gnome.gnome-keyring.enable = true; # for sway
     blueman.enable = true;
   };
 
   security = {
     polkit.enable = true;
-    pam.services.swaylock = {}; # workaround swaylock ignoring correct password to unlock
   };
 
 }

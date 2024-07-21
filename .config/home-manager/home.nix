@@ -15,6 +15,8 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  #wayland.windowManager.hyprland.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -55,7 +57,6 @@
     alacritty # TODO config
     fuzzel
     brightnessctl
-    waybar
     networkmanagerapplet
     #qt5.qtwayland
     #qt6.qtwayland
@@ -64,15 +65,8 @@
     wlsunset
     feh
     nwg-look
-
-    # hyprland
-    hyprland
     wofi
-    hypridle
-    hyprcursor
-    xdg-desktop-portal-hyprland
-    hyprpaper
-    hyprlock
+    # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
 
     # audio
     # TODO
