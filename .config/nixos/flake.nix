@@ -34,7 +34,7 @@
         modules = [
           ./hosts/nixodeos
           ./modules/common
-          ./modules/sshd.nix
+          ./modules/server
           ./modules/neovim.nix
         ];
       };
