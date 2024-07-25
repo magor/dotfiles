@@ -8,9 +8,6 @@
     tree
     lynx
     wget
-    wineWowPackages.stable
-    #wineWowPackages.waylandFull
-    winetricks
     # nix tools
     nvd
     gparted
