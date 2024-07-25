@@ -35,7 +35,6 @@
           ./hosts/nixodeos
           ./modules/common
           ./modules/server
-          ./modules/neovim.nix
         ];
       };
     };
