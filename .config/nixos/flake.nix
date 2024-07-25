@@ -16,10 +16,8 @@
         modules = [
           ./hosts/CH-DC2HYZ2-CZ
           ./modules/common
+          ./modules/desktop
           ./modules/notebook.nix
-          ./modules/desktop.nix
-          ./modules/audio.nix
-          ./modules/fonts.nix
           ./modules/virt.nix
           ./modules/gaming.nix
           ./modules/k8s.nix

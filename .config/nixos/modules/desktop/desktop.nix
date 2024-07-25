@@ -22,5 +22,4 @@
   security = {
     polkit.enable = true;
   };
-
 }
