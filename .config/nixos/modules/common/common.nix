@@ -7,6 +7,8 @@
   # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot.loader.systemd-boot.configurationLimit = 20;
+
   # Set your time zone.
   time.timeZone = "Europe/Prague";
 

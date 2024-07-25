@@ -12,6 +12,7 @@
     nvd
     gparted
     inputs.helix.packages."${pkgs.system}".helix
+    mc
   ];
 
   programs = {

@@ -15,10 +15,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/CH-DC2HYZ2-CZ
-          ./modules/common.nix
-          ./modules/user.nix
-          ./modules/network.nix
-          ./modules/pkgs.nix
+          ./modules/common
           ./modules/notebook.nix
           ./modules/desktop.nix
           ./modules/audio.nix
@@ -38,9 +35,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/nixodeos
-          ./modules/common.nix
-          ./modules/user.nix
-          ./modules/network.nix
+          ./modules/common
           ./modules/sshd.nix
           ./modules/neovim.nix
         ];
