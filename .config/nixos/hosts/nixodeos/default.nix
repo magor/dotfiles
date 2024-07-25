@@ -38,16 +38,10 @@
     nameservers = [ "8.8.8.8" "8.8.4.4"];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    cifs-utils
-    git
+    cifs-utils # needed for samba mount
   ];
 
-  # List services that you want to enable:
   # https://nixos.wiki/wiki/Syncthing
   services.syncthing = {
     enable = true;
