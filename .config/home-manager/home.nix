@@ -166,6 +166,7 @@
           set tabstop=2
           set softtabstop=2
           set shiftwidth=2
+          set ignorecase
           set smartcase
           " split navitation
           nnoremap <C-J> <C-W><C-J>
@@ -197,7 +198,7 @@
             type = "lua";
             config = ''
               require("nvim-tree").setup()
-              vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
+              vim.keymap.set('n', '<C-n>', ':NvimTreeFindFileToggle<CR>')
               '';
           }
 
