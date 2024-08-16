@@ -15,6 +15,10 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+  # https://github.com/NixOS/nixpkgs/issues/330685#issuecomment-2279718903
+  boot.extraModprobeConfig = ''
+    options snd-hda-intel dmic_detect=0
+  '';
 
   networking = {
     hostName = "CH-DC2HYZ2-CZ"; # Define your hostname.
