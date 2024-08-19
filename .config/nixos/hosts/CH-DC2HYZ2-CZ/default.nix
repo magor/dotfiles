@@ -15,10 +15,46 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+
   # https://github.com/NixOS/nixpkgs/issues/330685#issuecomment-2279718903
   boot.extraModprobeConfig = ''
     options snd-hda-intel dmic_detect=0
   '';
+
+  # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/3110#note_1977282
+  boot.kernelParams = [ "intel_iommu=on,igfx_off" ];
+
+  # fix hdmi bitrate on philips tv (no sound with default S32LE)
+  # https://wiki.archlinux.org/title/PipeWire#Changing_the_sample_rate
+  # https://nixos.wiki/wiki/PipeWire#Controlling_the_ALSA_devices
+  # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/3016#note_2031727
+  # https://www.reddit.com/r/voidlinux/comments/rbq4ns/sof_firmware_help/
+  # https://bbs.archlinux.org/viewtopic.php?id=290824
+  services.pipewire.wireplumber.extraConfig = { 
+    "51-alsa-hdmi" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+              # must use complete name, glob matching doesn't work??
+            {"node.name" = "alsa_output.pci-0000_00_1f.3.hdmi-stereo";}
+          ];
+
+          actions = {
+            update-props = {
+              "node.nick" = "Philips TV HDMI S16 shit";
+              "audio.format" = "S16";
+            };
+          };
+        }
+      ];
+    };
+    "log-level-debug" = {
+      "context.properties" = {
+        # Output Debug log messages as opposed to only the default level (Notice)
+        #"log.level" = "D";
+      };
+    };
+  };
 
   networking = {
     hostName = "CH-DC2HYZ2-CZ"; # Define your hostname.
