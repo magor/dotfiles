@@ -16,11 +16,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  # https://github.com/NixOS/nixpkgs/issues/330685#issuecomment-2279718903
-  boot.extraModprobeConfig = ''
-    options snd-hda-intel dmic_detect=0
-  '';
-
   # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/3110#note_1977282
   boot.kernelParams = [ "intel_iommu=on,igfx_off" ];
 
