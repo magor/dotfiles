@@ -26,4 +26,8 @@
 
   # sound/pipewire: rtkit is optional but recommended
   security.rtkit.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    qpwgraph
+  ];
 }
