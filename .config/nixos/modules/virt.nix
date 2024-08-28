@@ -19,7 +19,7 @@
   virtualisation = {
     docker = {
       enable = true;
-      storageDriver = "btrfs";
+      storageDriver = "overlay2";
     };
     libvirtd = {
       enable = true;
