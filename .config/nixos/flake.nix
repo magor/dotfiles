@@ -7,6 +7,12 @@
 
     musnix.url = "github:musnix/musnix";
     helix.url = "github:helix-editor/helix/24.03";
+
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259&submodules=1"; # 0.42.0
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?rev=0f594732b063a90d44df8c5d402d658f27471dfe&submodules=1"; # 0.43.0
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # main
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.43.0";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.42.0";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {

@@ -209,17 +209,17 @@
           #}
         ];
       };
-      alacritty = {
-        enable = true;
-        settings = {
-          import = [
-            "~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
-            "~/.config/alacritty/colors.toml"
-          ];
-          font.size = 11.0;
-          window.opacity = 0.95;
-        };
-      };
+      #alacritty = {
+      #  enable = true;
+      #  settings = {
+      #    import = [
+      #      "~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
+      #      "~/.config/alacritty/colors.toml"
+      #    ];
+      #    font.size = 11.0;
+      #    window.opacity = 0.95;
+      #  };
+      #};
     };
 
     services = {
