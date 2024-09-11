@@ -3,7 +3,7 @@
 {
   fonts = {
     packages = with pkgs; [
-      nerdfonts
+      # https://nixos.wiki/wiki/Fonts#Installing_specific_fonts_from_nerdfonts
       (nerdfonts.override { fonts = [ "Hack" "FiraCode" "DroidSansMono" ]; })
       noto-fonts
       font-awesome
