@@ -164,10 +164,10 @@
         "on-click": "pavucontrol"
     },
     "mpris": {
-      "format": "{dynamic}{player_icon}",
-      //"format": "{player_icon} {dynamic}",
-      "format-paused": "<i>{dynamic}</i>{status_icon}",
-      //"format-paused": "{status_icon} <i>{dynamic}</i>",
+      //"format": "{dynamic} {player_icon}",
+      "format": "{player_icon}",
+      //"format-paused": "<i>{dynamic}</i>{status_icon}",
+      "format-paused": "{status_icon}",
       "tooltip-format": "{dynamic} ({player})",
       "player-icons": {
            "default": "▶",
