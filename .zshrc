@@ -101,7 +101,7 @@ alias feh="feh --scale-down"
 alias k='kubectl'
 
 # >> k3s command completion (start)
-. <(k3s completion zsh)
+#. <(k3s completion zsh)
 # >> k3s command completion (end)
 
 # debian environment variables
