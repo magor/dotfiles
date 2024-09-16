@@ -25,6 +25,5 @@ simply use `config` alias instead of `git` to work with dotfiles repository from
 - cd ~
 - mkdir -p .config/nixos
 - cp -r /etc/nixos/* .config/nixos/
-- sudo rm -r /etc/nixos/
-- sudo ln -s .config/nixos/ /etc/nixos
-- sudo ln -s `pwd`/.config/nixos/ /etc/nixos
+- sudo mv /etc/nixos{,~}
+- sudo ln -rs .config/nixos/ /etc/nixos
