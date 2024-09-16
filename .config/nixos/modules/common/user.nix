@@ -13,8 +13,9 @@
       tree
       git
       lf
-      pistol
       fzf
+      ripgrep
+      pistol
     ];
   };
 
