@@ -14,12 +14,12 @@
     pulse.enable = true;
     jack.enable = true;
     extraConfig.pipewire."92-low-latency" = {
-      context.properties = {
+      "context.properties" = {
         #default.clock.rate = 48000;
-        default.clock.rate = 44100; # fix rehearsal room drums jitter
-        default.clock.quantum = 32;
-        default.clock.min-quantum = 32;
-        default.clock.max-quantum = 32;
+        "default.clock.rate" = 44100; # fix rehearsal room drums jitter
+        "default.clock.quantum" = 32;
+        "default.clock.min-quantum" = 32;
+        "default.clock.max-quantum" = 32;
       };
     };
   };
