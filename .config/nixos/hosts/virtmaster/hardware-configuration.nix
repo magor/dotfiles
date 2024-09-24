@@ -10,8 +10,11 @@
 
   boot.initrd.availableKernelModules = [ "ata_generic" "ehci_pci" "ahci" "isci" "xhci_pci" "firewire_ohci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" "kvm-intel" ];
   boot.extraModulePackages = [ ];
+
+  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
+  boot.extraModprobeConfig ="options vfio-pci ids=10de:1c82,10de:0fb9";
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/6aaa467a-ff7e-409f-bd76-a1e5ef82d1aa";

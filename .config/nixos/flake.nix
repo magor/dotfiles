@@ -41,6 +41,7 @@
         modules = [
           ./hosts/virtmaster
           ./modules/common
+          ./modules/virt.nix
         ];
       };
     };
