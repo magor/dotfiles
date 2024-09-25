@@ -64,7 +64,7 @@
       tig
       python311Packages.ipython
       jdk8
-      dbeaver
+      dbeaver-bin
       cntr
 
       # de
@@ -75,7 +75,7 @@
       networkmanagerapplet
       #qt5.qtwayland
       #qt6.qtwayland
-      gnome.nautilus
+      nautilus
       corefonts
       wlsunset
       feh
@@ -244,7 +244,7 @@
     gtk = {
       enable = true;
       theme = {
-        package = pkgs.gnome.gnome-themes-extra;
+        package = pkgs.gnome-themes-extra;
         name = "Adwaita";
       };
     };
