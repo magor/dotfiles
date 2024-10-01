@@ -13,6 +13,7 @@
     hyprcursor
     hyprlock
     xdg-desktop-portal-hyprland
+    sway
   ];
 
   services = {
