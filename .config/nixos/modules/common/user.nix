@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{config, pkgs, home-manager, ... }:
 
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -22,4 +22,7 @@
   programs = {
     zsh.enable = true;
   };
+
+  home-manager.users.mirek = import ../home.nix;
+  #home-manager.users.mirek = import /home/mirek/.config/home-manager/home.nix; # error: access to absolute path '/home/mirek/.config/home-manager/home.nix' is forbidden in pure eval mode (use '--impure' to override)
 }

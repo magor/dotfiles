@@ -144,7 +144,8 @@ kubectl() {
     sudo k3s kubectl "${@}"
 }
 
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+#source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+source /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh
 
 # if you run ie. sway without proper setup/loginmanager
 #dbus-update-activation-environment WAYLAND_DISPLAY

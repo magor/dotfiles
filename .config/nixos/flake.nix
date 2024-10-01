@@ -5,11 +5,16 @@
     # NixOS official package source
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     musnix.url = "github:musnix/musnix";
     helix.url = "github:helix-editor/helix/24.03";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -21,6 +26,16 @@
           ./modules/virt.nix
           ./modules/gaming.nix
           inputs.musnix.nixosModules.musnix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            #home-manager.users.jdoe = import ./home.nix; # done in users submodule
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
 
           # Set all inputs parameters as special arguments for all submodules,
           # so you can directly use all dependencies in inputs in submodules
