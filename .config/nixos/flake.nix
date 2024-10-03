@@ -28,14 +28,16 @@
           inputs.musnix.nixosModules.musnix
 
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            #home-manager.users.jdoe = import ./home.nix; # done in users submodule
+          #{
+          #  home-manager = {
+              #useGlobalPkgs = true;
+              #useUserPackages = true;
+              #users.jdoe = import ./home.nix; # done in users submodule
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
+              # Optionally, use extraSpecialArgs to pass
+              # arguments to home.nix
+          #  };
+          #}
 
           # Set all inputs parameters as special arguments for all submodules,
           # so you can directly use all dependencies in inputs in submodules

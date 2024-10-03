@@ -23,6 +23,9 @@
     zsh.enable = true;
   };
 
-  home-manager.users.mirek = import ../home.nix;
-  #home-manager.users.mirek = import /home/mirek/.config/home-manager/home.nix; # error: access to absolute path '/home/mirek/.config/home-manager/home.nix' is forbidden in pure eval mode (use '--impure' to override)
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.mirek = import ../home.nix;
+  };
 }
