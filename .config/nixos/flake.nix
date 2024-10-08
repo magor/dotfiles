@@ -58,6 +58,7 @@
           ./hosts/virtmaster
           ./modules/common
           ./modules/virt.nix
+          home-manager.nixosModules.home-manager
         ];
       };
     };
