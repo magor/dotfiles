@@ -6,12 +6,9 @@
   environment.systemPackages = with pkgs; [
     git # needed for flakes
     tree
-    lynx
     wget
     # nix tools
     nvd
-    gparted
-    mc
   ];
 
   programs = {

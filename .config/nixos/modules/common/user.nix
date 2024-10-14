@@ -11,8 +11,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9fApHPV0yOZRcq/v3ExbPpsi3Us5c4OgG2ykbSS+B6 mirek@nixodeos"
     ];
     packages = with pkgs; [
-      tree
-      git
       lf
       fzf
       ripgrep
