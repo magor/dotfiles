@@ -50,6 +50,7 @@
           ./hosts/nixodeos
           ./modules/common
           ./modules/server
+          home-manager.nixosModules.home-manager
         ];
       };
       virtmaster = nixpkgs.lib.nixosSystem {

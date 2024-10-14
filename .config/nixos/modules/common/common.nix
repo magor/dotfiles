@@ -3,6 +3,9 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  # needed for home-manager module
+  programs.dconf.enable = true;
+
   # Enable the Flakes feature and the accompanying new nix command-line tool
   # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

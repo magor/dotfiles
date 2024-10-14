@@ -1,8 +1,6 @@
 {config, pkgs, ... }:
 
 {
-  programs.dconf.enable = true;
-
   users.users.mirek.extraGroups = [ "docker" "libvirtd" ];
 
   environment.systemPackages = with pkgs; [
