@@ -62,6 +62,7 @@
       git # TODO config
       git-lfs
       tig
+      lazygit
       python311Packages.ipython
       jdk8
       dbeaver-bin

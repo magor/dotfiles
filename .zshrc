@@ -99,6 +99,7 @@ alias t="tig --all"
 alias docker="sudo docker"
 alias feh="feh --scale-down"
 alias k='kubectl'
+alias lg='lazygit'
 
 # >> k3s command completion (start)
 #. <(k3s completion zsh)
