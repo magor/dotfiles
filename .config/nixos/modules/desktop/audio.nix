@@ -29,5 +29,20 @@
 
   environment.systemPackages = with pkgs; [
     qpwgraph
+    pavucontrol
+    spotify
+    playerctl
+    reaper
+    vlc
+    helvum
+    qsynth
+    fluidsynth
+    soundfont-fluid
+    carla
+    helm
+    drumgizmo
+    hydrogen
+    sfizz
+    vital
   ];
 }
