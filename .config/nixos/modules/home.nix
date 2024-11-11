@@ -70,18 +70,6 @@
 
       # de
       # TODO move to system conf?
-      lxde.lxsession # polkit authentication agent
-      fuzzel
-      brightnessctl
-      networkmanagerapplet
-      #qt5.qtwayland
-      #qt6.qtwayland
-      gnome.nautilus
-      corefonts
-      wlsunset
-      feh
-      nwg-look
-      wofi
       # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
 
       # audio

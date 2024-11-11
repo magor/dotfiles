@@ -14,6 +14,18 @@
     hyprlock
     xdg-desktop-portal-hyprland
     sway
+    lxde.lxsession # polkit authentication agent
+    fuzzel
+    brightnessctl
+    networkmanagerapplet
+    #qt5.qtwayland
+    #qt6.qtwayland
+    gnome.nautilus
+    corefonts
+    wlsunset
+    feh
+    nwg-look
+    wofi
   ];
 
   services = {
