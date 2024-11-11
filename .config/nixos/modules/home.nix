@@ -70,17 +70,14 @@
       cntr
 
       # de
-      # TODO move to system conf?
       # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
 
-      # audio
-      # TODO
-
-        (writeShellScriptBin "nix-jack" ''
-          exec /usr/bin/env \
-            LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
-            "''$@"
-        '')
+      # audio - maybe not needed anymore?
+      (writeShellScriptBin "nix-jack" ''
+        exec /usr/bin/env \
+          LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
+          "''$@"
+      '')
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the
