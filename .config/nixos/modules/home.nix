@@ -63,6 +63,7 @@
       git-lfs
       tig
       lazygit
+      difftastic
       python311Packages.ipython
       jdk8
       dbeaver-bin
