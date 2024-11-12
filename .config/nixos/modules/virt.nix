@@ -1,7 +1,7 @@
 {config, pkgs, ... }:
 
 {
-  users.users.mirek.extraGroups = [ "docker" "libvirtd" ];
+  users.users.mirek.extraGroups = [ "libvirtd" ];
 
   environment.systemPackages = with pkgs; [
     virt-manager
@@ -15,10 +15,6 @@
   ];
 
   virtualisation = {
-    docker = {
-      enable = true;
-      storageDriver = "overlay2";
-    };
     libvirtd = {
       enable = true;
       qemu = {
