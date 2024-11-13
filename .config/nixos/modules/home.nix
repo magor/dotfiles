@@ -126,6 +126,42 @@
     };
 
     programs = {
+      zsh = {
+        enable = true;
+        enableCompletion = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
+
+        initExtra = ''
+          # functions go here
+        '';
+        shellAliases = {
+          c="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+          #W="watch";
+          #t="tig --all";
+          docker="sudo docker";
+          #feh="feh --scale-down";
+          k="kubectl";
+          lg="lazygit";
+          # kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
+        };
+        history = {
+          size = 10000;
+          path = "${config.xdg.dataHome}/zsh/history";
+        };
+        oh-my-zsh = {
+          enable = true;
+          theme = "ys";
+          plugins = [
+            "fzf"
+            "git"
+            #"asdf"
+            "colored-man-pages"
+            #"gitignore"
+            #"kubectl"
+          ];
+        };
+      };
       neovim = {
         enable = true;
         vimAlias=true;
