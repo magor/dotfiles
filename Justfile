@@ -15,7 +15,7 @@ upp input:
 ## clean
 clean:
   # https://nixos.wiki/wiki/Storage_optimization
-  bin/trim-generations.sh 2 2 user || echo $?
+  bin/trim-generations.sh 5 5 user || echo $?
   sudo bin/trim-generations.sh 5 5 system || echo $?
   nix-store --gc
   sudo nix-store --gc
