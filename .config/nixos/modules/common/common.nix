@@ -3,6 +3,9 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  # https://nixos.wiki/wiki/Storage_optimization
+  nix.optimise.automatic = true;
+
   # needed for home-manager module
   programs.dconf.enable = true;
 
