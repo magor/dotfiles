@@ -23,6 +23,7 @@
           ./modules/desktop
           ./modules/notebook.nix
           ./modules/virt.nix
+          ./modules/docker.nix
           ./modules/gaming.nix
           inputs.musnix.nixosModules.musnix
 

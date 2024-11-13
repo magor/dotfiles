@@ -8,4 +8,5 @@
       enable = true;
       storageDriver = "overlay2";
     };
+  };
 }
