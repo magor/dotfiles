@@ -63,15 +63,10 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    chyron = {
-      isNormalUser = true;
-      description = "chyron";
-      extraGroups = [ "networkmanager" ];
-      packages = with pkgs; [
-      ];
-    };
+  users.users.mirek = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9fApHPV0yOZRcq/v3ExbPpsi3Us5c4OgG2ykbSS+B6 mirek@nixodeos"
+    ];
   };
 
   # Allow unfree packages

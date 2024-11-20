@@ -23,10 +23,6 @@
     ];
   };
 
-  users.users.mirek.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMJEL1LW4nRvTMf1AGosGf7ZdVaJyPqasXi1pk8mkuVD root@CH-DC2HYZ2-CZ"
-  ];
-
   networking = {
     hostName = "nixodeos"; # Define your hostname.
     interfaces = {
