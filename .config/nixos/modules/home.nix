@@ -138,6 +138,9 @@
         initExtra = ''
           # functions go here
         '';
+        sessionVariables = {
+          PISTOL_CHROMA_FORMATTER = "terminal256"; # fix colors in lf preview window
+        };
         shellAliases = {
           c="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
           #W="watch";
