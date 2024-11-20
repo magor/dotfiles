@@ -126,6 +126,9 @@
     };
 
     programs = {
+      nix-index = {
+        enable = true;
+      };
       zsh = {
         enable = true;
         enableCompletion = true;
