@@ -6,6 +6,10 @@
     default = "dark";
   };
 
+  imports = [
+    ./neovim
+  ];
+
   config = {
     specialisation = {
       light.configuration = {
@@ -121,9 +125,6 @@
     #
     #  /etc/profiles/per-user/mirek/etc/profile.d/hm-session-vars.sh
     #
-    home.sessionVariables = {
-      EDITOR = "nvim";
-    };
 
     programs = {
       nix-index = {
@@ -167,61 +168,6 @@
             #"kubectl"
           ];
         };
-      };
-      neovim = {
-        enable = true;
-        vimAlias=true;
-        vimdiffAlias=true;
-        extraConfig = ''
-          set number
-          set cursorline
-          set title
-          set expandtab
-          set tabstop=2
-          set softtabstop=2
-          set shiftwidth=2
-          set ignorecase
-          set smartcase
-          " split navitation
-          nnoremap <C-J> <C-W><C-J>
-          nnoremap <C-K> <C-W><C-K>
-          nnoremap <C-L> <C-W><C-L>
-          nnoremap <C-H> <C-W><C-H>
-          '';
-        plugins = with pkgs.vimPlugins; [
-          vim-airline
-          {
-            plugin = gruvbox-material;
-            config = ''
-              " Important!!
-              if has('termguicolors')
-                set termguicolors
-              endif
-              set background=${config.theme}
-              let g:gruvbox_material_background = 'soft'
-              let g:gruvbox_material_transparent_background = 1
-              " For better performance - causes errors with file permissions
-              "let g:gruvbox_material_better_performance = 1
-
-              colorscheme gruvbox-material
-              '';
-          }
-
-          {
-            plugin = nvim-tree-lua;
-            type = "lua";
-            config = ''
-              require("nvim-tree").setup()
-              vim.keymap.set('n', '<C-n>', ':NvimTreeFindFileToggle<CR>')
-              '';
-          }
-
-          #pkgs.vimPlugins.LazyVim
-          #{
-            #plugin = pkgs.vimPlugins.vim-startify;
-            #config = "let g:startify_change_to_vcs_root = 0";
-          #}
-        ];
       };
       alacritty = {
         enable = true;
