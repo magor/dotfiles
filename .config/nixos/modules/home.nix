@@ -75,6 +75,8 @@
 
       # de
       # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
+      grim
+      slurp
 
       # audio - maybe not needed anymore?
       (writeShellScriptBin "nix-jack" ''
@@ -206,6 +208,19 @@
       theme = {
         package = pkgs.gnome-themes-extra;
         name = "Adwaita-dark";
+      };
+    };
+
+    xdg.desktopEntries = {
+      # wofi fails on this
+      # try running via $ wofi --show drun -D drun-print_command=true
+      # try with another runner or just map it to shortcut in hyprland
+      screenshot = {
+        name = "screenshot";
+        exec = "grim -g \"\\$(slurp)\"";
+        #exec = "grim -g \"\"";
+        #exec = "grim -g \"\$\"";
+        terminal = true;
       };
     };
 
