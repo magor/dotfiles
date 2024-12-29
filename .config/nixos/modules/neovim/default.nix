@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
   home.sessionVariables = {
@@ -20,7 +15,11 @@
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = [ pkgs.gcc ];
+
+    extraPackages = with pkgs; [
+      pkgs.gcc
+    ];
+
     extraLuaConfig = ''
       require('nvim-treesitter.configs').setup {
         highlight = {
@@ -61,9 +60,11 @@
       '';
 
     plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-      vim-airline
-      {
+      # lazy loading
+      lazy-nvim # TODO configure
+
+      # ui
+      vim-airline {
         plugin = gruvbox-material;
         config = ''
           " Important!!
@@ -79,19 +80,31 @@
           colorscheme gruvbox-material
           '';
       }
-
-      {
-        plugin = nvim-tree-lua;
+      { plugin = nvim-tree-lua;
         type = "lua";
         config = ''
           require("nvim-tree").setup()
           vim.keymap.set('n', '<C-n>', ':NvimTreeFindFileToggle<CR>')
           '';
       }
+      which-key-nvim
+
+      # fuzzy finder
+      telescope-nvim # https://github.com/nvim-telescope/telescope.nvim/
+      telescope-fzy-native-nvim # https://github.com/nvim-telescope/telescope-fzy-native.nvim
+
+      # navigation
+      eyeliner-nvim # Highlights unique characters for f/F and t/T motions | https://github.com/jinh0/eyeliner.nvim
+      flash-nvim # TODO configure
+
+      # language parser
+      nvim-treesitter.withAllGrammars
+
+
+      # to be cleaned
 
       # plugins from nixpkgs go in here.
       # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins
-      nvim-treesitter.withAllGrammars
       luasnip # snippets | https://github.com/l3mon4d3/luasnip/
       # nvim-cmp (autocompletion) and extensions
       nvim-cmp # https://github.com/hrsh7th/nvim-cmp
@@ -112,8 +125,7 @@
       vim-fugitive # https://github.com/tpope/vim-fugitive/
       # ^ git integration plugins
       # telescope and extensions
-      telescope-nvim # https://github.com/nvim-telescope/telescope.nvim/
-      telescope-fzy-native-nvim # https://github.com/nvim-telescope/telescope-fzy-native.nvim
+      #dressing-nvim
       # telescope-smart-history-nvim # https://github.com/nvim-telescope/telescope-smart-history.nvim
       # ^ telescope and extensions
       # UI
@@ -126,7 +138,6 @@
       # ^ language support
       # navigation/editing enhancement plugins
       vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
-      eyeliner-nvim # Highlights unique characters for f/F and t/T motions | https://github.com/jinh0/eyeliner.nvim
       nvim-surround # https://github.com/kylechui/nvim-surround/
       nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
       nvim-ts-context-commentstring # https://github.com/joosepalviste/nvim-ts-context-commentstring/
@@ -143,7 +154,6 @@
       # bleeding-edge plugins from flake inputs
       # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
       # ^ bleeding-edge plugins from flake inputs
-      which-key-nvim
 
       #pkgs.vimPlugins.LazyVim
       #{
