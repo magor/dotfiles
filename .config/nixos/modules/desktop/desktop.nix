@@ -20,7 +20,7 @@
     networkmanagerapplet
     #qt5.qtwayland
     #qt6.qtwayland
-    gnome.nautilus
+    nautilus
     corefonts
     wlsunset
     feh

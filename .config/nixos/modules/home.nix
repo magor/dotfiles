@@ -174,7 +174,7 @@
       alacritty = {
         enable = true;
         settings = {
-          import = [
+          general.import = [
             "~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
             "~/.config/alacritty/colors.toml"
           ];

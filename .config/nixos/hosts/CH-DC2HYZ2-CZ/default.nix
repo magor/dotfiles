@@ -60,7 +60,7 @@
   services.teamviewer.enable = true; # client doesn't work without running service :(
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
       # https://nixos.wiki/wiki/Accelerated_Video_Playback
       extraPackages = with pkgs; [
