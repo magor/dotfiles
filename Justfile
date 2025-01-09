@@ -5,12 +5,12 @@
 
 ## update all the flake inputs
 up:
-  nix flake update .config/nixos
+  nix flake update --flake .config/nixos
 
 ## Update specific input
 ## Usage: just upp nixpkgs
 upp input:
-  nix flake update {{input}}
+  nix flake update --flake .config/nixos {{input}}
 
 ## clean
 clean:
