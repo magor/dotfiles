@@ -1,4 +1,5 @@
 # todo
+- nix specialization for homemanager to switch themes
 - add desktop ssh key to nixodeos!!
 - declaratively configure syncthing backup
 
