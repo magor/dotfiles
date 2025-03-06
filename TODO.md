@@ -1,4 +1,10 @@
+# gajdos
+- virtualization
+- fix brightness setter
+- btrfs subvolumes
+
 # todo
+- clean dotfiles (submodules etc)
 - nix specialization for homemanager to switch themes
 - add desktop ssh key to nixodeos!!
 - declaratively configure syncthing backup
@@ -10,7 +16,6 @@
 - expand partition (unallocated space before /)
 
 # maybe
-- move to sway
 - fix cursor (hyprcursor, firefox, different sizes)
 - docker alias: prepare some info shell prompt
 

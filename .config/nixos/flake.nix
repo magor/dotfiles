@@ -15,6 +15,39 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
+      gajdos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/gajdos
+          ./modules/common
+          ./modules/desktop
+          ./modules/notebook.nix
+          ./modules/virt.nix
+          ./modules/docker.nix
+          ./modules/gaming.nix
+          ./modules/wine.nix
+          ./modules/chyron.nix
+          ./modules/looking-glass.nix
+          inputs.musnix.nixosModules.musnix
+
+          home-manager.nixosModules.home-manager
+          #{
+          #  home-manager = {
+              #useGlobalPkgs = true;
+              #useUserPackages = true;
+              #users.jdoe = import ./home.nix; # done in users submodule
+
+              # Optionally, use extraSpecialArgs to pass
+              # arguments to home.nix
+          #  };
+          #}
+
+          # Set all inputs parameters as special arguments for all submodules,
+          # so you can directly use all dependencies in inputs in submodules
+          # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
+          { _module.args = { inherit inputs; }; }
+        ];
+      };
       CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -25,6 +58,8 @@
           ./modules/virt.nix
           ./modules/docker.nix
           ./modules/gaming.nix
+          ./modules/wine.nix
+          ./modules/chyron.nix
           inputs.musnix.nixosModules.musnix
 
           home-manager.nixosModules.home-manager
