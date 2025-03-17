@@ -23,6 +23,11 @@
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/e165f63d-c25d-4d8b-b7be-a422b045cae1";
+      fsType = "btrfs";
+      options = [ "subvol=@swap" ];
+    };
 
   boot.initrd.luks.devices."luks-339fb433-88c0-498a-9e45-257e5deea386".device = "/dev/disk/by-uuid/339fb433-88c0-498a-9e45-257e5deea386";
 
@@ -32,7 +37,8 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices = [ ];
+  # see https://nixos.wiki/wiki/Btrfs#Swap_file
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
