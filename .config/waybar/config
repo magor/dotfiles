@@ -112,7 +112,8 @@
         //"format-icons": ["", "", ""]
     },
     "backlight": {
-        // "device": "acpi_video1",
+        // fails now, see https://github.com/Alexays/Waybar/issues/3302
+        //"device": "intel_backlight",
         "format": "{percent}% {icon}",
         "format-icons": ["", ""]
     },
