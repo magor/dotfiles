@@ -46,5 +46,7 @@
     vital
     neural-amp-modeler-lv2
     qjackctl
+    yabridge
+    yabridgectl
   ];
 }
