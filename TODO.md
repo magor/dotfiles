@@ -3,6 +3,10 @@
 - fix brightness setter
 - btrfs subvolumes
 
+# nixodeos
+- install byobu
+- manage secrets (ie. samba creds)
+
 # todo
 - clean dotfiles (submodules etc)
 - nix specialization for homemanager to switch themes
@@ -35,4 +39,9 @@ uninstalling 'nixpkgs'
 
 $ sudo nix-channel --remove nixos
 uninstalling 'nixos-24.05'
+```
+
+# migrate zsh history
+```
+mv .zsh_history .local/share/zsh/history
 ```
