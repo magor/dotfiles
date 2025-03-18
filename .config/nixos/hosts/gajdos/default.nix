@@ -75,6 +75,7 @@
       };
     };
   };
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mirek = {
