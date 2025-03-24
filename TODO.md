@@ -11,6 +11,11 @@
 - install byobu
 - manage secrets (ie. samba creds)
 
+# old notebook
+- config branches
+
+
+
 # todo
 - set xdg dirs (downloads etc)
 - clean dotfiles (submodules etc)
