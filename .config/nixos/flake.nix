@@ -28,6 +28,7 @@
           ./modules/wine.nix
           ./modules/chyron.nix
           ./modules/looking-glass.nix
+          ./modules/syncthing.nix
           inputs.musnix.nixosModules.musnix
 
           home-manager.nixosModules.home-manager
