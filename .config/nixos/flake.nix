@@ -95,6 +95,7 @@
         modules = [
           ./hosts/virtmaster
           ./modules/common
+          ./modules/server
           ./modules/virt.nix
           home-manager.nixosModules.home-manager
         ];
