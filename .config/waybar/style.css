@@ -61,6 +61,10 @@ window#waybar.chromium {
     border-bottom: 3px solid;
 }
 
+#workspaces button.visible {
+    color: #ebdbb2;
+}
+
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
