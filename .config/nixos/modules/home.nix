@@ -85,6 +85,19 @@
           "''$@"
       '')
 
+      # direnv helper scripts
+      # https://determinate.systems/posts/nix-direnv/
+      (writeShellScriptBin "dvd" ''
+        echo "use flake \"github:magor/dev-templates?dir=$1\"" >> .envrc
+        direnv allow
+      '')
+      (writeShellScriptBin "dvt" ''
+        nix flake init -t "github:magor/dev-templates#$1"
+        git init
+        git add flake.nix
+        direnv allow
+      '')
+
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the
       # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -181,6 +194,11 @@
           font.size = 11.0;
           window.opacity = 0.95;
         };
+      };
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
       };
     };
 
