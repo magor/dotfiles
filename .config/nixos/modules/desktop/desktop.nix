@@ -8,7 +8,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    waybar
+    unstable.waybar # https://github.com/Alexays/Waybar/issues/3042
     hypridle
     hyprpaper
     hyprcursor
