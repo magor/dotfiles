@@ -9,7 +9,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGWAuggWw9pRBmkrfYevThkgWZnif2ykMW7U47FfGvgk mirek@CH-DC2HYZ2-CZ"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0PnFWKOhMUo2b38d5OnyaNjeIXoByAPnMhU09UPAoK mirek@gajdos"
-
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoJjsFgqBmAWglQtlAAS09tTMENADdFIJa7ZDr+n0sh mirek@thinkpad"
     ];
     packages = with pkgs; [
       lf

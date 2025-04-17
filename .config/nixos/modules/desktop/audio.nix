@@ -17,9 +17,9 @@
       "context.properties" = {
         #"default.clock.rate" = 48000; # default
         "default.clock.rate" = 44100; # fix rehearsal room drums jitter
-        "default.clock.quantum" = 128;
-        "default.clock.min-quantum" = 128;
-        "default.clock.max-quantum" = 128;
+        "default.clock.quantum" = 256;
+        "default.clock.min-quantum" = 256;
+        "default.clock.max-quantum" = 256;
       };
     };
   };
