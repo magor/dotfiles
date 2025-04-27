@@ -70,6 +70,7 @@
           ./modules/notebook.nix
           ./modules/chyron.nix
           ./modules/syncthing.nix
+          ./modules/ide.nix
           inputs.musnix.nixosModules.musnix
 
           nixos-hardware.nixosModules.lenovo-thinkpad-t14
