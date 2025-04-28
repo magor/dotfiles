@@ -15,6 +15,8 @@
     musnix.url = "github:musnix/musnix";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    stylix.url = "github:danth/stylix/release-24.11";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
@@ -71,9 +73,12 @@
           ./modules/chyron.nix
           ./modules/syncthing.nix
           ./modules/ide.nix
+          ./modules/stylix.nix
           inputs.musnix.nixosModules.musnix
 
           nixos-hardware.nixosModules.lenovo-thinkpad-t14
+
+          inputs.stylix.nixosModules.stylix
 
           home-manager.nixosModules.home-manager
           #{

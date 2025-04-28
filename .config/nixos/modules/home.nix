@@ -1,25 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-  options.theme = lib.mkOption {
-    type = lib.types.str;
-    default = "dark";
-  };
-
   imports = [
     ./neovim
   ];
 
   config = {
-    specialisation = {
-      light.configuration = {
-        theme = "light";
-        gtk.theme.name = lib.mkForce "Adwaita";
-      };
-      dark.configuration.config = {
-        # this is default, no changes
-      };
-    };
 
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -36,6 +22,7 @@
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
     #wayland.windowManager.hyprland.enable = true;
+    stylix.targets.hyprpaper.enable = true;
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
@@ -188,11 +175,12 @@
         enable = true;
         settings = {
           general.import = [
-            "~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
+            #"~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
+            "~/.config/alacritty/alacritty-theme/themes/gruvbox_dark.toml"
             "~/.config/alacritty/colors.toml"
           ];
-          font.size = 11.0;
-          window.opacity = 0.95;
+          #font.size = 11.0;
+          #window.opacity = 0.95;
         };
       };
       direnv = {
@@ -224,8 +212,8 @@
     gtk = {
       enable = true;
       theme = {
-        package = pkgs.gnome-themes-extra;
-        name = "Adwaita-dark";
+        #package = pkgs.gnome-themes-extra;
+        #name = "Adwaita-dark";
       };
     };
 

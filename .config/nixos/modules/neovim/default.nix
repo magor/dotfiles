@@ -71,7 +71,7 @@
           if has('termguicolors')
             set termguicolors
           endif
-          set background=${config.theme}
+          set background=dark
           let g:gruvbox_material_background = 'soft'
           let g:gruvbox_material_transparent_background = 1
           " For better performance - causes errors with file permissions
