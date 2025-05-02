@@ -16,6 +16,7 @@
     efi.canTouchEfiVariables = true;
   };
 
+  services.fprintd.enable = true;
 
   networking = {
     hostName = "thinkpad"; # Define your hostname.
