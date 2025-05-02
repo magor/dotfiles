@@ -34,6 +34,12 @@
     };
   };
 
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
