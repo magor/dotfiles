@@ -198,6 +198,35 @@
       #  enable = true;
       #  tray.enable = true;
       #};
+
+      kanshi = {
+        enable = true;
+        systemdTarget = "graphical-session.target";
+        settings = [
+          { output.criteria = "eDP-1";
+            #output.scale = 1.2;
+            #output.scale = 1.333333;
+          }
+          { profile.name = "undocked";
+            profile.outputs = [
+              {
+                criteria = "eDP-1";
+              }
+            ];
+          }
+          { profile.name = "docked";
+            profile.outputs = [
+              {
+                criteria = "eDP-1";
+              }
+              {
+                criteria = "Some Company ASDF 4242";
+                transform = "90";
+              }
+            ];
+          }
+        ];
+      };
     };
     # Workaround for Failed to restart syncthingtray.service: Unit tray.target not found.
     # - https://github.com/nix-community/home-manager/issues/2064
