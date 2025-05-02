@@ -208,15 +208,6 @@
       };
     };
 
-    # https://github.com/NixOS/nixpkgs/issues/207339#issuecomment-1374497558
-    gtk = {
-      enable = true;
-      theme = {
-        #package = pkgs.gnome-themes-extra;
-        #name = "Adwaita-dark";
-      };
-    };
-
     xdg.desktopEntries = {
       # wofi fails on this
       # try running via $ wofi --show drun -D drun-print_command=true
