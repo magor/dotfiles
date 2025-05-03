@@ -4,7 +4,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    image = ./wp.jpg;
+    image = ../assets/wp.jpg;
     opacity.terminal = 0.95;
     fonts.sizes.terminal = 12;
     fonts.sizes.applications = 11;
