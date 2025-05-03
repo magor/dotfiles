@@ -237,19 +237,6 @@
       };
     };
 
-    xdg.desktopEntries = {
-      # wofi fails on this
-      # try running via $ wofi --show drun -D drun-print_command=true
-      # try with another runner or just map it to shortcut in hyprland
-      screenshot = {
-        name = "screenshot";
-        exec = "grim -g \"\\$(slurp)\"";
-        #exec = "grim -g \"\"";
-        #exec = "grim -g \"\$\"";
-        terminal = true;
-      };
-    };
-
     xdg.userDirs = {
       enable = true;
       documents = "${config.home.homeDirectory}/doc";
