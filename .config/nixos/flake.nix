@@ -30,6 +30,8 @@
       gajdos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          # Overlays-module makes "pkgs.unstable" available in configuration.nix
+          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
           ./hosts/gajdos
           ./modules/common
           ./modules/desktop
@@ -41,6 +43,8 @@
           ./modules/chyron.nix
           ./modules/looking-glass.nix
           ./modules/syncthing.nix
+          ./modules/stylix.nix
+          inputs.stylix.nixosModules.stylix
           inputs.musnix.nixosModules.musnix
 
           home-manager.nixosModules.home-manager
