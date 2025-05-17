@@ -203,25 +203,26 @@
         enable = true;
         systemdTarget = "graphical-session.target";
         settings = [
-          { output.criteria = "eDP-1";
-            #output.scale = 1.2;
-            #output.scale = 1.333333;
-          }
-          { profile.name = "undocked";
+          # can set defaults like this:
+          #{ output.criteria = "eDP-1";
+          #  #output.scale = 1.2;
+          #}
+          { profile.name = "laptop";
             profile.outputs = [
               {
                 criteria = "eDP-1";
               }
             ];
           }
-          { profile.name = "docked";
+          { profile.name = "home";
             profile.outputs = [
               {
                 criteria = "eDP-1";
+                scale = 1.333333;
               }
               {
-                criteria = "Some Company ASDF 4242";
-                transform = "90";
+                criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
+                scale = 1.5;
               }
             ];
           }
