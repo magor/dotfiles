@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{config, pkgs, inputs, ... }:
 
 {
   programs = {
@@ -27,6 +27,7 @@
     feh
     nwg-look
     wofi
+    inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
   ];
 
   services = {
