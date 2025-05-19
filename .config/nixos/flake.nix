@@ -43,7 +43,7 @@
           ./hosts/gajdos
           ./modules/common
           ./modules/desktop
-          ./modules/notebook.nix
+          ./modules/laptop.nix
           ./modules/virt.nix
           ./modules/docker.nix
           ./modules/gaming.nix
@@ -81,7 +81,7 @@
           ./hosts/thinkpad
           ./modules/common
           ./modules/desktop
-          ./modules/notebook.nix
+          ./modules/laptop.nix
           ./modules/chyron.nix
           ./modules/syncthing.nix
           ./modules/ide.nix
@@ -116,7 +116,7 @@
           ./hosts/CH-DC2HYZ2-CZ
           ./modules/common
           ./modules/desktop
-          ./modules/notebook.nix
+          ./modules/laptop.nix
           ./modules/virt.nix
           ./modules/docker.nix
           ./modules/gaming.nix
