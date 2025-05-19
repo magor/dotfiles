@@ -17,7 +17,10 @@
   };
 
   # fixes hdmi over usb-c
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # freeze kernel to avoid qemu virtual problems?
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
 
   networking = {
     hostName = "gajdos";
@@ -54,7 +57,7 @@
     };
   };
 
-  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+  #services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mirek = {
