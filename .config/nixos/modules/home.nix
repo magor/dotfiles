@@ -230,6 +230,14 @@
       };
     };
 
+    xdg.userDirs = {
+      enable = true;
+      documents = "${config.home.homeDirectory}/doc";
+      download = "${config.home.homeDirectory}/dl";
+      music = "${config.home.homeDirectory}/media/music";
+      pictures = "${config.home.homeDirectory}/media/pics";
+    };
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
   };
