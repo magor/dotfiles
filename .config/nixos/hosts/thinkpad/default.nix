@@ -18,6 +18,8 @@
 
   services.fprintd.enable = true;
 
+  services.throttled.enable = true; # fix intel cpu throttling
+
   networking = {
     hostName = "thinkpad"; # Define your hostname.
   };
