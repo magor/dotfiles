@@ -74,10 +74,12 @@
 
       # direnv helper scripts
       # https://determinate.systems/posts/nix-direnv/
+      # prepare devenv using remote flake
       (writeShellScriptBin "dvd" ''
         echo "use flake \"github:magor/dev-templates?dir=$1\"" >> .envrc
         direnv allow
       '')
+      # prepare devenv by instantiating template locally
       (writeShellScriptBin "dvt" ''
         nix flake init -t "github:magor/dev-templates#$1"
         git init
