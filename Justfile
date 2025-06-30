@@ -20,3 +20,13 @@ clean:
   nix-store --gc
   sudo nix-store --gc
   sudo nix-store --optimise
+
+clean-nh:
+  nh clean all --keep 5 --ask
+
+switch:
+  nh os switch .config/nixos --ask
+switch-dark:
+  nh os switch --no-specialisation .config/nixos --ask
+switch-light:
+  nh os switch --specialisation light .config/nixos --ask
