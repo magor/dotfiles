@@ -3,8 +3,9 @@
 {
   fonts = {
     packages = with pkgs; [
-      # https://nixos.wiki/wiki/Fonts#Installing_specific_fonts_from_nerdfonts
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" "DroidSansMono" ]; })
+      nerd-fonts.hack
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
       noto-fonts
       font-awesome
       #corefonts # ms free fonts
