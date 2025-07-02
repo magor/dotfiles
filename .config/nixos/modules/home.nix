@@ -196,10 +196,10 @@
       swaync = {
         enable = true;
       };
-      #syncthing = {
-      #  enable = true;
-      #  tray.enable = true;
-      #};
+      syncthing = {
+        enable = true;
+        tray.enable = true;
+      };
 
       kanshi = {
         enable = true;
