@@ -12,6 +12,7 @@
     hypridle
     hyprpaper
     hyprcursor
+    rose-pine-hyprcursor
     hyprlock
     xdg-desktop-portal-hyprland
     sway
