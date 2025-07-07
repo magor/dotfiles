@@ -50,10 +50,7 @@
       yt-dlp
 
       # dev
-      git # TODO config
-      git-lfs
       tig
-      lazygit
       difftastic
       python311Packages.ipython
       jdk8
@@ -189,6 +186,22 @@
         enable = true;
         enableZshIntegration = true;
         nix-direnv.enable = true;
+      };
+      lazygit = {
+        enable = true;
+        settings = {
+          git = {
+            paging = {
+              "colorArg" = "always";
+              "pager" = "delta --light --paging=never --syntax-theme base16-256 -s";
+            };
+          };
+        };
+      };
+      git = {
+        enable = true;
+        lfs.enable = true;
+        delta.enable = true;
       };
     };
 
