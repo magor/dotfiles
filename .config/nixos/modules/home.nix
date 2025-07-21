@@ -207,12 +207,13 @@
         settings = [
           # can set defaults like this:
           #{ output.criteria = "eDP-1";
-          #  #output.scale = 1.2;
+          #  output.scale = 1.2;
           #}
           { profile.name = "laptop";
             profile.outputs = [
               {
                 criteria = "eDP-1";
+                scale = 1.066667;
               }
             ];
           }
