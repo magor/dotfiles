@@ -33,6 +33,8 @@
     nwg-look
     wofi
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
+    snapshot
+    pinta
   ];
 
   services = {
