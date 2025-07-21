@@ -19,7 +19,7 @@ clean:
   sudo bin/trim-generations.sh 5 5 system || echo $?
   nix-store --gc
   sudo nix-store --gc
-  sudo nix-store --optimise
+  sudo nix-store --optimise # scheduled optimise is enabled in configuration
 
 clean-nh:
   nh clean all --keep 5 --ask

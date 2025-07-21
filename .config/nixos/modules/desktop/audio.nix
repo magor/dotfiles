@@ -33,6 +33,7 @@
     spotify
     playerctl
     reaper
+    reaper-reapack-extension
     unstable.bitwig-studio
     vlc
     helvum

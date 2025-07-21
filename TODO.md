@@ -1,3 +1,8 @@
+# thinkpad
+- distribute ssh key
+    - nixvirt
+    - virtual-dev
+
 # gajdos
 - virtualization
     - cpu pinning
