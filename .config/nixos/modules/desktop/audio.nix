@@ -33,6 +33,7 @@
     spotify
     playerctl
     reaper
+    unstable.bitwig-studio
     vlc
     helvum
     qsynth
