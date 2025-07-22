@@ -27,7 +27,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs-unstable = import nixpkgs-unstable {
@@ -37,7 +37,7 @@
   in {
     nixosConfigurations = {
       gajdos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = {
           inherit inputs;
           inherit pkgs-unstable;
@@ -57,18 +57,7 @@
           ./modules/stylix.nix
           inputs.stylix.nixosModules.stylix
           inputs.musnix.nixosModules.musnix
-
-          home-manager.nixosModules.home-manager
-          #{
-          #  home-manager = {
-              #useGlobalPkgs = true;
-              #useUserPackages = true;
-              #users.jdoe = import ./home.nix; # done in users submodule
-
-              # Optionally, use extraSpecialArgs to pass
-              # arguments to home.nix
-          #  };
-          #}
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
       thinkpad = nixpkgs.lib.nixosSystem {
@@ -87,26 +76,13 @@
           ./modules/ide.nix
           ./modules/stylix.nix
           inputs.musnix.nixosModules.musnix
-
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14
-
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
           inputs.stylix.nixosModules.stylix
-
-          home-manager.nixosModules.home-manager
-          #{
-          #  home-manager = {
-              #useGlobalPkgs = true;
-              #useUserPackages = true;
-              #users.jdoe = import ./home.nix; # done in users submodule
-
-              # Optionally, use extraSpecialArgs to pass
-              # arguments to home.nix
-          #  };
-          #}
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
       CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = {
           inherit inputs;
           inherit pkgs-unstable;
@@ -122,37 +98,26 @@
           ./modules/wine.nix
           ./modules/chyron.nix
           inputs.musnix.nixosModules.musnix
-
-          home-manager.nixosModules.home-manager
-          #{
-          #  home-manager = {
-              #useGlobalPkgs = true;
-              #useUserPackages = true;
-              #users.jdoe = import ./home.nix; # done in users submodule
-
-              # Optionally, use extraSpecialArgs to pass
-              # arguments to home.nix
-          #  };
-          #}
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
       nixodeos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         modules = [
           ./hosts/nixodeos
           ./modules/common
           ./modules/server
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
       virtmaster = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         modules = [
           ./hosts/virtmaster
           ./modules/common
           ./modules/server
           ./modules/virt.nix
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
     };
