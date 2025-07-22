@@ -38,6 +38,10 @@
     nixosConfigurations = {
       gajdos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-unstable;
+        };
         modules = [
           ./hosts/gajdos
           ./modules/common
@@ -65,15 +69,14 @@
               # arguments to home.nix
           #  };
           #}
-
-          # Set all inputs parameters as special arguments for all submodules,
-          # so you can directly use all dependencies in inputs in submodules
-          # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-          { _module.args = { inherit inputs; inherit pkgs-unstable; }; }
         ];
       };
       thinkpad = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-unstable;
+        };
         modules = [
           ./hosts/thinkpad
           ./modules/common
@@ -100,15 +103,14 @@
               # arguments to home.nix
           #  };
           #}
-
-          # Set all inputs parameters as special arguments for all submodules,
-          # so you can directly use all dependencies in inputs in submodules
-          # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-          { _module.args = { inherit inputs; inherit pkgs-unstable; }; }
         ];
       };
       CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-unstable;
+        };
         modules = [
           ./hosts/CH-DC2HYZ2-CZ
           ./modules/common
@@ -132,11 +134,6 @@
               # arguments to home.nix
           #  };
           #}
-
-          # Set all inputs parameters as special arguments for all submodules,
-          # so you can directly use all dependencies in inputs in submodules
-          # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-          { _module.args = { inherit inputs; }; }
         ];
       };
       nixodeos = nixpkgs.lib.nixosSystem {
