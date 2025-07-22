@@ -30,16 +30,15 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
   let
     system = "x86_64-linux";
-    overlay-unstable = final: prev: {
-      unstable = import nixpkgs-unstable {inherit system; config.allowUnfree = true; };
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
     };
   in {
     nixosConfigurations = {
       gajdos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # Overlays-module makes "pkgs.unstable" available in configuration.nix
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
           ./hosts/gajdos
           ./modules/common
           ./modules/desktop
@@ -70,14 +69,12 @@
           # Set all inputs parameters as special arguments for all submodules,
           # so you can directly use all dependencies in inputs in submodules
           # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-          { _module.args = { inherit inputs; }; }
+          { _module.args = { inherit inputs; inherit pkgs-unstable; }; }
         ];
       };
       thinkpad = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          # Overlays-module makes "pkgs.unstable" available in configuration.nix
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
           ./hosts/thinkpad
           ./modules/common
           ./modules/desktop
@@ -107,7 +104,7 @@
           # Set all inputs parameters as special arguments for all submodules,
           # so you can directly use all dependencies in inputs in submodules
           # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-          { _module.args = { inherit inputs; }; }
+          { _module.args = { inherit inputs; inherit pkgs-unstable; }; }
         ];
       };
       CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {

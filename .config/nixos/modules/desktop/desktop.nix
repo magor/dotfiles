@@ -1,4 +1,4 @@
-{config, pkgs, inputs, ... }:
+{config, pkgs, pkgs-unstable, inputs, ... }:
 
 {
   programs = {
@@ -8,7 +8,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.waybar # https://github.com/Alexays/Waybar/issues/3042
+    pkgs-unstable.waybar # https://github.com/Alexays/Waybar/issues/3042
     hypridle
     hyprpaper
     hyprcursor

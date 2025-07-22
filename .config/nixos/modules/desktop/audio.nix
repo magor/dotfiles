@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{config, pkgs, pkgs-unstable, ... }:
 
 {
   musnix.enable = true;
@@ -34,7 +34,7 @@
     playerctl
     reaper
     reaper-reapack-extension
-    unstable.bitwig-studio
+    pkgs-unstable.bitwig-studio
     vlc
     helvum
     qsynth
