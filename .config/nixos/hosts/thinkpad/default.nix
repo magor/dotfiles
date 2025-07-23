@@ -16,9 +16,10 @@
     efi.canTouchEfiVariables = true;
   };
 
-  services.fprintd.enable = true;
-
-  services.throttled.enable = true; # fix intel cpu throttling
+  services = {
+    fprintd.enable = true; # fingerprint reader
+    throttled.enable = true; # fix intel cpu throttling
+  };
 
   networking = {
     hostName = "thinkpad"; # Define your hostname.

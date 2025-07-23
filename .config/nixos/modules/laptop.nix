@@ -1,11 +1,11 @@
 {config, pkgs, ... }:
 
 {
+  # https://nixos.wiki/wiki/Laptop
+
   powerManagement.enable = true;
 
-  # List services that you want to enable:
   services = {
-    # https://nixos.wiki/wiki/Laptop
     thermald.enable = true;
     tlp = {
       enable = true;
