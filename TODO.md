@@ -2,6 +2,8 @@
 - distribute ssh key
     - nixvirt
     - virtual-dev
+- try [tuned](https://github.com/NixOS/nixpkgs/blob/nixos-25.05/pkgs/by-name/tu/tuned/package.nix#L146)
+    - fix ppd-tuned profile mapping: https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/hardware/tuned.nix#L92
 
 # gajdos
 - virtualization

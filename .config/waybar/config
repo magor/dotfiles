@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["idle_inhibitor", "mpris", "group/media", "backlight", "group/network", "group/hardware", "battery", "clock", "custom/notification", "tray"],
+    "modules-right": ["idle_inhibitor", "mpris", "group/media", "backlight", "group/network", "group/hardware", "battery", "power-profiles-daemon", "clock", "custom/notification", "tray"],
 
     "group/media": {
       "modules": ["pulseaudio"],
@@ -131,6 +131,17 @@
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
+		"power-profiles-daemon": {
+			"format": "{icon}  ",
+			"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+			"tooltip": true,
+			"format-icons": {
+				"default": "",
+				"performance": "",
+				"balanced": "",
+				"power-saver": ""
+			}
+		},
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{signalStrength}% ",
