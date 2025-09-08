@@ -20,7 +20,7 @@
     hyprlock
     xdg-desktop-portal-hyprland
     sway
-    lxde.lxsession # polkit authentication agent
+    hyprpolkitagent
     fuzzel
     brightnessctl
     networkmanagerapplet
