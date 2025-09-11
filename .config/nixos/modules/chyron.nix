@@ -5,5 +5,7 @@
   environment.systemPackages = with pkgs; [
     obsidian
     parsec-bin
+    mariadb
+    beekeeper-studio
   ];
 }
