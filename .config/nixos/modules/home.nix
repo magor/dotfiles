@@ -22,7 +22,14 @@
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
     #wayland.windowManager.hyprland.enable = true;
-    stylix.targets.hyprpaper.enable = true;
+    stylix.targets = {
+      hyprpaper.enable = true;
+      firefox.profileNames = [ "default" "chyron" ];
+      # QT_STYLE_OVERRIDE=kvantum
+      # https://github.com/nix-community/stylix/issues/835
+      # https://github.com/nix-community/stylix/issues/1092
+      qt.enable = false;
+    };
 
     # The home.packages option allows you to install Nix packages into your
     # environment.

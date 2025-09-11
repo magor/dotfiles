@@ -2,6 +2,13 @@
 
 {
   stylix = {
+    targets = {
+      # QT_STYLE_OVERRIDE=kvantum
+      # https://github.com/nix-community/stylix/issues/835
+      # https://github.com/nix-community/stylix/issues/1092
+      qt.enable = false;
+    };
+
     enable = true;
     polarity = "dark";
     image = ../assets/wp.jpg;
