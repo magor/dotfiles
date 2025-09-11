@@ -249,6 +249,21 @@
               }
             ];
           }
+          { profile.name = "work";
+            profile.outputs = [
+              {
+                #criteria = "LG Display 0x06CF"; # doesn't work???
+                criteria = "eDP-1";
+                scale = 1.2;
+              }
+              {
+                criteria = "Dell Inc. DELL P2423 JWL7VJ3";
+              }
+              {
+                criteria = "Dell Inc. DELL P2423 C1WRVJ3";
+              }
+            ];
+          }
         ];
       };
     };
