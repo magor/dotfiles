@@ -6,6 +6,6 @@
     obsidian
     parsec-bin
     mariadb
-    beekeeper-studio
+    #beekeeper-studio # marked as insecure
   ];
 }
