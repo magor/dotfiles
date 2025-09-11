@@ -7,6 +7,9 @@
     # https://nixos.wiki/wiki/flakes#Importing_packages_from_multiple_channels
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
+    # teamviewer 15.66.5
+    nixpkgs-teamviewer.url = "github:NixOS/nixpkgs/2defa37146df235ef62f566cde69930a86f14df1";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,10 +30,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-teamviewer, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    pkgs-teamviewer = import nixpkgs-teamviewer {
       inherit system;
       config.allowUnfree = true;
     };
@@ -41,6 +48,7 @@
         specialArgs = {
           inherit inputs;
           inherit pkgs-unstable;
+          inherit pkgs-teamviewer;
         };
         modules = [
           ./hosts/gajdos
@@ -65,6 +73,7 @@
         specialArgs = {
           inherit inputs;
           inherit pkgs-unstable;
+          inherit pkgs-teamviewer;
         };
         modules = [
           ./hosts/thinkpad
