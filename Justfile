@@ -12,16 +12,7 @@ up:
 upp input:
   nix flake update --flake .config/nixos {{input}}
 
-## clean
 clean:
-  # https://nixos.wiki/wiki/Storage_optimization
-  bin/trim-generations.sh 5 5 user || echo $?
-  sudo bin/trim-generations.sh 5 5 system || echo $?
-  nix-store --gc
-  sudo nix-store --gc
-  sudo nix-store --optimise # scheduled optimise is enabled in configuration
-
-clean-nh:
   nh clean all --keep 5 --ask
 
 switch:
