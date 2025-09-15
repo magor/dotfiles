@@ -1,4 +1,0 @@
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mirek/media/srnziz9q3cq31.jpg fill
