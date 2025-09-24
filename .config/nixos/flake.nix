@@ -60,6 +60,7 @@
           ./modules/gaming.nix
           ./modules/wine.nix
           ./modules/chyron.nix
+          ./modules/ide.nix
           ./modules/looking-glass.nix
           ./modules/syncthing.nix
           ./modules/stylix.nix
