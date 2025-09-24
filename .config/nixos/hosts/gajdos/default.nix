@@ -16,12 +16,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  # fixes hdmi over usb-c
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # freeze kernel to avoid qemu virtual problems?
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
-
   networking = {
     hostName = "gajdos";
     networkmanager.enable = true;
