@@ -2,8 +2,10 @@
 
 {
   programs = {
-    hyprland.enable = true;
-    hyprland.withUWSM  = true;
+    hyprland = {
+      enable = true;
+      withUWSM  = true;
+    };
     firefox.enable = true;
   };
 
