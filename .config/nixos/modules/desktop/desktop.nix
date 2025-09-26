@@ -9,7 +9,8 @@
 
   environment.systemPackages = with pkgs; [
     pkgs-unstable.waybar # https://github.com/Alexays/Waybar/issues/3042
-    hypridle
+    #hypridle
+    pkgs-unstable.hypridle # need 0.1.7 for <listener:ignore_inhibit>
     hyprpaper
     hyprcursor
     rose-pine-hyprcursor
