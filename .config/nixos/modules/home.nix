@@ -238,11 +238,11 @@
               }
             ];
           }
-          { profile.name = "home";
+          { profile.name = "thinkpad-home";
             profile.outputs = [
               {
-                criteria = "eDP-1";
-                scale = 1.333333;
+                criteria = "AU Optronics 0xFA9B Unknown"; # thinkpad screen
+                scale = 1.5;
               }
               {
                 criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
