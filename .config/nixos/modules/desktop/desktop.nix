@@ -41,6 +41,10 @@
     pinta
   ];
 
+  # https://nixos.wiki/wiki/Wayland#Electron_and_Chromium
+  # https://nixos.wiki/wiki/Visual_Studio_Code#Wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   services = {
     blueman.enable = true;
     gvfs.enable = true;
