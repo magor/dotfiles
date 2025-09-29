@@ -28,6 +28,7 @@
 
 
 # todo
+- waybar: fix format-muted icon
 - set xdg dirs (downloads etc)
 - clean dotfiles (submodules etc)
 - configure .ssh/config declaratively
