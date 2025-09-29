@@ -1,3 +1,7 @@
+# vim
+- compare configuration tools (lazyvim etc)
+    - use virtual machines built with nix to compare loading times etc
+
 # thinkpad
 - distribute ssh key
     - nixvirt
