@@ -25,6 +25,9 @@
     stylix.targets = {
       hyprpaper.enable = true;
       firefox.profileNames = [ "default" "chyron" ];
+      neovim.transparentBackground = {
+        main = true;
+      };
       # QT_STYLE_OVERRIDE=kvantum
       # https://github.com/nix-community/stylix/issues/835
       # https://github.com/nix-community/stylix/issues/1092
@@ -180,13 +183,11 @@
       alacritty = {
         enable = true;
         settings = {
+          # styling (theme, font size) managed by stylix
           general.import = [
-            #"~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
             "~/.config/alacritty/alacritty-theme/themes/gruvbox_dark.toml"
             "~/.config/alacritty/colors.toml"
           ];
-          #font.size = 11.0;
-          #window.opacity = 0.95;
         };
       };
       direnv = {
