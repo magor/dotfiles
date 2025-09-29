@@ -10,6 +10,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    chromium
     pkgs-unstable.waybar # https://github.com/Alexays/Waybar/issues/3042
     #hypridle
     pkgs-unstable.hypridle # need 0.1.7 for <listener:ignore_inhibit>
