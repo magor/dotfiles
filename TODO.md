@@ -1,15 +1,25 @@
-# vim
-- compare configuration tools (lazyvim etc)
+# todo
+- vim - compare configuration tools (lazyvim etc)
     - use virtual machines built with nix to compare loading times etc
+- waybar: fix format-muted icon
+- clean dotfiles (submodules etc)
+- configure .ssh/config declaratively
+- add desktop ssh key to nixodeos!!
 
-# thinkpad
-- distribute ssh key
-    - nixvirt
-    - virtual-dev
-- try [tuned](https://github.com/NixOS/nixpkgs/blob/nixos-25.05/pkgs/by-name/tu/tuned/package.nix#L146)
-    - fix ppd-tuned profile mapping: https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/hardware/tuned.nix#L92
+## nice-to-have
+- research remote deployment
+- statistics per node (maybe netdata stats with metrics collector at nixodeos)
+- installation readme
+- separate subvolume for home and nix
 
-# gajdos
+## machines
+
+### thinkpad
+- trying out s3 sleep (see bios to change to win/linux s0xidle if needed)
+    - add swap for hibernate/hybrid sleep?
+- fix ppd-tuned profile mapping: https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/hardware/tuned.nix#L92
+
+### gajdos
 - virtualization
     - cpu pinning
 - upgrade firmware: `fwupdmgr update` - do on ac power
@@ -18,34 +28,13 @@
     - https://github.com/Alexays/Waybar/issues/3302
 - btrfs subvolumes (nix store, home, ...)
 
-# nixodeos
+### nixodeos
 - install byobu
 - manage secrets (ie. samba creds)
 
-# old notebook
-- config branches
+## notes
 
-
-
-# todo
-- waybar: fix format-muted icon
-- set xdg dirs (downloads etc)
-- clean dotfiles (submodules etc)
-- configure .ssh/config declaratively
-- add desktop ssh key to nixodeos!!
-
-# nice-to-have
-- nix specialization for homemanager to switch themes
-- research remote deployment
-- statistics per node (maybe netdata stats with metrics collector at nixodeos)
-- installation readme
-- separate subvolume for home and nix
-
-# maybe
-- docker alias: prepare some info shell prompt
-
-
-# remove channels
+### remove channels
 ```
 $ nix-channel --list
 nixpkgs https://nixos.org/channels/nixpkgs-unstable
@@ -62,7 +51,7 @@ $ sudo nix-channel --remove nixos
 uninstalling 'nixos-24.05'
 ```
 
-# migrate zsh history
+### migrate zsh history
 ```
 mv .zsh_history .local/share/zsh/history
 ```
