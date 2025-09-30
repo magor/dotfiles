@@ -5,7 +5,7 @@
     font-family: Roboto, Helvetica, Arial, sans-serif;
     */
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     min-height: 0;
 }
 
@@ -78,6 +78,7 @@ window#waybar.chromium {
 #battery,
 #cpu,
 #memory,
+#disk,
 #temperature,
 #backlight,
 #network,
@@ -86,10 +87,11 @@ window#waybar.chromium {
 #tray,
 #mode,
 #idle_inhibitor {
-    padding: 0 10px;
-    margin: 0 4px;
+    padding: 0 6px;
+    margin: 0 1px;
     color: #ffffff;
     color: #ebdbb2;
+    /*background-color: red;*/
 }
 
 #battery.critical:not(.charging) {
@@ -172,20 +174,3 @@ label:focus {
     color: #d1cfc9;
 }
 
-/*
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-*/

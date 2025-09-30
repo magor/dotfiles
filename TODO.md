@@ -1,7 +1,6 @@
 # todo
 - vim - compare configuration tools (lazyvim etc)
     - use virtual machines built with nix to compare loading times etc
-- waybar: fix format-muted icon
 - clean dotfiles (submodules etc)
 - configure .ssh/config declaratively
 - add desktop ssh key to nixodeos!!
