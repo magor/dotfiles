@@ -78,7 +78,7 @@
           ./modules/stylix.nix
           ./modules/gaming.nix
           inputs.musnix.nixosModules.musnix
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
+          #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
         ];
