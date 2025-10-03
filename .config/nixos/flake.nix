@@ -76,6 +76,7 @@
           ./modules/syncthing.nix
           ./modules/ide.nix
           ./modules/stylix.nix
+          ./modules/gaming.nix
           inputs.musnix.nixosModules.musnix
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
           inputs.stylix.nixosModules.stylix
