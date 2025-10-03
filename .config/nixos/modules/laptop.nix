@@ -10,8 +10,4 @@
     fwupd.enable = true;
     tuned.enable = true;
   };
-
-  imports = [
-    #./tlp.nix
-  ];
 }
