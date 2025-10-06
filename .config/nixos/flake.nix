@@ -83,26 +83,6 @@
           inputs.home-manager.nixosModules.home-manager
         ];
       };
-      CH-DC2HYZ2-CZ = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit pkgs-unstable;
-        };
-        modules = [
-          ./hosts/CH-DC2HYZ2-CZ
-          ./modules/common
-          ./modules/desktop
-          ./modules/laptop.nix
-          ./modules/virt.nix
-          ./modules/docker.nix
-          ./modules/gaming.nix
-          ./modules/wine.nix
-          ./modules/chyron.nix
-          inputs.musnix.nixosModules.musnix
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
       nixodeos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [

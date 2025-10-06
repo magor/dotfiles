@@ -23,11 +23,6 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHkACZVINP0OWysJE/m2oWzUscqz/khESvbso+nmu6TK root@virtmaster"
       ];
     };
-
-    mirek.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMJEL1LW4nRvTMf1AGosGf7ZdVaJyPqasXi1pk8mkuVD root@CH-DC2HYZ2-CZ"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0PnFWKOhMUo2b38d5OnyaNjeIXoByAPnMhU09UPAoK mirek@gajdos"
-    ];
   };
 
   networking = {
