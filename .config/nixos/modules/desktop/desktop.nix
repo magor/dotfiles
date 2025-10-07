@@ -23,7 +23,6 @@
     # https://github.com/search?q=hyprcursor&type=repositories
     hyprlock
     xdg-desktop-portal-hyprland
-    sway
     hyprpolkitagent
     fuzzel
     brightnessctl
