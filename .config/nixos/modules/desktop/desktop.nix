@@ -27,8 +27,6 @@
     fuzzel
     brightnessctl
     networkmanagerapplet
-    #qt5.qtwayland
-    #qt6.qtwayland
     nautilus
     corefonts
     wlsunset
