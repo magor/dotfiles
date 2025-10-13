@@ -26,6 +26,6 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.mirek = import ../home.nix;
+    users.mirek = import ../home;
   };
 }
