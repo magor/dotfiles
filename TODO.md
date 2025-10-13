@@ -1,4 +1,6 @@
 # todo
+- devshell bootstrap
+    - see https://github.com/EmergentMind/nix-config/blob/dev/shell.nix
 - vim - compare configuration tools (lazyvim etc)
     - use virtual machines built with nix to compare loading times etc
 - clean dotfiles (submodules etc)
