@@ -34,6 +34,10 @@
       inherit system;
       config.allowUnfree = true;
     };
+    # Extend lib with lib.custom
+    # NOTE: This approach allows lib.custom to propagate into hm
+    # see: https://github.com/nix-community/home-manager/pull/3454
+    lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
   in {
     nixosConfigurations = {
       gajdos = nixpkgs.lib.nixosSystem {
@@ -41,6 +45,7 @@
         specialArgs = {
           inherit inputs;
           inherit pkgs-unstable;
+          inherit lib;
         };
         modules = [
           ./hosts/gajdos
@@ -66,6 +71,7 @@
         specialArgs = {
           inherit inputs;
           inherit pkgs-unstable;
+          inherit lib;
         };
         modules = [
           ./hosts/thinkpad
