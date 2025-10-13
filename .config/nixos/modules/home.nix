@@ -254,7 +254,7 @@
             profile.outputs = [
               {
                 criteria = "LG Display 0x06CF Unknown"; # note the missing serial needs to be populated by the "Unknown" string
-                scale = 1.2;
+                scale = 1.333333;
               }
               {
                 criteria = "Dell Inc. DELL P2423 JWL7VJ3";
