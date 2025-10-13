@@ -11,7 +11,7 @@
 
     enable = true;
     polarity = "dark";
-    image = ../assets/wp.jpg;
+    image = lib.custom.relativeToRoot "assets/wp.jpg";
     opacity.terminal = 0.95;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
   };
