@@ -89,6 +89,7 @@
       };
       nixodeos = nixpkgs.lib.nixosSystem {
         inherit system;
+        inherit lib;
         modules = [
           ./hosts/nixodeos
           ./modules/common
