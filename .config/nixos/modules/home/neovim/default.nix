@@ -1,6 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
+  # TODO
+  # - fix bradcrumbs (lspsaga) https://nvimdev.github.io/lspsaga/breadcrumbs/
+  # - fix deprecation warning (use vim.diagnostic.config instead of sign_define) https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.status()
+  # - use italics (comments etc)
+
   home.sessionVariables = {
     EDITOR = "nvim";
   };
@@ -9,6 +19,15 @@
     # language servers, etc.
     lua-language-server
     nil # nix LSP
+    nixd
+    nixfmt-rfc-style # needed by configuration, look for nixfmt
+  ];
+
+  imports = [
+    ./cmp.nix
+    ./lsp.nix
+    ./ui.nix
+    #./toclean.nix
   ];
 
   programs.neovim = {
@@ -17,148 +36,166 @@
     vimdiffAlias = true;
 
     extraPackages = with pkgs; [
-      pkgs.gcc
+      pkgs.gcc # needed for lsp/treesitter?
     ];
 
-    extraLuaConfig = ''
-      require('nvim-treesitter.configs').setup {
-        highlight = {
-          enable = true
+    extraLuaConfig = # lua
+      ''
+        local options = {
+          updatetime = 50, -- faster completion (4000ms default)
+          scrolloff = 5,
         }
-      }
-    '';
 
-    extraConfig = ''
-      set number relativenumber
-      set cursorline
-      set title
-      set expandtab
-      set tabstop=2
-      set softtabstop=2
-      set shiftwidth=2
-      set ignorecase
-      set smartcase
+        for k, v in pairs(options) do
+          vim.opt[k] = v
+        end
 
-      "nnoremap " " <NOP>
-      let mapleader=" "
+        -------------------
+        -- About lspsaga --
+        -------------------
+        local colors, kind
+        colors = { normal_bg = "#3b4252" }
+        require("lspsaga").setup({
+            ui = {
+                colors = colors,
+                kind = kind,
+                border = "single",
+            },
+            outline = {
+                win_width = 25,
+            },
+        })
+        -- FIXME vim.cmd([[ colorscheme nord ]])
 
-      nnoremap <leader>n <cmd>set relativenumber!<cr>
+        local keymap = vim.keymap.set
 
-      "TSEnable highlight
+        -- Lsp finder
+        -- Find the symbol definition, implementation, reference.
+        -- If there is no implementation, it will hide.
+        -- When you use action in finder like open, vsplit, then you can use <C-t> to jump back.
+        keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc = "Lsp finder" })
 
-      " split navitation
-      nnoremap <C-J> <C-W><C-J>
-      nnoremap <C-K> <C-W><C-K>
-      nnoremap <C-L> <C-W><C-L>
-      nnoremap <C-H> <C-W><C-H>
+        -- Code action
+        keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true, desc = "Code action" })
+        keymap("v", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true, desc = "Code action" })
 
-      " Find files using Telescope command-line sugar.
-      nnoremap <leader>ff <cmd>Telescope find_files<cr>
-      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-      nnoremap <leader>fb <cmd>Telescope buffers<cr>
-      nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+        -- Rename
+        keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true, desc = "Rename" })
+        -- Rename word in whole project
+        keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>", { silent = true, desc = "Rename in project" })
+
+        -- Peek definition
+        keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", { silent = true, desc = "Peek definition" })
+
+        -- Go to definition
+        keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { silent = true, desc = "Go to definition" })
+
+        -- Show line diagnostics
+        keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true, desc = "Show line diagnostics" })
+
+        -- Show cursor diagnostics
+        keymap(
+            "n",
+            "<leader>sc",
+            "<cmd>Lspsaga show_cursor_diagnostics<CR>",
+            { silent = true, desc = "Show cursor diagnostic" }
+        )
+
+        -- Show buffer diagnostics
+        keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true, desc = "Show buffer diagnostic" })
+
+        -- Diagnostic jump prev
+        keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, desc = "Diagnostic jump prev" })
+
+        -- Diagnostic jump next
+        keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, desc = "Diagnostic jump next" })
+
+        -- Goto prev error
+        keymap("n", "[E", function()
+            require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        end, { silent = true, desc = "Goto prev error" })
+
+        -- Goto next error
+        keymap("n", "]E", function()
+            require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end, { silent = true, desc = "Goto next error" })
+
+        -- Toggle outline
+        keymap("n", "ss", "<cmd>Lspsaga outline<CR>", { silent = true, desc = "Toggle outline" })
+
+        -- Hover doc
+        keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>", { silent = true, desc = "Hover doc" })
+
+        -- Incoming calls
+        keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", { silent = true, desc = "Incoming calls" })
+
+        -- Outgoing calls
+        keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", { silent = true, desc = "Outgoing calls" })
+
+        -- Float terminal
+        keymap("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", { silent = true, desc = "Float terminal" })
+        keymap("t", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", { silent = true, desc = "Float terminal" })
+      '';
+
+    extraConfig = # vim
+      ''
+        set number relativenumber
+        set cursorline
+        set title
+        set expandtab
+        set tabstop=2
+        set softtabstop=2
+        set shiftwidth=2
+        set ignorecase
+        set smartcase
+
+        "nnoremap " " <NOP>
+        let mapleader=" "
+
+        nnoremap <leader>n <cmd>set relativenumber!<cr>
+
+        "TSEnable highlight
+
+        " split navitation
+        nnoremap <C-J> <C-W><C-J>
+        nnoremap <C-K> <C-W><C-K>
+        nnoremap <C-L> <C-W><C-L>
+        nnoremap <C-H> <C-W><C-H>
+
+        " Find files using Telescope command-line sugar.
+        nnoremap <leader>ff <cmd>Telescope find_files<cr>
+        nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+        nnoremap <leader>fb <cmd>Telescope buffers<cr>
+        nnoremap <leader>fh <cmd>Telescope help_tags<cr>
       '';
 
     plugins = with pkgs.vimPlugins; [
-      # lazy loading
-      lazy-nvim # TODO configure
+      # see https://search.nixos.org/packages?channel=25.05&query=vimPlugins. for more plugins
 
-      # ui
-      vim-airline {
-        plugin = gruvbox-material;
-        config = ''
-          " Important!!
-          if has('termguicolors')
-            set termguicolors
-          endif
-          set background=dark
-          let g:gruvbox_material_background = 'soft'
-          let g:gruvbox_material_transparent_background = 1
-          " For better performance - causes errors with file permissions
-          "let g:gruvbox_material_better_performance = 1
-
-          colorscheme gruvbox-material
-          '';
-      }
-      { plugin = nvim-tree-lua;
-        type = "lua";
-        config = ''
-          require("nvim-tree").setup()
-          vim.keymap.set('n', '<C-n>', ':NvimTreeFindFileToggle<CR>')
-          '';
-      }
-      which-key-nvim
+      luasnip # snippets | https://github.com/l3mon4d3/luasnip/
 
       # fuzzy finder
       telescope-nvim # https://github.com/nvim-telescope/telescope.nvim/
       telescope-fzy-native-nvim # https://github.com/nvim-telescope/telescope-fzy-native.nvim
 
-      # navigation
-      eyeliner-nvim # Highlights unique characters for f/F and t/T motions | https://github.com/jinh0/eyeliner.nvim
-      flash-nvim # TODO configure
-
-      # language parser
-      nvim-treesitter.withAllGrammars
-
-
-      # to be cleaned
-
-      # plugins from nixpkgs go in here.
-      # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins
-      luasnip # snippets | https://github.com/l3mon4d3/luasnip/
-      # nvim-cmp (autocompletion) and extensions
-      nvim-cmp # https://github.com/hrsh7th/nvim-cmp
-      cmp_luasnip # snippets autocompletion extension for nvim-cmp | https://github.com/saadparwaiz1/cmp_luasnip/
-      lspkind-nvim # vscode-like LSP pictograms | https://github.com/onsails/lspkind.nvim/
-      cmp-nvim-lsp # LSP as completion source | https://github.com/hrsh7th/cmp-nvim-lsp/
-      cmp-nvim-lsp-signature-help # https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/
-      cmp-buffer # current buffer as completion source | https://github.com/hrsh7th/cmp-buffer/
-      cmp-path # file paths as completion source | https://github.com/hrsh7th/cmp-path/
-      cmp-nvim-lua # neovim lua API as completion source | https://github.com/hrsh7th/cmp-nvim-lua/
-      cmp-cmdline # cmp command line suggestions
-      cmp-cmdline-history # cmp command line history suggestions
-      # ^ nvim-cmp extensions
-      # git integration plugins
-      diffview-nvim # https://github.com/sindrets/diffview.nvim/
-      neogit # https://github.com/TimUntersberger/neogit/
-      gitsigns-nvim # https://github.com/lewis6991/gitsigns.nvim/
-      vim-fugitive # https://github.com/tpope/vim-fugitive/
-      # ^ git integration plugins
-      # telescope and extensions
-      #dressing-nvim
-      # telescope-smart-history-nvim # https://github.com/nvim-telescope/telescope-smart-history.nvim
-      # ^ telescope and extensions
-      # UI
-      lualine-nvim # Status line | https://github.com/nvim-lualine/lualine.nvim/
-      nvim-navic # Add LSP location to lualine | https://github.com/SmiteshP/nvim-navic
-      statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
-      nvim-treesitter-context # nvim-treesitter-context
-      # ^ UI
-      # language support
-      # ^ language support
-      # navigation/editing enhancement plugins
-      vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
-      nvim-surround # https://github.com/kylechui/nvim-surround/
-      nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
-      nvim-ts-context-commentstring # https://github.com/joosepalviste/nvim-ts-context-commentstring/
-      # ^ navigation/editing enhancement plugins
       # Useful utilities
-      nvim-unception # Prevent nested neovim sessions | nvim-unception
-      # ^ Useful utilities
+      #nvim-unception # Prevent nested neovim sessions | nvim-unception
+      lspsaga-nvim
+
       # libraries that other plugins depend on
       sqlite-lua
       plenary-nvim
       nvim-web-devicons
       vim-repeat
-      # ^ libraries that other plugins depend on
+
       # bleeding-edge plugins from flake inputs
       # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
       # ^ bleeding-edge plugins from flake inputs
 
       #pkgs.vimPlugins.LazyVim
       #{
-        #plugin = pkgs.vimPlugins.vim-startify;
-        #config = "let g:startify_change_to_vcs_root = 0";
+      #plugin = pkgs.vimPlugins.vim-startify;
+      #config = "let g:startify_change_to_vcs_root = 0";
       #}
     ];
   };
