@@ -87,8 +87,9 @@
         direnv allow
       '')
       # prepare devenv by instantiating template locally
+      # TODO: check https://github.com/magor/dev-templates/blob/main/flake.nix#L86
       (writeShellScriptBin "dvt" ''
-        nix flake init -t "github:magor/dev-templates#$1"
+        nix flake init --template "github:magor/dev-templates#$1"
         git init
         git add flake.nix
         direnv allow
