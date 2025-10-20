@@ -1,13 +1,14 @@
 # todo
+- use nix-index-database
+    - https://github.com/nix-community/nix-index-database?tab=readme-ov-file#usage-in-home-manager
 - devshell bootstrap
     - see https://github.com/EmergentMind/nix-config/blob/dev/shell.nix
-- vim - compare configuration tools (lazyvim etc)
-    - use virtual machines built with nix to compare loading times etc
 - clean dotfiles (submodules etc)
 - configure .ssh/config declaratively
 - add desktop ssh key to nixodeos!!
 
 ## nice-to-have
+- disko
 - research remote deployment
 - statistics per node (maybe netdata stats with metrics collector at nixodeos)
 - installation readme
@@ -16,8 +17,6 @@
 ## machines
 
 ### thinkpad
-- trying out s3 sleep (see bios to change to win/linux s0xidle if needed)
-    - add swap for hibernate/hybrid sleep?
 - fix ppd-tuned profile mapping: https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/hardware/tuned.nix#L92
 
 ### gajdos
