@@ -1,14 +1,16 @@
 # todo
 - use nix-index-database
     - https://github.com/nix-community/nix-index-database?tab=readme-ov-file#usage-in-home-manager
-- devshell bootstrap
-    - see https://github.com/EmergentMind/nix-config/blob/dev/shell.nix
 - clean dotfiles (submodules etc)
 - configure .ssh/config declaratively
+- migrate desktop
 - add desktop ssh key to nixodeos!!
 
 ## nice-to-have
+- look into vim session managers
 - disko
+- devshell bootstrap
+    - see https://github.com/EmergentMind/nix-config/blob/dev/shell.nix
 - research remote deployment
 - statistics per node (maybe netdata stats with metrics collector at nixodeos)
 - installation readme
