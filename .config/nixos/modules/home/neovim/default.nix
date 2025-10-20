@@ -162,10 +162,21 @@
         nnoremap <C-L> <C-W><C-L>
         nnoremap <C-H> <C-W><C-H>
 
+        " buffer navigation
+        "nnoremap <A-h> <cmd>bprev<cr>
+        "nnoremap <A-l> <cmd>bnext<cr>
+        nnoremap <A-h> <cmd>BufferLineCyclePrev<cr>
+        nnoremap <A-l> <cmd>BufferLineCycleNext<cr>
+        nnoremap <A-H> <cmd>BufferLineMovePrev<cr>
+        nnoremap <A-L> <cmd>BufferLineMoveNext<cr>
+        "nnoremap <A-Del> <cmd>bdelete<cr> <bar> <cmd>BufferLineCyclePrev<cr>
+        nnoremap <A-Del> <cmd>bdelete<cr> <bar> <cmd>bdelete<cr>
+
         " Find files using Telescope command-line sugar.
         nnoremap <leader>ff <cmd>Telescope find_files<cr>
         nnoremap <leader>fg <cmd>Telescope live_grep<cr>
         nnoremap <leader>fb <cmd>Telescope buffers<cr>
+        nnoremap <leader>b <cmd>Telescope buffers<cr>
         nnoremap <leader>fh <cmd>Telescope help_tags<cr>
       '';
 
