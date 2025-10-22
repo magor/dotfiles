@@ -10,6 +10,7 @@
   # - fix bradcrumbs (lspsaga) https://nvimdev.github.io/lspsaga/breadcrumbs/
   # - fix deprecation warning (use vim.diagnostic.config instead of sign_define) https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.status()
   # - use italics (comments etc)
+  # check `:help lspconfig-all`
 
   home.sessionVariables = {
     EDITOR = "nvim";
