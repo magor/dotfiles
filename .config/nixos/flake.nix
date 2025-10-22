@@ -27,85 +27,92 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
-  let
-    system = "x86_64-linux";
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    # Extend lib with lib.custom
-    # NOTE: This approach allows lib.custom to propagate into hm
-    # see: https://github.com/nix-community/home-manager/pull/3454
-    lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
-  in {
-    nixosConfigurations = {
-      gajdos = nixpkgs.lib.nixosSystem {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit pkgs-unstable;
-          inherit lib;
+        config.allowUnfree = true;
+      };
+      # Extend lib with lib.custom
+      # NOTE: This approach allows lib.custom to propagate into hm
+      # see: https://github.com/nix-community/home-manager/pull/3454
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+    in
+    {
+      nixosConfigurations = {
+        gajdos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit pkgs-unstable;
+            inherit lib;
+          };
+          modules = [
+            ./hosts/gajdos
+            ./modules/common
+            ./modules/desktop
+            ./modules/laptop.nix
+            ./modules/virt.nix
+            ./modules/docker.nix
+            ./modules/gaming.nix
+            ./modules/wine.nix
+            ./modules/chyron.nix
+            ./modules/ide.nix
+            ./modules/looking-glass.nix
+            ./modules/syncthing.nix
+            inputs.stylix.nixosModules.stylix
+            inputs.musnix.nixosModules.musnix
+            inputs.home-manager.nixosModules.home-manager
+          ];
         };
-        modules = [
-          ./hosts/gajdos
-          ./modules/common
-          ./modules/desktop
-          ./modules/laptop.nix
-          ./modules/virt.nix
-          ./modules/docker.nix
-          ./modules/gaming.nix
-          ./modules/wine.nix
-          ./modules/chyron.nix
-          ./modules/ide.nix
-          ./modules/looking-glass.nix
-          ./modules/syncthing.nix
-          inputs.stylix.nixosModules.stylix
-          inputs.musnix.nixosModules.musnix
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
-      thinkpad = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit pkgs-unstable;
-          inherit lib;
+        thinkpad = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit pkgs-unstable;
+            inherit lib;
+          };
+          modules = [
+            ./hosts/thinkpad
+            ./modules/common
+            ./modules/desktop
+            ./modules/laptop.nix
+            ./modules/chyron.nix
+            ./modules/syncthing.nix
+            ./modules/ide.nix
+            ./modules/gaming.nix
+            inputs.musnix.nixosModules.musnix
+            #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
+            inputs.stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+          ];
         };
-        modules = [
-          ./hosts/thinkpad
-          ./modules/common
-          ./modules/desktop
-          ./modules/laptop.nix
-          ./modules/chyron.nix
-          ./modules/syncthing.nix
-          ./modules/ide.nix
-          ./modules/gaming.nix
-          inputs.musnix.nixosModules.musnix
-          #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
-          inputs.stylix.nixosModules.stylix
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
-      nixodeos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./hosts/nixodeos
-          ./modules/common
-          ./modules/server
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
-      virtmaster = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./hosts/virtmaster
-          ./modules/common
-          ./modules/server
-          ./modules/virt.nix
-          inputs.home-manager.nixosModules.home-manager
-        ];
+        nixodeos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/nixodeos
+            ./modules/common
+            ./modules/server
+            inputs.home-manager.nixosModules.home-manager
+          ];
+        };
+        virtmaster = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/virtmaster
+            ./modules/common
+            ./modules/server
+            ./modules/virt.nix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+        };
       };
     };
-  };
 }
