@@ -100,6 +100,7 @@
             ./hosts/nixodeos
             ./modules/common
             ./modules/server
+            ./modules/grafana.nix
             inputs.home-manager.nixosModules.home-manager
           ];
         };
