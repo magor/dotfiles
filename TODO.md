@@ -1,4 +1,6 @@
 # todo
+- install some terminal multiplexer and autostart on remote connection
+    - see fe. hmo programs.zsh.prezto.tmux.autoStartRemote
 - use nix-index-database
     - https://github.com/nix-community/nix-index-database?tab=readme-ov-file#usage-in-home-manager
 - clean dotfiles (submodules etc)
