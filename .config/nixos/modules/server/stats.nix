@@ -23,4 +23,16 @@
       };
     };
   };
+
+  systemd.services."tailscale-serve-grafana" = {
+    description = "Expose Grafana to Tailnet via Tailscale Serve";
+    after = [
+      "tailscale.service"
+      "grafana.service"
+    ];
+    wantedBy = [ "multi-user.target" ];
+    #serviceConfig.ExecStart = "${pkgs.tailscale}/bin/tailscale serve https 3000";
+    serviceConfig.ExecStart = "${pkgs.tailscale}/bin/tailscale serve 3000";
+    restartIfChanged = true;
+  };
 }
