@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  # https://nixos.org/manual/nixos/stable/#module-services-prometheus-exporters
+  services.prometheus = {
+    enable = true;
+    listenAddress = "127.0.0.1";
+  };
+
   services.grafana = {
     enable = true;
     settings = {
@@ -17,5 +23,4 @@
       };
     };
   };
-
 }

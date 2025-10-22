@@ -67,6 +67,7 @@
             ./modules/ide.nix
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
+            ./modules/tailscale.nix
             inputs.stylix.nixosModules.stylix
             inputs.musnix.nixosModules.musnix
             inputs.home-manager.nixosModules.home-manager
@@ -88,6 +89,7 @@
             ./modules/syncthing.nix
             ./modules/ide.nix
             ./modules/gaming.nix
+            ./modules/tailscale.nix
             inputs.musnix.nixosModules.musnix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
             inputs.stylix.nixosModules.stylix
@@ -100,7 +102,7 @@
             ./hosts/nixodeos
             ./modules/common
             ./modules/server
-            ./modules/grafana.nix
+            ./modules/tailscale.nix
             inputs.home-manager.nixosModules.home-manager
           ];
         };
