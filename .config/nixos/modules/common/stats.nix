@@ -5,7 +5,6 @@
   services.prometheus = {
     exporters.node = {
       enable = true;
-      listenAddress = "127.0.0.1";
       port = 9000;
       # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/monitoring/prometheus/exporters.nix
       enabledCollectors = [ "systemd" ];
@@ -18,4 +17,8 @@
       ];
     };
   };
+
+  # node exporter listens by default on all interfaces, but default nixos firewall blocks it
+  # this will allow incoming connection over tailscale
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 9000 ];
 }
