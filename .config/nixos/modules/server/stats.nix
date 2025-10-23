@@ -7,6 +7,7 @@
     listenAddress = "127.0.0.1";
   };
 
+  # https://nixos.wiki/wiki/Grafana
   services.grafana = {
     enable = true;
     settings = {
