@@ -227,7 +227,7 @@
         enable = true;
       };
       syncthing = {
-        enable = true;
+        enable = false; # service is managed by syncthing module on system level
         tray.enable = true;
       };
 
