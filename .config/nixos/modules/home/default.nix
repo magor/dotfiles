@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -24,7 +29,10 @@
     #wayland.windowManager.hyprland.enable = true;
     stylix.targets = {
       hyprpaper.enable = true;
-      firefox.profileNames = [ "default" "chyron" ];
+      firefox.profileNames = [
+        "default"
+        "chyron"
+      ];
       neovim.transparentBackground = {
         main = true;
       };
@@ -155,13 +163,13 @@
           PISTOL_CHROMA_FORMATTER = "terminal256"; # fix colors in lf preview window
         };
         shellAliases = {
-          c="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+          c = "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
           #W="watch";
           #t="tig --all";
-          docker="sudo docker";
+          docker = "sudo docker";
           #feh="feh --scale-down";
-          k="kubectl";
-          lg="lazygit";
+          k = "kubectl";
+          lg = "lazygit";
           # kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
         };
         history = {
@@ -231,7 +239,8 @@
           #{ output.criteria = "eDP-1";
           #  output.scale = 1.066667;
           #}
-          { profile.name = "laptop";
+          {
+            profile.name = "laptop";
             profile.outputs = [
               {
                 criteria = "eDP-1";
@@ -239,7 +248,8 @@
               }
             ];
           }
-          { profile.name = "thinkpad-home";
+          {
+            profile.name = "thinkpad-home";
             profile.outputs = [
               {
                 criteria = "AU Optronics 0xFA9B Unknown"; # thinkpad screen
@@ -251,7 +261,8 @@
               }
             ];
           }
-          { profile.name = "dell-work";
+          {
+            profile.name = "dell-work";
             profile.outputs = [
               {
                 criteria = "LG Display 0x06CF Unknown"; # note the missing serial needs to be populated by the "Unknown" string
