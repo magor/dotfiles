@@ -257,7 +257,7 @@
               }
               {
                 criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
-                scale = 1.5;
+                scale = 1.6;
               }
             ];
           }
