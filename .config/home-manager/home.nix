@@ -1,21 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-  options.theme = lib.mkOption {
-    type = lib.types.str;
-    default = "light";
-  };
+  imports = [
+    ./neovim
+  ];
 
   config = {
-    specialisation = {
-      light.configuration = {
-        # this is default, no changes
-      };
-      dark.configuration.config = {
-        theme = "dark";
-        gtk.theme.name = lib.mkForce "Adwaita-dark";
-      };
-    };
 
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -32,6 +22,22 @@
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
     #wayland.windowManager.hyprland.enable = true;
+  stylix = {
+    enable = true;
+    polarity = "dark";
+    #image = ../assets/wp.jpg;
+    opacity.terminal = 0.95;
+    fonts.sizes.terminal = 12;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+  };
+    stylix.targets = {
+      hyprpaper.enable = true;
+      firefox.profileNames = [ "default" "chyron" ];
+      # QT_STYLE_OVERRIDE=kvantum
+      # https://github.com/nix-community/stylix/issues/835
+      # https://github.com/nix-community/stylix/issues/1092
+      qt.enable = false;
+    };
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
@@ -59,53 +65,39 @@
       yt-dlp
 
       # dev
-      git # TODO config
-      git-lfs
       tig
+      difftastic
       python311Packages.ipython
       jdk8
       dbeaver-bin
       cntr
 
       # de
-      # TODO move to system conf?
-      lxde.lxsession # polkit authentication agent
-      fuzzel
-      brightnessctl
-      networkmanagerapplet
-      #qt5.qtwayland
-      #qt6.qtwayland
-      nautilus
-      corefonts
-      wlsunset
-      feh
-      nwg-look
-      wofi
       # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
+      grim
+      slurp
 
-      # audio
-      # TODO
-      pavucontrol
-      spotify
-      playerctl
-      reaper
-      vlc
-      helvum
-      qsynth
-      fluidsynth
-      soundfont-fluid
-      carla
-      helm
-      drumgizmo
-      hydrogen
-      sfizz
-      vital
+      # audio - maybe not needed anymore?
+      (writeShellScriptBin "nix-jack" ''
+        exec /usr/bin/env \
+          LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
+          "''$@"
+      '')
 
-        (writeShellScriptBin "nix-jack" ''
-          exec /usr/bin/env \
-            LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
-            "''$@"
-        '')
+      # direnv helper scripts
+      # https://determinate.systems/posts/nix-direnv/
+      # prepare devenv using remote flake
+      (writeShellScriptBin "dvd" ''
+        echo "use flake \"github:magor/dev-templates?dir=$1\"" >> .envrc
+        direnv allow
+      '')
+      # prepare devenv by instantiating template locally
+      (writeShellScriptBin "dvt" ''
+        nix flake init -t "github:magor/dev-templates#$1"
+        git init
+        git add flake.nix
+        direnv allow
+      '')
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the
@@ -149,76 +141,82 @@
     #
     #  /etc/profiles/per-user/mirek/etc/profile.d/hm-session-vars.sh
     #
-    home.sessionVariables = {
-      EDITOR = "nvim";
-    };
 
     programs = {
-      neovim = {
+      nix-index = {
         enable = true;
-        vimAlias=true;
-        vimdiffAlias=true;
-        extraConfig = ''
-          set number
-          set cursorline
-          set title
-          set expandtab
-          set tabstop=2
-          set softtabstop=2
-          set shiftwidth=2
-          set ignorecase
-          set smartcase
-          " split navitation
-          nnoremap <C-J> <C-W><C-J>
-          nnoremap <C-K> <C-W><C-K>
-          nnoremap <C-L> <C-W><C-L>
-          nnoremap <C-H> <C-W><C-H>
-          '';
-        plugins = with pkgs.vimPlugins; [
-          vim-airline
-          {
-            plugin = gruvbox-material;
-            config = ''
-              " Important!!
-              if has('termguicolors')
-                set termguicolors
-              endif
-              set background=${config.theme}
-              let g:gruvbox_material_background = 'soft'
-              let g:gruvbox_material_transparent_background = 1
-              " For better performance - causes errors with file permissions
-              "let g:gruvbox_material_better_performance = 1
-
-              colorscheme gruvbox-material
-              '';
-          }
-
-          {
-            plugin = nvim-tree-lua;
-            type = "lua";
-            config = ''
-              require("nvim-tree").setup()
-              vim.keymap.set('n', '<C-n>', ':NvimTreeFindFileToggle<CR>')
-              '';
-          }
-
-          #pkgs.vimPlugins.LazyVim
-          #{
-            #plugin = pkgs.vimPlugins.vim-startify;
-            #config = "let g:startify_change_to_vcs_root = 0";
-          #}
-        ];
       };
-      alacritty = {
+      zsh = {
+        enable = true;
+        enableCompletion = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
+
+        initContent = ''
+          # functions go here
+        '';
+        sessionVariables = {
+          PISTOL_CHROMA_FORMATTER = "terminal256"; # fix colors in lf preview window
+        };
+        shellAliases = {
+          c="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+          #W="watch";
+          #t="tig --all";
+          docker="sudo docker";
+          #feh="feh --scale-down";
+          k="kubectl";
+          lg="lazygit";
+          # kubectl="echo '!!! UNSECURE !!!' && kubectl --insecure-skip-tls-verify"
+        };
+        history = {
+          size = 10000;
+          path = "${config.xdg.dataHome}/zsh/history";
+        };
+        oh-my-zsh = {
+          enable = true;
+          theme = "ys";
+          plugins = [
+            "fzf"
+            "git"
+            #"asdf"
+            "colored-man-pages"
+            #"gitignore"
+            #"kubectl"
+          ];
+        };
+      };
+      #alacritty = {
+      #  enable = true;
+      #  settings = {
+      #    general.import = [
+      #      #"~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
+      #      "~/.config/alacritty/alacritty-theme/themes/gruvbox_dark.toml"
+      #      "~/.config/alacritty/colors.toml"
+      #    ];
+      #    #font.size = 11.0;
+      #    #window.opacity = 0.95;
+      #  };
+      #};
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
+      lazygit = {
         enable = true;
         settings = {
-          import = [
-            "~/.config/alacritty/alacritty-theme/themes/gruvbox_${config.theme}.toml"
-            "~/.config/alacritty/colors.toml"
-          ];
-          font.size = 11.0;
-          window.opacity = 0.95;
+          git = {
+            paging = {
+              "colorArg" = "always";
+              "pager" = "delta --light --paging=never --syntax-theme base16-256 -s";
+            };
+          };
         };
+      };
+      git = {
+        enable = true;
+        lfs.enable = true;
+        delta.enable = true;
       };
     };
 
@@ -227,8 +225,54 @@
         enable = true;
       };
       syncthing = {
-        enable = true;
+        enable = false;
         tray.enable = true;
+      };
+
+      kanshi = {
+        enable = true;
+        systemdTarget = "graphical-session.target";
+        settings = [
+          # can set defaults like this:
+          #{ output.criteria = "eDP-1";
+          #  output.scale = 1.066667;
+          #}
+          { profile.name = "laptop";
+            profile.outputs = [
+              {
+                criteria = "eDP-1";
+                scale = 1.2;
+              }
+            ];
+          }
+          { profile.name = "home";
+            profile.outputs = [
+              {
+                criteria = "eDP-1";
+                scale = 1.333333;
+              }
+              {
+                criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
+                scale = 1.5;
+              }
+            ];
+          }
+          { profile.name = "work";
+            profile.outputs = [
+              {
+                #criteria = "LG Display 0x06CF"; # doesn't work???
+                criteria = "eDP-1";
+                scale = 1.2;
+              }
+              {
+                criteria = "Dell Inc. DELL P2423 JWL7VJ3";
+              }
+              {
+                criteria = "Dell Inc. DELL P2423 C1WRVJ3";
+              }
+            ];
+          }
+        ];
       };
     };
     # Workaround for Failed to restart syncthingtray.service: Unit tray.target not found.
@@ -240,13 +284,12 @@
       };
     };
 
-    # https://github.com/NixOS/nixpkgs/issues/207339#issuecomment-1374497558
-    gtk = {
+    xdg.userDirs = {
       enable = true;
-      theme = {
-        package = pkgs.gnome-themes-extra;
-        name = "Adwaita";
-      };
+      documents = "${config.home.homeDirectory}/doc";
+      download = "${config.home.homeDirectory}/dl";
+      music = "${config.home.homeDirectory}/media/music";
+      pictures = "${config.home.homeDirectory}/media/pics";
     };
 
     # Let Home Manager install and manage itself.
