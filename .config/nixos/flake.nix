@@ -101,6 +101,7 @@
             ./hosts/nixodeos
             ./modules/common
             ./modules/server
+            inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
           ];
         };
