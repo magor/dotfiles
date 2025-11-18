@@ -25,6 +25,15 @@
     # release notes.
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
+    #wayland.windowManager.hyprland.enable = true;
+    stylix = {
+      enable = true;
+      polarity = "dark";
+      #image = ../assets/wp.jpg;
+      opacity.terminal = 0.95;
+      fonts.sizes.terminal = 12;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    };
     stylix.targets = {
       neovim.transparentBackground = {
         main = true;
@@ -170,6 +179,16 @@
             "colored-man-pages"
             #"gitignore"
             #"kubectl"
+          ];
+        };
+      };
+      alacritty = {
+        #enable = true; # doesnt work for now (have to use nixGL)
+        settings = {
+          # styling (theme, font size) managed by stylix
+          general.import = [
+            "~/.config/alacritty/alacritty-theme/themes/gruvbox_dark.toml"
+            "~/.config/alacritty/colors.toml"
           ];
         };
       };
