@@ -5,15 +5,17 @@
 default:
   @just --list
 
+flake := "~/.config/nixos"
+
 # common commands
 
 # update all the flake inputs
 up:
-  nix flake update --flake .config/nixos
+  nix flake update --flake {{flake}}
 
 # update specific input (fe. `just upp nixpkgs`)
 upp input:
-  nix flake update --flake .config/nixos {{input}}
+  nix flake update --flake {{flake}} {{input}}
 
 # clean all nix profiles, keep 5 generations
 clean:
@@ -21,14 +23,14 @@ clean:
 
 # rebuild and activate current configuration
 switch:
-  nh os switch .config/nixos --ask
+  nh os switch {{flake}} --ask
 # rebuild and activate dark configuration
 switch-dark:
-  nh os switch --no-specialisation .config/nixos --ask
+  nh os switch --no-specialisation {{flake}} --ask
 # rebuild and activate light configuration
 switch-light:
-  nh os switch --specialisation light .config/nixos --ask
+  nh os switch --specialisation light {{flake}} --ask
 
 # rebuild and activate current homemanager configuration
 home-switch:
-  home-manager switch --flake ~/.config/nixos
+  home-manager switch --flake {{flake}}
