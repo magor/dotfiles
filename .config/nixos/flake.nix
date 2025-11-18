@@ -32,6 +32,8 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
+      home-manager,
+      stylix,
       ...
     }@inputs:
     let
@@ -115,6 +117,14 @@
             inputs.home-manager.nixosModules.home-manager
           ];
         };
+      };
+      homeConfigurations."mirek" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          stylix.homeModules.stylix
+          #./home.nix
+          ./modules/home
+        ];
       };
     };
 }
