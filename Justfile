@@ -28,3 +28,7 @@ switch-dark:
 # rebuild and activate light configuration
 switch-light:
   nh os switch --specialisation light .config/nixos --ask
+
+# rebuild and activate current homemanager configuration
+home-switch:
+  home-manager switch --flake ~/.config/nixos
