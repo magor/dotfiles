@@ -190,13 +190,6 @@
       };
       alacritty = {
         enable = true;
-        settings = {
-          # styling (theme, font size) managed by stylix
-          general.import = [
-            "~/.config/alacritty/alacritty-theme/themes/gruvbox_dark.toml"
-            "~/.config/alacritty/colors.toml"
-          ];
-        };
       };
       direnv = {
         enable = true;
