@@ -71,7 +71,6 @@
             ./modules/syncthing.nix
             inputs.stylix.nixosModules.stylix
             inputs.musnix.nixosModules.musnix
-            inputs.home-manager.nixosModules.home-manager
           ];
         };
         thinkpad = nixpkgs.lib.nixosSystem {
@@ -93,7 +92,6 @@
             inputs.musnix.nixosModules.musnix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
             inputs.stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.home-manager
           ];
         };
         nixodeos = nixpkgs.lib.nixosSystem {
@@ -104,7 +102,6 @@
             ./modules/common
             ./modules/server
             inputs.stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.home-manager
           ];
         };
         virtmaster = nixpkgs.lib.nixosSystem {
@@ -114,7 +111,6 @@
             ./modules/common
             ./modules/server
             ./modules/virt.nix
-            inputs.home-manager.nixosModules.home-manager
           ];
         };
       };
@@ -122,7 +118,6 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           stylix.homeModules.stylix
-          #./home.nix
           ./modules/home
         ];
       };

@@ -1,6 +1,15 @@
-{config, pkgs, home-manager, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mirek = {
     isNormalUser = true;
