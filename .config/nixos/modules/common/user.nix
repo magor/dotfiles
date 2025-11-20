@@ -36,6 +36,11 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.mirek = import ../home;
+    users.mirek = {
+      imports = [
+        inputs.nix-index-database.homeModules.nix-index
+        ../home
+      ];
+    };
   };
 }
