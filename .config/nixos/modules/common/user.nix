@@ -1,15 +1,9 @@
 {
-  config,
   pkgs,
-  inputs,
   ...
 }:
 
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mirek = {
     isNormalUser = true;
@@ -31,16 +25,5 @@
   programs = {
     zsh.enable = true;
     ssh.startAgent = true;
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.mirek = {
-      imports = [
-        inputs.nix-index-database.homeModules.nix-index
-        ../home
-      ];
-    };
   };
 }
