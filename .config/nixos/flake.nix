@@ -102,6 +102,9 @@
         nixodeos = nixpkgs.lib.nixosSystem {
           inherit system;
           inherit lib;
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./hosts/nixodeos
             ./modules/common
