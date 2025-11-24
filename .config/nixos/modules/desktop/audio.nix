@@ -1,6 +1,15 @@
-{config, pkgs, pkgs-unstable, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  musnix,
+  ...
+}:
 
 {
+  imports = [
+    musnix.nixosModules.musnix
+  ];
+
   musnix.enable = true;
 
   users.users.mirek.extraGroups = [ "audio" ];

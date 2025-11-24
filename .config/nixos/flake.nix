@@ -39,6 +39,7 @@
       nixpkgs-unstable,
       home-manager,
       stylix,
+      musnix,
       ...
     }@inputs:
     let
@@ -58,7 +59,7 @@
           inherit system;
           specialArgs = {
             inherit inputs;
-            inherit (inputs) stylix;
+            inherit (inputs) stylix musnix;
             inherit pkgs-unstable;
             inherit lib;
           };
@@ -95,7 +96,6 @@
             ./modules/syncthing.nix
             ./modules/ide.nix
             ./modules/gaming.nix
-            inputs.musnix.nixosModules.musnix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
           ];
         };
