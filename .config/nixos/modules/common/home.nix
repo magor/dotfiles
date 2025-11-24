@@ -13,8 +13,8 @@
     useUserPackages = true;
     users.mirek = {
       imports = [
-        inputs.nix-index-database.homeModules.nix-index
         ../home
+        inputs.nix-index-database.homeModules.nix-index
       ];
     };
   };
