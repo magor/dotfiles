@@ -38,6 +38,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      nix-index-database,
       stylix,
       musnix,
       ...
@@ -58,8 +59,13 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs;
-            inherit (inputs) stylix musnix;
+            inherit (inputs)
+              stylix
+              musnix
+              home-manager
+              nix-index-database
+              firefox
+              ;
             inherit pkgs-unstable;
             inherit lib;
           };

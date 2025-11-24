@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{ ... }:
 
 {
   # https://nixos.wiki/wiki/Laptop

@@ -1,10 +1,15 @@
-{config, pkgs, pkgs-unstable, inputs, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  firefox,
+  ...
+}:
 
 {
   programs = {
     hyprland = {
       enable = true;
-      withUWSM  = true;
+      withUWSM = true;
     };
     firefox.enable = true;
   };
@@ -33,7 +38,7 @@
     feh
     nwg-look
     wofi
-    inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
+    firefox.packages.${pkgs.system}.firefox-nightly-bin
     snapshot
     pinta
   ];

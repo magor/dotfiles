@@ -1,11 +1,12 @@
 {
-  inputs,
+  home-manager,
+  nix-index-database,
   ...
 }:
 
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    home-manager.nixosModules.home-manager
   ];
 
   home-manager = {
@@ -14,7 +15,7 @@
     users.mirek = {
       imports = [
         ../home
-        inputs.nix-index-database.homeModules.nix-index
+        nix-index-database.homeModules.nix-index
       ];
     };
   };

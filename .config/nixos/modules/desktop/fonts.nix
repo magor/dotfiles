@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   fonts = {
@@ -11,7 +11,8 @@
       #corefonts # ms free fonts
       #dejavu_fonts
       #google-fonts
-      roboto roboto-mono # bitbucket web ui
+      roboto
+      roboto-mono # bitbucket web ui
       helvetica-neue-lt-std # used on web
       liberation_ttf
     ];

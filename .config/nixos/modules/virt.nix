@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.mirek.extraGroups = [ "libvirtd" ];

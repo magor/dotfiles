@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   services.openssh = {
@@ -13,4 +13,3 @@
     };
   };
 }
-
