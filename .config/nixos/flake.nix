@@ -51,10 +51,10 @@
       # NOTE: This approach allows lib.custom to propagate into hm
       # see: https://github.com/nix-community/home-manager/pull/3454
       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
-    in
-    {
-      nixosConfigurations = {
-        gajdos = nixpkgs.lib.nixosSystem {
+
+      mkSystem =
+        { hostName, modules }:
+        nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -62,8 +62,18 @@
             inherit lib;
           };
           modules = [
-            ./hosts/gajdos
+            ./hosts/${hostName}
             ./modules/common
+            inputs.stylix.nixosModules.stylix
+          ]
+          ++ modules;
+        };
+    in
+    {
+      nixosConfigurations = {
+        gajdos = mkSystem {
+          hostName = "gajdos";
+          modules = [
             ./modules/desktop
             ./modules/laptop.nix
             ./modules/virt.nix
@@ -74,20 +84,12 @@
             ./modules/ide.nix
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
-            inputs.stylix.nixosModules.stylix
             inputs.musnix.nixosModules.musnix
           ];
         };
-        thinkpad = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit pkgs-unstable;
-            inherit lib;
-          };
+        thinkpad = mkSystem {
+          hostName = "thinkpad";
           modules = [
-            ./hosts/thinkpad
-            ./modules/common
             ./modules/desktop
             ./modules/laptop.nix
             ./modules/chyron.nix
@@ -96,20 +98,12 @@
             ./modules/gaming.nix
             inputs.musnix.nixosModules.musnix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
-            inputs.stylix.nixosModules.stylix
           ];
         };
-        nixodeos = nixpkgs.lib.nixosSystem {
-          inherit system;
-          inherit lib;
-          specialArgs = {
-            inherit inputs;
-          };
+        nixodeos = mkSystem {
+          hostName = "nixodeos";
           modules = [
-            ./hosts/nixodeos
-            ./modules/common
             ./modules/server
-            inputs.stylix.nixosModules.stylix
           ];
         };
         virtmaster = nixpkgs.lib.nixosSystem {
