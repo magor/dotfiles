@@ -1,6 +1,15 @@
-{config, pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  stylix,
+  ...
+}:
 
 {
+  imports = [
+    stylix.nixosModules.stylix
+  ];
+
   stylix = {
     targets = {
       # QT_STYLE_OVERRIDE=kvantum

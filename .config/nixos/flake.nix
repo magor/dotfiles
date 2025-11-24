@@ -58,13 +58,13 @@
           inherit system;
           specialArgs = {
             inherit inputs;
+            inherit (inputs) stylix;
             inherit pkgs-unstable;
             inherit lib;
           };
           modules = [
             ./hosts/${hostName}
             ./modules/common
-            inputs.stylix.nixosModules.stylix
           ]
           ++ modules;
         };
@@ -84,7 +84,6 @@
             ./modules/ide.nix
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
-            inputs.musnix.nixosModules.musnix
           ];
         };
         thinkpad = mkSystem {
