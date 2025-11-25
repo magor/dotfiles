@@ -27,3 +27,27 @@ simply use `config` alias instead of `git` to work with dotfiles repository from
 - cp -r /etc/nixos/* .config/nixos/
 - sudo mv /etc/nixos{,~}
 - sudo ln -rs .config/nixos/ /etc/nixos
+
+## notes
+
+### remove channels
+```
+$ nix-channel --list
+nixpkgs https://nixos.org/channels/nixpkgs-unstable
+
+$ sudo nix-channel --list
+nixos https://nixos.org/channels/nixos-24.05
+```
+
+```
+$ nix-channel --remove nixpkgs
+uninstalling 'nixpkgs'
+
+$ sudo nix-channel --remove nixos
+uninstalling 'nixos-24.05'
+```
+
+### migrate zsh history
+```
+mv .zsh_history .local/share/zsh/history
+```
