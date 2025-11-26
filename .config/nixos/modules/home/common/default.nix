@@ -42,6 +42,7 @@
       # utils
       zsh # TODO config
       lf # TODO config
+      file
       pistol
       btop
       htop

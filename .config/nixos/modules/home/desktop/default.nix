@@ -2,6 +2,10 @@
 
 {
   config = {
+    xdg.configFile."uwsm/env".text = ''
+      export OPENER=xdg-open
+    '';
+
     stylix.targets = {
       hyprpaper.enable = true;
       firefox.profileNames = [
@@ -9,6 +13,7 @@
         "chyron"
       ];
     };
+
     home.packages = with pkgs; [
       # de
       # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
