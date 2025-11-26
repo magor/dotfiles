@@ -7,6 +7,9 @@
 #fi
 
 # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#in-tty
-if uwsm check may-start && uwsm select; then
-	exec systemd-cat -t uwsm_start uwsm start default
+# Only on local, login, TTY sessions *and* if uwsm exists
+if [[ -o login ]] && [ -z "$SSH_CONNECTION" ] && [ -t 0 ] && command -v uwsm >/dev/null 2>&1; then
+  if uwsm check may-start && uwsm select; then
+    exec systemd-cat -t uwsm_start uwsm start default
+  fi
 fi
