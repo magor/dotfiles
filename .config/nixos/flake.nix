@@ -55,7 +55,11 @@
       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
 
       mkSystem =
-        { hostName, modules }:
+        {
+          hostName,
+          modules ? [ ],
+          homeModules ? [ ],
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
@@ -72,6 +76,20 @@
           modules = [
             ./hosts/${hostName}
             ./modules/common
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.mirek = {
+                  imports = [
+                    ./modules/home/common
+                    nix-index-database.homeModules.nix-index
+                  ]
+                  ++ homeModules;
+                };
+              };
+            }
           ]
           ++ modules;
         };
@@ -92,6 +110,9 @@
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
           ];
+          homeModules = [
+            ./modules/home/desktop
+          ];
         };
         thinkpad = mkSystem {
           hostName = "thinkpad";
@@ -103,6 +124,9 @@
             ./modules/ide.nix
             ./modules/gaming.nix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
+          ];
+          homeModules = [
+            ./modules/home/desktop
           ];
         };
         nixodeos = mkSystem {
@@ -125,7 +149,8 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           stylix.homeModules.stylix
-          ./modules/home
+          ./modules/home/common
+          ./modules/home/desktop
         ];
       };
     };

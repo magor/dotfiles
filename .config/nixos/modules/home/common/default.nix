@@ -27,11 +27,6 @@
 
     #wayland.windowManager.hyprland.enable = true;
     stylix.targets = {
-      hyprpaper.enable = true;
-      firefox.profileNames = [
-        "default"
-        "chyron"
-      ];
       neovim.transparentBackground = {
         main = true;
       };
@@ -71,20 +66,7 @@
       difftastic
       python311Packages.ipython
       jdk8
-      dbeaver-bin
       cntr
-
-      # de
-      # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
-      grim
-      slurp
-
-      # audio - maybe not needed anymore?
-      (writeShellScriptBin "nix-jack" ''
-        exec /usr/bin/env \
-          LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
-          "''$@"
-      '')
 
       # direnv helper scripts
       # https://determinate.systems/posts/nix-direnv/
@@ -188,9 +170,6 @@
           ];
         };
       };
-      alacritty = {
-        enable = true;
-      };
       direnv = {
         enable = true;
         enableZshIntegration = true;
@@ -211,72 +190,6 @@
         enable = true;
         lfs.enable = true;
         delta.enable = true;
-      };
-    };
-
-    services = {
-      swaync = {
-        enable = true;
-      };
-      syncthing = {
-        enable = false; # service is managed by syncthing module on system level
-        tray.enable = true;
-      };
-
-      kanshi = {
-        enable = true;
-        systemdTarget = "graphical-session.target";
-        settings = [
-          # can set defaults like this:
-          #{ output.criteria = "eDP-1";
-          #  output.scale = 1.066667;
-          #}
-          {
-            profile.name = "laptop";
-            profile.outputs = [
-              {
-                criteria = "eDP-1";
-                scale = 1.2;
-              }
-            ];
-          }
-          {
-            profile.name = "thinkpad-home";
-            profile.outputs = [
-              {
-                criteria = "AU Optronics 0xFA9B Unknown"; # thinkpad screen
-                scale = 1.5;
-              }
-              {
-                criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
-                scale = 1.6;
-              }
-            ];
-          }
-          {
-            profile.name = "dell-work";
-            profile.outputs = [
-              {
-                criteria = "LG Display 0x06CF Unknown"; # note the missing serial needs to be populated by the "Unknown" string
-                scale = 1.333333;
-              }
-              {
-                criteria = "Dell Inc. DELL P2423 JWL7VJ3";
-              }
-              {
-                criteria = "Dell Inc. DELL P2423 C1WRVJ3";
-              }
-            ];
-          }
-        ];
-      };
-    };
-    # Workaround for Failed to restart syncthingtray.service: Unit tray.target not found.
-    # - https://github.com/nix-community/home-manager/issues/2064
-    systemd.user.targets.tray = {
-      Unit = {
-        Description = "Home Manager System Tray";
-        Requires = [ "graphical-session-pre.target" ];
       };
     };
 
