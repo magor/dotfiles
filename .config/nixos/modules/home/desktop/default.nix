@@ -1,13 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   config = {
+    home.sessionVariables = {
+      # https://nixos.wiki/wiki/Wayland#Electron_and_Chromium
+      # https://nixos.wiki/wiki/Visual_Studio_Code#Wayland
+      NIXOS_OZONE_WL = "1";
+      OPENER = "xdg-open";
+      XCURSOR_SIZE = "24";
+      GDK_SCALE = "2"; # scale xwayland apps
+    };
+
     xdg.configFile = {
-      "uwsm/env".text = ''
-        export OPENER=xdg-open
-        export XCURSOR_SIZE=24
-        #export GDK_SCALE=2 # scale xwayland apps
-      '';
+      "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
       "uwsm/env-hyprland".text = ''
         export HYPRCURSOR_THEME=rose-pine-hyprcursor
         export HYPRCURSOR_SIZE=28
