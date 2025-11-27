@@ -11,6 +11,7 @@
       GDK_SCALE = "2"; # scale xwayland apps
     };
 
+    #wayland.windowManager.hyprland.enable = true;
     xdg.configFile = {
       "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
       "uwsm/env-hyprland".text = ''
@@ -35,13 +36,6 @@
 
       # dev
       dbeaver-bin
-
-      # audio - maybe not needed anymore?
-      (writeShellScriptBin "nix-jack" ''
-        exec /usr/bin/env \
-          LD_LIBRARY_PATH=${pipewire.jack}/lib''${LD_LIBRARY_PATH:+:''${LD_LIBRARY_PATH}} \
-          "''$@"
-      '')
     ];
 
     programs = {

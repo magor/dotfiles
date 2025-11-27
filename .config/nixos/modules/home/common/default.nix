@@ -25,7 +25,6 @@
     # release notes.
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
-    #wayland.windowManager.hyprland.enable = true;
     stylix.targets = {
       neovim.transparentBackground = {
         main = true;
@@ -200,6 +199,7 @@
       download = "${config.home.homeDirectory}/dl";
       music = "${config.home.homeDirectory}/media/music";
       pictures = "${config.home.homeDirectory}/media/pics";
+      desktop = null; # set to null or home to disable
     };
 
     # Let Home Manager install and manage itself.
