@@ -2,9 +2,17 @@
 
 {
   config = {
-    xdg.configFile."uwsm/env".text = ''
-      export OPENER=xdg-open
-    '';
+    xdg.configFile = {
+      "uwsm/env".text = ''
+        export OPENER=xdg-open
+        export XCURSOR_SIZE=24
+        #export GDK_SCALE=2 # scale xwayland apps
+      '';
+      "uwsm/env-hyprland".text = ''
+        export HYPRCURSOR_THEME=rose-pine-hyprcursor
+        export HYPRCURSOR_SIZE=28
+      '';
+    };
 
     stylix.targets = {
       hyprpaper.enable = true;
