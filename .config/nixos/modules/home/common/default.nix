@@ -68,6 +68,9 @@
       jdk8
       cntr
 
+      byobu
+      tmux
+
       # direnv helper scripts
       # https://determinate.systems/posts/nix-direnv/
       # prepare devenv using remote flake

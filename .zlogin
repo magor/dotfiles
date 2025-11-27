@@ -13,3 +13,17 @@ if [[ -o login ]] && [ -z "$SSH_CONNECTION" ] && [ -t 0 ] && command -v uwsm >/d
     exec systemd-cat -t uwsm_start uwsm start default
   fi
 fi
+
+# Auto-start byobu on SSH login:
+# - only for SSH login shells
+# - only if interactive (has a TTY)
+# - not when running "ssh host cmd"
+# - not if already inside tmux/screen
+if [[ -o login ]] \
+   && [ -n "$SSH_CONNECTION" ] \
+   && [ -z "$SSH_ORIGINAL_COMMAND" ] \
+   && [ -t 0 ] \
+   && [ -z "$TMUX" ] && [ -z "$STY" ] \
+   && command -v byobu >/dev/null 2>&1; then
+  exec byobu
+fi
