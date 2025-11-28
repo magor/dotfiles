@@ -40,7 +40,7 @@
 
     programs = {
       alacritty = {
-        enable = true;
+        #enable = true;
       };
     };
     services = {
