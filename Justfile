@@ -34,3 +34,6 @@ switch-light:
 # rebuild and activate current homemanager configuration
 home-switch:
   home-manager switch --flake {{flake}}
+
+home-clean:
+  $(readlink `which nh`) clean all --keep 5 --ask
