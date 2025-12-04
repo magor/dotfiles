@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   musnix,
   ...
 }:
@@ -43,7 +42,7 @@
     playerctl
     reaper
     reaper-reapack-extension
-    pkgs-unstable.bitwig-studio
+    unstable.bitwig-studio
     vlc
     helvum
     qsynth

@@ -1,8 +1,6 @@
-{config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
   # https://nixos.wiki/wiki/Storage_optimization
   nix.optimise.automatic = true;
 
@@ -11,7 +9,10 @@
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   boot.loader.systemd-boot.configurationLimit = 20;
 

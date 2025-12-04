@@ -41,10 +41,22 @@
       nix-index-database,
       stylix,
       musnix,
+      firefox,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            # make unstable and nightly firefox easily accessible
+            unstable = pkgs-unstable;
+            firefox-nightly = firefox.packages.${system}.firefox-nightly-bin;
+          })
+        ];
+      };
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
@@ -61,19 +73,24 @@
           homeModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
           specialArgs = {
+            inherit lib pkgs pkgs-unstable;
             inherit (inputs)
               stylix
               musnix
               home-manager
               nix-index-database
-              firefox
               ;
-            inherit pkgs-unstable;
-            inherit lib;
           };
           modules = [
+            # ensure NixOS uses our pre-imported pkgs
+            (
+              { ... }:
+              {
+                nixpkgs.pkgs = pkgs;
+              }
+            )
             ./hosts/${hostName}
             ./modules/common
             home-manager.nixosModules.home-manager
