@@ -24,7 +24,13 @@
       enable = true;
       defaultApplications = {
         #"mimetype1" = [ "default1.desktop" "default2.desktop" ];
+        "image/*" = [ "feh.desktop" ];
       };
+      associations.removed = {
+        "image/png" = [ "chromium-browser.desktop" ];
+      };
+
+      #defaultApplicationPackages = [ pkgs.feh ];
     };
     xdg.configFile."mimeapps.list".force = true;
 
