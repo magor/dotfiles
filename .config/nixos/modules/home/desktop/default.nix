@@ -20,6 +20,14 @@
       '';
     };
 
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        #"mimetype1" = [ "default1.desktop" "default2.desktop" ];
+      };
+    };
+    xdg.configFile."mimeapps.list".force = true;
+
     stylix.targets = {
       hyprpaper.enable = true;
       firefox.profileNames = [
