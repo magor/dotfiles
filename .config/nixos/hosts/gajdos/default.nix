@@ -2,13 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader = {
@@ -16,10 +16,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  networking = {
-    hostName = "gajdos";
-    networkmanager.enable = true;
-  };
+  networking.hostName = "gajdos";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -50,18 +47,6 @@
       };
     };
   };
-
-  #services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.mirek = {
-    isNormalUser = true;
-    description = "Miroslav Gajdos";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
-
-  nixpkgs.config.allowBroken = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
