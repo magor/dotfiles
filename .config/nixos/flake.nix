@@ -46,21 +46,26 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            # make unstable and nightly firefox easily accessible
-            unstable = pkgs-unstable;
-            firefox-nightly = firefox.packages.${system}.firefox-nightly-bin;
-          })
-        ];
-      };
+      mkPkgs =
+        {
+          allowUnfree,
+          overlays,
+        }:
+        import nixpkgs {
+          inherit system overlays;
+          config.allowUnfree = allowUnfree;
+        };
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
+      defaultOverlays = [
+        (final: prev: {
+          # make unstable and nightly firefox easily accessible
+          unstable = pkgs-unstable;
+          firefox-nightly = firefox.packages.${system}.firefox-nightly-bin;
+        })
+      ];
       # Extend lib with lib.custom
       # NOTE: This approach allows lib.custom to propagate into hm
       # see: https://github.com/nix-community/home-manager/pull/3454
@@ -71,7 +76,30 @@
           hostName,
           modules ? [ ],
           homeModules ? [ ],
+          allowUnfree ? true,
+          overlays ? [ ],
+          enableHomeManager ? true,
+          extraSpecialArgs ? { },
         }:
+        let
+          pkgs = mkPkgs {
+            inherit allowUnfree;
+            overlays = defaultOverlays ++ overlays;
+          };
+          homeManagerModule = {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mirek = {
+                imports = [
+                  ./modules/home/common
+                  nix-index-database.homeModules.nix-index
+                ]
+                ++ homeModules;
+              };
+            };
+          };
+        in
         nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = {
@@ -82,7 +110,7 @@
               home-manager
               nix-index-database
               ;
-          };
+          } // extraSpecialArgs;
           modules = [
             # ensure NixOS uses our pre-imported pkgs
             (
@@ -93,20 +121,10 @@
             )
             ./hosts/${hostName}
             ./modules/common
+          ]
+          ++ lib.optionals enableHomeManager [
             home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.mirek = {
-                  imports = [
-                    ./modules/home/common
-                    nix-index-database.homeModules.nix-index
-                  ]
-                  ++ homeModules;
-                };
-              };
-            }
+            homeManagerModule
           ]
           ++ modules;
         };
@@ -115,6 +133,10 @@
       nixosConfigurations = {
         gajdos = mkSystem {
           hostName = "gajdos";
+          overlays = [
+            # keep wezterm following unstable releases on the desktop host
+            (final: prev: { wezterm = pkgs-unstable.wezterm; })
+          ];
           modules = [
             ./modules/desktop
             ./modules/laptop.nix
@@ -148,22 +170,27 @@
         };
         nixodeos = mkSystem {
           hostName = "nixodeos";
+          allowUnfree = false;
           modules = [
             ./modules/server
           ];
+          enableHomeManager = false;
         };
         virtmaster = nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit hostName;
+          allowUnfree = false;
+          enableHomeManager = false;
           modules = [
-            ./hosts/virtmaster
-            ./modules/common
             ./modules/server
             ./modules/virt.nix
           ];
         };
       };
       homeConfigurations."mirek" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = mkPkgs {
+          allowUnfree = true;
+          overlays = defaultOverlays;
+        };
         modules = [
           stylix.homeModules.stylix
           ./modules/home/common
