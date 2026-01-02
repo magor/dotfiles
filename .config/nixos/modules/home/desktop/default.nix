@@ -49,6 +49,10 @@
       grim
       slurp
 
+      zathura # pdf viewer
+
+      anytype
+
       # dev
       dbeaver-bin
     ];
