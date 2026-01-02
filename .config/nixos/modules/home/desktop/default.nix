@@ -25,6 +25,7 @@
       defaultApplications = {
         #"mimetype1" = [ "default1.desktop" "default2.desktop" ];
         "image/*" = [ "feh.desktop" ];
+        "image/jpeg" = [ "feh.desktop" ];
       };
       associations.removed = {
         "image/png" = [ "chromium-browser.desktop" ];
