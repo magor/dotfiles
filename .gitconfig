@@ -9,6 +9,7 @@
     showuntrackedfiles = no
 [alias]
     st = status
+    sts = status --short --branch
     ap = add -p
     c = commit
     d = diff
