@@ -140,6 +140,7 @@
             ./modules/syncthing.nix
             ./modules/ide.nix
             ./modules/gaming.nix
+            ./modules/thinkpad.nix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
           ];
           homeModules = [
