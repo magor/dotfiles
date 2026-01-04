@@ -151,6 +151,7 @@
           hostName = "nixodeos";
           modules = [
             ./modules/server
+            ./modules/jellyfin.nix
           ];
         };
         virtmaster = nixpkgs.lib.nixosSystem {
