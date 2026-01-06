@@ -202,6 +202,7 @@
       download = "${config.home.homeDirectory}/dl";
       music = "${config.home.homeDirectory}/media/music";
       pictures = "${config.home.homeDirectory}/media/pics";
+      videos = "${config.home.homeDirectory}/media/videos";
       desktop = null; # set to null or home to disable
     };
 
