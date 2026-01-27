@@ -34,6 +34,7 @@
         " workaround? (hint: order of import vs default.nix)
         let mapleader=" "
         nnoremap <leader>o <cmd>Outline<cr>
+        nnoremap <leader>c <cmd>TSContextToggle<cr>
       '';
 
     extraLuaConfig = # lua
