@@ -48,6 +48,7 @@
       # hyprland installed via system, workaround to 'DRI driver not from this Mesa build' problem
       grim
       slurp
+      wl-clipboard
 
       zathura # pdf viewer
 
