@@ -126,6 +126,7 @@
             ./modules/ide.nix
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
+            ./modules/ai.nix
           ];
           homeModules = [
             ./modules/home/desktop
