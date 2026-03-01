@@ -39,7 +39,7 @@
     # environment.
     home.packages = with pkgs; [
       # utils
-      zsh # TODO config
+      zsh
       lf # TODO config
       file
       pistol
@@ -75,12 +75,20 @@
       # https://determinate.systems/posts/nix-direnv/
       # prepare devenv using remote flake
       (writeShellScriptBin "dvd" ''
+        if [ -z "$1" ]; then
+          echo "usage: dvd <template-name>" >&2
+          exit 1
+        fi
         echo "use flake \"github:magor/dev-templates?dir=$1\"" >> .envrc
         direnv allow
       '')
       # prepare devenv by instantiating template locally
       # TODO: check https://github.com/magor/dev-templates/blob/main/flake.nix#L86
       (writeShellScriptBin "dvt" ''
+        if [ -z "$1" ]; then
+          echo "usage: dvt <template-name>" >&2
+          exit 1
+        fi
         nix flake init --template "github:magor/dev-templates#$1"
         git init
         git add flake.nix
@@ -101,6 +109,42 @@
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     home.file = {
+      ".config/zsh/functions.zsh".text = ''
+        mkcd() {
+          mkdir -p "$1"
+          cd "$1"
+        }
+
+        cproj() {
+          cd "$HOME/projects/$1"
+        }
+
+        nxswitch() {
+          nh os switch "$HOME/.config/nixos"
+        }
+
+        mktempdir() {
+          local dir
+          dir=$(mktemp -d)
+          cd "$dir"
+        }
+
+        cflake() {
+          cd "$HOME/.config/nixos"
+        }
+      '';
+
+      ".config/zsh/aliases.zsh".text = ''
+        alias gs="git status -sb"
+        alias gcmsg="git commit -m"
+        alias gco="git checkout"
+        alias gpull="git pull --rebase"
+        alias dcu="docker compose up"
+        alias dcd="docker compose down"
+        alias ll="ls -alh"
+        alias nhm="home-manager switch --flake $HOME/.config/nixos"
+        alias nixclean="nix-collect-garbage -d && nix store gc"
+      '';
       # # Building this configuration will create a copy of 'dotfiles/screenrc' in
       # # the Nix store. Activating the configuration will then make '~/.screenrc' a
       # # symlink to the Nix store copy.
@@ -140,8 +184,12 @@
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
 
-        initContent = ''
-          # functions go here
+        initExtraFirst = ''
+          for zfile in ${config.xdg.configHome}/zsh/functions.zsh ${config.xdg.configHome}/zsh/aliases.zsh; do
+            if [ -f "$zfile" ]; then
+              source "$zfile"
+            fi
+          done
         '';
         sessionVariables = {
           PISTOL_CHROMA_FORMATTER = "terminal256"; # fix colors in lf preview window
