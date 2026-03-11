@@ -6,6 +6,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     # https://nixos.wiki/wiki/flakes#Importing_packages_from_multiple_channels
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    # TODO named stable nixpkgs
+    # TODO move to unstable
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
