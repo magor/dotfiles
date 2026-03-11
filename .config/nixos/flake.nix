@@ -21,11 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox = {
-      url = "github:nix-community/flake-firefox-nightly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +36,6 @@
       nix-index-database,
       stylix,
       musnix,
-      firefox,
       ...
     }@inputs:
     let
@@ -51,9 +45,10 @@
         config.allowUnfree = true;
         overlays = [
           (final: prev: {
-            # make unstable and nightly firefox easily accessible
+            # make unstable easily accessible
             unstable = pkgs-unstable;
-            firefox-nightly = firefox.packages.${system}.firefox-nightly-bin;
+            # to do the same with a package from a flake, try something like this:
+            # <pkg-name>-nightly = <flake-name>.packages.${system}.<package-name-in-flake>;
           })
         ];
       };

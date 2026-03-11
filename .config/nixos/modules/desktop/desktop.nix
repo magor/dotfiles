@@ -36,7 +36,6 @@
     feh
     nwg-look
     wofi
-    firefox-nightly
     snapshot
     pinta
   ];
