@@ -138,7 +138,7 @@
             ./modules/syncthing.nix
             ./modules/ide.nix
             ./modules/gaming.nix
-            ./modules/thinkpad.nix
+            #./modules/thinkfan.nix # disabled due to ocassional problems after suspend - fans keep going
             ./modules/ai.nix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
           ];
