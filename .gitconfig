@@ -17,9 +17,14 @@
     ds = diff --staged
     l = log --graph -n 25 --abbrev-commit --date=relative --pretty=format:'%C(auto)%h%d - %s %C(blue)<%an> %C(green)(%ar)'
     la = log --graph --all --abbrev-commit --date=relative --pretty=format:'%C(auto)%h%d - %s %C(blue)<%an> %C(green)(%ar)'
+    ll = log --graph --all --abbrev-commit --date=relative --pretty=format:'%C(auto)%h%d %C(blue)<%an> %C(green)(%ar) \n %s'
     fap = fetch --all --prune --tags
     lsr = ls-tree --full-tree -r HEAD
     co = checkout
+    # worktree
+    wtl = worktree list
+    wta = worktree add
+    wtr = worktree remove
 [color]
     ui = true
 [core]
