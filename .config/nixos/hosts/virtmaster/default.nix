@@ -36,12 +36,6 @@
     };
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   security.sudo.wheelNeedsPassword = false;
 
   users.users.mirek = {

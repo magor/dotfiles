@@ -121,7 +121,7 @@
             ./modules/virt.nix
             ./modules/docker.nix
             ./modules/gaming.nix
-            ./modules/wine.nix
+            #./modules/wine.nix
             ./modules/chyron.nix
             ./modules/ide.nix
             ./modules/looking-glass.nix

@@ -1,15 +1,7 @@
-{ pkgs, ... }:
-
 {
   services.jellyfin = {
     enable = true;
   };
-
-  environment.systemPackages = [
-    pkgs.jellyfin
-    pkgs.jellyfin-web
-    pkgs.jellyfin-ffmpeg
-  ];
 
   # 2. Create a "media" group and add users to it
   users.groups.media = { };

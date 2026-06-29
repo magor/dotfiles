@@ -18,12 +18,6 @@
 
   networking.hostName = "gajdos";
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   hardware = {
     graphics = {
       enable = true;

@@ -14,12 +14,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoJjsFgqBmAWglQtlAAS09tTMENADdFIJa7ZDr+n0sh mirek@thinkpad"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE7G/DhE3QfGMtz1faaa24Eb0HRR6uEpYPkgB6oVl7dS mirek@shathak"
     ];
-    packages = with pkgs; [
-      lf
-      fzf
-      ripgrep
-      pistol
-    ];
   };
 
   programs = {
