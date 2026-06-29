@@ -19,7 +19,7 @@
     lua-language-server
     nil # nix LSP
     nixd
-    nixfmt-rfc-style # needed by configuration, look for nixfmt
+    nixfmt # needed by configuration, look for nixfmt
   ];
 
   imports = [
@@ -31,6 +31,8 @@
 
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = false;
     vimAlias = true;
     vimdiffAlias = true;
 
@@ -38,7 +40,7 @@
       pkgs.gcc # needed for lsp/treesitter?
     ];
 
-    extraLuaConfig = # lua
+    initLua = # lua
       ''
         local options = {
           updatetime = 50, -- faster completion (4000ms default)

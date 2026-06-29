@@ -39,7 +39,7 @@
 
     ];
 
-    extraLuaConfig = # lua
+    initLua = # lua
       ''
         -----------------
       '';

@@ -9,7 +9,7 @@
       none-ls-nvim
     ];
 
-    extraLuaConfig = # lua
+    initLua = # lua
       ''
         ----------------------
         -- About treesitter --

@@ -37,7 +37,7 @@
         nnoremap <leader>c <cmd>TSContextToggle<cr>
       '';
 
-    extraLuaConfig = # lua
+    initLua = # lua
       ''
         require("lualine").setup({
           options = {

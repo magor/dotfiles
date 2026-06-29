@@ -23,7 +23,7 @@
     # You should not change this value, even if you update Home Manager. If you do
     # want to update the value, then make sure to first check the Home Manager
     # release notes.
-    home.stateVersion = "23.11"; # Please read the comment before changing.
+    home.stateVersion = "26.05";
 
     stylix.targets = {
       neovim.transparentBackground = {
@@ -64,7 +64,7 @@
       # dev
       tig
       difftastic
-      python311Packages.ipython
+      python3Packages.ipython
       jdk8
       cntr
 
@@ -192,12 +192,16 @@
       git = {
         enable = true;
         lfs.enable = true;
-        delta.enable = true;
+      };
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
       };
     };
 
     xdg.userDirs = {
       enable = true;
+      setSessionVariables = true;
       documents = "${config.home.homeDirectory}/doc";
       download = "${config.home.homeDirectory}/dl";
       music = "${config.home.homeDirectory}/media/music";

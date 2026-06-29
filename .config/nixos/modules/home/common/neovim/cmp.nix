@@ -11,7 +11,7 @@
       cmp-cmdline # cmp command line suggestions
     ];
 
-    extraLuaConfig = # lua
+    initLua = # lua
       ''
         ---------------
         -- About cmp --
