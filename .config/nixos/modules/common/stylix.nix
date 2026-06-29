@@ -22,13 +22,13 @@
     polarity = "dark";
     image = lib.custom.relativeToRoot "assets/wp.jpg";
     opacity.terminal = 0.95;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
   };
   specialisation.light.configuration = {
     environment.etc."specialisation".text = "light";
     stylix = {
       polarity = lib.mkForce "light";
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/gruvbox-material-light-medium.yaml";
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/gruvbox-material-light-hard.yaml";
     };
   };
 }
