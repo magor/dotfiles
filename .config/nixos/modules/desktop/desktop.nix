@@ -14,9 +14,8 @@
 
   environment.systemPackages = with pkgs; [
     chromium
-    unstable.waybar # https://github.com/Alexays/Waybar/issues/3042
-    #hypridle
-    unstable.hypridle # need 0.1.7 for <listener:ignore_inhibit>
+    waybar
+    hypridle
     hyprpaper
     hyprcursor
     rose-pine-hyprcursor

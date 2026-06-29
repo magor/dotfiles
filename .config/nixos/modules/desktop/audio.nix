@@ -42,9 +42,9 @@
     playerctl
     reaper
     reaper-reapack-extension
-    unstable.bitwig-studio
+    bitwig-studio
     vlc
-    helvum
+    crosspipe
     qsynth
     fluidsynth
     soundfont-fluid
