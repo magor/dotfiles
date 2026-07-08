@@ -30,6 +30,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
+    };
   };
 
   outputs =
@@ -41,6 +46,7 @@
       nix-index-database,
       stylix,
       musnix,
+      noctalia,
       ...
     }@inputs:
     let
@@ -102,6 +108,7 @@
                   imports = [
                     ./modules/home/common
                     nix-index-database.homeModules.nix-index
+                    noctalia.homeModules.default
                   ]
                   ++ homeModules;
                 };
@@ -170,6 +177,7 @@
         inherit pkgs;
         modules = [
           stylix.homeModules.stylix
+          noctalia.homeModules.default
           ./modules/home/common
           ./modules/home/desktop
         ];
