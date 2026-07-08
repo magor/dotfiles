@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.neovim = {
@@ -11,20 +11,16 @@
       cmp-cmdline # cmp command line suggestions
     ];
 
-    initLua = # lua
+    initLua = lib.mkOrder 1600 # lua
       ''
         ---------------
         -- About cmp --
         ---------------
         local cmp_status_ok, cmp = pcall(require, "cmp")
-        if not cmp_status_ok then
-          return
-        end
         local snip_status_ok, luasnip = pcall(require, "luasnip")
-        if not snip_status_ok then
-          return
-        end
-
+        if not cmp_status_ok or not snip_status_ok then
+          vim.notify("cmp or luasnip failed to load", vim.log.levels.WARN)
+        else
         require("luasnip/loaders/from_vscode").lazy_load()
 
         local kind_icons = {
@@ -131,6 +127,7 @@
             { name = "cmdline" },
           }),
         })
+        end
       '';
   };
 }

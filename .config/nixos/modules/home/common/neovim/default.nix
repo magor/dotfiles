@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 
@@ -40,7 +41,7 @@
       pkgs.gcc # needed for lsp/treesitter?
     ];
 
-    initLua = # lua
+    initLua = lib.mkOrder 1600 # lua
       ''
         local options = {
           updatetime = 50, -- faster completion (4000ms default)

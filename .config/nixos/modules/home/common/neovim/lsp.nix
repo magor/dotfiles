@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.neovim = {
@@ -9,19 +9,12 @@
       none-ls-nvim
     ];
 
-    initLua = # lua
+    initLua = lib.mkOrder 1600 # lua
       ''
         ----------------------
         -- About treesitter --
         ----------------------
-        require('nvim-treesitter.configs').setup {
-          highlight = {
-            enable = true
-          },
-          indent = {
-            enable = true,
-          },
-        }
+        require('nvim-treesitter').setup()
 
         -------------------
         -- About none-ls --
@@ -88,74 +81,75 @@
           end,
         })
         ---------------------
-        -- About lspconfig --
+        -- About LSP         --
         ---------------------
-        local nvim_lsp = require("lspconfig")
-
-        -- Add additional capabilities supported by nvim-cmp
-        -- nvim hasn't added foldingRange to default capabilities, users must add it manually
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        capabilities = vim.lsp.protocol.make_client_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.foldingRange = {
           dynamicRegistration = false,
           lineFoldingOnly = true,
         }
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-        --Change diagnostic symbols in the sign column (gutter)
-        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-        for type, icon in pairs(signs) do
-          local hl = "DiagnosticSign" .. type
-          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
         vim.diagnostic.config({
           virtual_text = false,
-          signs = true,
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = " ",
+              [vim.diagnostic.severity.WARN] = " ",
+              [vim.diagnostic.severity.HINT] = " ",
+              [vim.diagnostic.severity.INFO] = " ",
+            },
+          },
           underline = true,
           update_in_insert = true,
           severity_sort = false,
         })
 
-        local on_attach = function(bufnr)
-          vim.api.nvim_create_autocmd("CursorHold", {
-            buffer = bufnr,
-            callback = function()
-              local opts = {
-                focusable = false,
-                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                border = "rounded",
-                source = "always",
-                prefix = " ",
-                scope = "line",
-              }
-              vim.diagnostic.open_float(nil, opts)
-            end,
-          })
-        end
-        nvim_lsp.nixd.setup({
-            on_attach = on_attach(),
-            capabilities = capabilities,
-            settings = {
-                nixd = {
-                    nixpkgs = {
-                        expr = "import <nixpkgs> { }",
-                    },
-                    formatting = {
-                        command = { "nixfmt" },
-                    },
-                    options = {
-                        nixos = {
-                            expr = '(builtins.getFlake "/tmp/NixOS_Home-Manager").nixosConfigurations.hostname.options',
-                        },
-                        home_manager = {
-                            expr = '(builtins.getFlake "/tmp/NixOS_Home-Manager").homeConfigurations."user@hostname".options',
-                        },
-                        flake_parts = {
-                            expr = 'let flake = builtins.getFlake ("/tmp/NixOS_Home-Manager"); in flake.debug.options // flake.currentSystem.options',
-                        },
-                    },
-                },
-            },
+        local lsp_attach = vim.api.nvim_create_augroup("UserLspAttach", {})
+        vim.api.nvim_create_autocmd("LspAttach", {
+          group = lsp_attach,
+          callback = function(ev)
+            vim.api.nvim_create_autocmd("CursorHold", {
+              buffer = ev.buf,
+              callback = function()
+                vim.diagnostic.open_float(nil, {
+                  focusable = false,
+                  close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                  border = "rounded",
+                  source = "always",
+                  prefix = " ",
+                  scope = "line",
+                })
+              end,
+            })
+          end,
         })
+
+        vim.lsp.config("nixd", {
+          capabilities = capabilities,
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = "import <nixpkgs> { }",
+              },
+              formatting = {
+                command = { "nixfmt" },
+              },
+              options = {
+                nixos = {
+                  expr = '(builtins.getFlake "/tmp/NixOS_Home-Manager").nixosConfigurations.hostname.options',
+                },
+                home_manager = {
+                  expr = '(builtins.getFlake "/tmp/NixOS_Home-Manager").homeConfigurations."user@hostname".options',
+                },
+                flake_parts = {
+                  expr = 'let flake = builtins.getFlake ("/tmp/NixOS_Home-Manager"); in flake.debug.options // flake.currentSystem.options',
+                },
+              },
+            },
+          },
+        })
+        vim.lsp.enable("nixd")
       '';
   };
 }

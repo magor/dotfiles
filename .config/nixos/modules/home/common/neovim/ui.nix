@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.neovim = {
@@ -37,7 +37,7 @@
         nnoremap <leader>c <cmd>TSContextToggle<cr>
       '';
 
-    initLua = # lua
+    initLua = lib.mkOrder 1600 # lua
       ''
         require("lualine").setup({
           options = {
