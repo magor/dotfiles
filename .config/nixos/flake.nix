@@ -140,7 +140,6 @@
             ./modules/chyron.nix
             ./modules/syncthing.nix
             ./modules/ide.nix
-            ./modules/gaming.nix
             #./modules/thinkfan.nix # disabled due to ocassional problems after suspend - fans keep going
             ./modules/ai.nix
             ./modules/llm.nix
