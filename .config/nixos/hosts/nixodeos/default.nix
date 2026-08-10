@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub = {
@@ -29,14 +34,18 @@
     hostName = "nixodeos"; # Define your hostname.
     interfaces = {
       ens18 = {
-        ipv4.addresses = [{
-          address = "46.36.38.241";
-          prefixLength = 24;
-        }];
-        ipv6.addresses = [{
-          address = "2a02:25b0:aaaa:5456::";
-          prefixLength = 64;
-        }];
+        ipv4.addresses = [
+          {
+            address = "46.36.38.241";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "2a02:25b0:aaaa:5456::";
+            prefixLength = 64;
+          }
+        ];
       };
     };
     defaultGateway = "46.36.38.1";
@@ -44,7 +53,10 @@
       address = "2a02:25b0:aaaa::1";
       interface = "ens18";
     };
-    nameservers = [ "8.8.8.8" "8.8.4.4"];
+    nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -62,4 +74,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 }
-
