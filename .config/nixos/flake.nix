@@ -147,6 +147,7 @@
           ];
           homeModules = [
             ./modules/home/desktop
+            ./modules/home/backup-doc.nix
           ];
         };
         nixodeos = mkSystem {
