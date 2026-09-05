@@ -139,6 +139,7 @@
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
             ./modules/ai.nix
+            ./modules/music.nix
           ];
           homeModules = [
             ./modules/home/desktop

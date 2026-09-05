@@ -1,0 +1,29 @@
+{
+  pkgs,
+  ...
+}:
+
+{
+  environment.systemPackages = with pkgs; [
+    bitwig-studio
+    carla
+    crosspipe
+    drumgizmo
+    fluidsynth
+    helm
+    hydrogen
+    neural-amp-modeler-lv2
+    pavucontrol
+    playerctl
+    qjackctl
+    qpwgraph
+    qsynth
+    reaper
+    reaper-reapack-extension
+    sfizz
+    soundfont-fluid
+    vital
+    yabridge
+    yabridgectl
+  ];
+}

@@ -36,27 +36,7 @@
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
-    qpwgraph
-    pavucontrol
     spotify
-    playerctl
-    reaper
-    reaper-reapack-extension
-    bitwig-studio
     vlc
-    crosspipe
-    qsynth
-    fluidsynth
-    soundfont-fluid
-    carla
-    helm
-    drumgizmo
-    hydrogen
-    sfizz
-    vital
-    neural-amp-modeler-lv2
-    qjackctl
-    yabridge
-    yabridgectl
   ];
 }
