@@ -113,6 +113,18 @@
     in
     {
       nixosConfigurations = {
+        shathak = mkSystem {
+          hostName = "shathak";
+          modules = [
+            ./modules/desktop
+            ./modules/syncthing.nix
+            ./modules/ide.nix
+            ./modules/ai.nix
+          ];
+          homeModules = [
+            ./modules/home/desktop
+          ];
+        };
         gajdos = mkSystem {
           hostName = "gajdos";
           modules = [
