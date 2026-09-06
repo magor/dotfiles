@@ -12,7 +12,7 @@ let
 in
 {
   # 1. Harmonia server (poskytuje lokální store ostatním)
-  services.harmonia = {
+  services.harmonia.cache = {
     enable = true;
     signKeyPaths = [ "/var/lib/harmonia/cache-priv.key" ];
     settings.bind = "[::]:5000";
@@ -23,6 +23,8 @@ in
 
   # 3. Klientské nastavení Nixe
   nix.settings = {
+    # Pokud stroj neodpoví napoprvé, neopakovat pokusy a jít hned na další cache
+    download-attempts = 1;
     extra-substituters = map (h: "http://${h}:5000") otherHosts;
     extra-trusted-public-keys = [
       "mesh-cache-1:72hDEmxPyMHSUaFkF0M08idI33CwVu2npVLanENnBrI="
