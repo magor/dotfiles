@@ -135,6 +135,7 @@
             ./modules/gaming.nix
             #./modules/wine.nix
             ./modules/chyron.nix
+            ./modules/print.nix
             ./modules/ide.nix
             ./modules/looking-glass.nix
             ./modules/syncthing.nix
