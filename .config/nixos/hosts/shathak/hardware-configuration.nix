@@ -59,7 +59,10 @@
     {
       device = "/dev/disk/by-uuid/8e7e3c81-a5f2-4b80-ad2f-1cb52c872bf5";
       fsType = "btrfs";
-      options = [ "nofail" ];
+      options = [
+        "nofail"
+        "space_cache=v2"
+      ];
     };
 
   fileSystems."/home/steam" = {
