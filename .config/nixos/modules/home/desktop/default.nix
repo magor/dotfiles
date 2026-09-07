@@ -105,6 +105,15 @@
           #  output.scale = 1.066667;
           #}
           {
+            profile.name = "dell-laptop";
+            profile.outputs = [
+              {
+                criteria = "LG Display 0x06CF Unknown"; # note the missing serial needs to be populated by the "Unknown" string
+                scale = 1.0;
+              }
+            ];
+          }
+          {
             profile.name = "laptop";
             profile.outputs = [
               {
