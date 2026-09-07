@@ -164,6 +164,7 @@
           homeModules = [
             ./modules/home/desktop
             ./modules/home/backup-doc.nix
+            ./modules/home/thinkpad.nix
           ];
         };
         nixodeos = mkSystem {
