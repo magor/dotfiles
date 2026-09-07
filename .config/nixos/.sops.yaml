@@ -1,15 +1,19 @@
 keys:
   # admins
   - &user_gajdos "age1sw6plpp4f4anl7alfsflnrj5p5ll8qk8z4yugn3fsy0xqaakmcyq0nzlxt"
+  - &user_thinkpad "age19354e8dk6na0k23mq9ea3lz5pdwk30yph4mqg7xvknqk9w5p8pjquwxgnl"
 
   # hosts
   - &host_gajdos "age1ggqwgf3tcyxnxzkxhykl0hma3m4kp9vjx62x05x60zltfapnu48s5whjpr"
   - &host_nixodeos "age1j3vt8tgwpzvxx6l3atjed02qxxe8lpglegn0w95l2t6xwkds03xqvyma0w"
+  - &host_thinkpad "age1xu76dawvwg68vvclpccsdz5lsczpwpwfc7tvy3s4xvydv8mhk3dsxy09n2"
 
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:
           - *user_gajdos
+          - *user_thinkpad
           - *host_gajdos
           - *host_nixodeos
+          - *host_thinkpad
