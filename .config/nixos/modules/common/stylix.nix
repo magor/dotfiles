@@ -22,6 +22,7 @@
     polarity = "dark";
     image = lib.custom.relativeToRoot "assets/wp.jpg";
     opacity.terminal = 0.95;
+    fonts.sizes.terminal = 11;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
   };
   specialisation.light.configuration = {
