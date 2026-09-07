@@ -11,10 +11,16 @@ let
   otherHosts = builtins.filter (h: h != config.networking.hostName) allHosts;
 in
 {
+  # secrets configuration
+  sops.secrets.harmonia_key = {
+    sopsFile = ../../secrets/harmonia.yaml;
+    mode = "0400";
+  };
+
   # 1. Harmonia server (poskytuje lokální store ostatním)
   services.harmonia.cache = {
     enable = true;
-    signKeyPaths = [ "/var/lib/harmonia/cache-priv.key" ];
+    signKeyPaths = [ config.sops.secrets.harmonia_key.path ];
     settings.bind = "[::]:5000";
   };
 

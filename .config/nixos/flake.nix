@@ -30,6 +30,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -93,6 +98,7 @@
             )
             ./hosts/${hostName}
             ./modules/common
+            inputs.sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
               home-manager = {
