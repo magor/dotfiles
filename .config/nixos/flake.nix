@@ -163,6 +163,7 @@
             #./modules/thinkfan.nix # disabled due to ocassional problems after suspend - fans keep going
             ./modules/ai.nix
             ./modules/llm.nix
+            ./modules/music.nix
             #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
           ];
           homeModules = [
