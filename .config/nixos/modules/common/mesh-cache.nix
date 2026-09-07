@@ -1,14 +1,28 @@
 { config, ... }:
 let
-  # Názvy vašich strojů v Tailscale MagicDNS
-  allHosts = [
-    "gajdos"
-    "thinkpad"
-    "shathak"
-    "nixodeos"
+  # Seznam strojů seřazený podle dostupnosti s přiřazenou prioritou:
+  # (Nižší číslo = vyšší priorita; oficiální cache.nixos.org má prioritu 40)
+  allCaches = [
+    {
+      host = "nixodeos";
+      priority = 45;
+    } # Server (běží nepřetržitě)
+    {
+      host = "shathak";
+      priority = 60;
+    } # Desktop
+    {
+      host = "thinkpad";
+      priority = 65;
+    } # Laptop
+    {
+      host = "gajdos";
+      priority = 70;
+    } # Laptop
   ];
-  # Vyloučíme lokální stroj, aby se nedotazoval sám sebe
-  otherHosts = builtins.filter (h: h != config.networking.hostName) allHosts;
+
+  # Vyloučíme lokální uzel, aby se nedotazoval sám sebe
+  remoteCaches = builtins.filter (c: c.host != config.networking.hostName) allCaches;
 in
 {
   # secrets configuration
@@ -29,15 +43,22 @@ in
 
   # 3. Klientské nastavení Nixe
   nix.settings = {
-    # Pokud stroj neodpoví napoprvé, neopakovat pokusy a jít hned na další cache
-    download-attempts = 1;
-    extra-substituters = map (h: "http://${h}:5000") otherHosts;
+    # Generování URL s explicitním parametrem priority
+    extra-substituters = map (c: "http://${c.host}:5000?priority=${toString c.priority}") remoteCaches;
+
     extra-trusted-public-keys = [
       "mesh-cache-1:72hDEmxPyMHSUaFkF0M08idI33CwVu2npVLanENnBrI="
     ];
 
-    # Zásadní volba: pokud desktop spí, vzdát pokus po 2 s a nezdržovat build
-    connect-timeout = 2;
+    # Zkrácení čekání na neodpovídající uzel na absolutní minimum jádra Nixe (1 s)
+    connect-timeout = 1;
+
+    # Neopakovat nezdařené pokusy a přejít rovnou k další cache / lokálnímu buildu
+    download-attempts = 1;
     fallback = true;
+
+    # Ukládání informace o neexistujících cestách (404 / timeout) na 30 minut,
+    # aby se Nix při každém dalším balíčku v rámci session neptal vypnutého stroje znovu
+    narinfo-cache-negative-ttl = 1800;
   };
 }
