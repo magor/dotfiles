@@ -47,9 +47,26 @@
   };
 
   # https://nixos.wiki/wiki/Grafana
+  # 1. Declare the secret to sops-nix
+  sops.secrets.grafana_secret_key = {
+    # Path relative to this Nix file (or use sops.defaultSopsFile if set)
+    sopsFile = ../../secrets/server/grafana.yaml;
+
+    # Grant read permissions to the Grafana system user
+    owner = "grafana";
+    group = "grafana";
+
+    # Automatically restart Grafana if the secret is updated
+    restartUnits = [ "grafana.service" ];
+  };
+
   services.grafana = {
     enable = true;
     settings = {
+      security = {
+        # Retains the old default key so existing database secrets remain decryptable
+        secret_key = "$__file{${config.sops.secrets.grafana_secret_key.path}}";
+      };
       server = {
         # Listening Address
         http_addr = "127.0.0.1";
