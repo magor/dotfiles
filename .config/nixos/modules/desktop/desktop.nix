@@ -4,6 +4,17 @@
 }:
 
 {
+
+  # Enable Avahi for mDNS/ZeroConf service discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true; # Allows resolving .local hostnames
+    openFirewall = true; # Automatically opens UDP 5353
+  };
+
+  # Open Spotify Connect's local synchronization port
+  networking.firewall.allowedTCPPorts = [ 57621 ];
+
   programs = {
     hyprland = {
       enable = true;
