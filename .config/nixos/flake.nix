@@ -78,9 +78,9 @@
           homeModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
+          inherit system;
           specialArgs = {
-            inherit lib pkgs pkgs-unstable;
+            inherit lib pkgs-unstable;
             inherit (inputs)
               stylix
               musnix
@@ -89,13 +89,8 @@
               ;
           };
           modules = [
-            # ensure NixOS uses our pre-imported pkgs
-            (
-              { ... }:
-              {
-                nixpkgs.pkgs = pkgs;
-              }
-            )
+            # reuse pre-imported pkgs (do not also pass pkgs via specialArgs)
+            { nixpkgs.pkgs = pkgs; }
             ./hosts/${hostName}
             ./modules/common
             inputs.sops-nix.nixosModules.sops
