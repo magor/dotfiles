@@ -182,10 +182,12 @@
         enable = true;
         settings = {
           git = {
-            paging = {
-              "colorArg" = "always";
-              "pager" = "delta --light --paging=never --syntax-theme base16-256 -s";
-            };
+            pagers = [
+              {
+                colorArg = "always";
+                pager = "delta --light --paging=never --syntax-theme base16-256 -s";
+              }
+            ];
           };
         };
       };
