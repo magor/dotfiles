@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -9,16 +9,20 @@
       OPENER = "xdg-open";
       XCURSOR_SIZE = "24";
       GDK_SCALE = "2"; # scale xwayland apps
+      HYPRCURSOR_THEME = "rose-pine-hyprcursor";
+      HYPRCURSOR_SIZE = "28";
     };
 
     #wayland.windowManager.hyprland.enable = true;
-    xdg.configFile = {
-      "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-      "uwsm/env-hyprland".text = ''
-        export HYPRCURSOR_THEME=rose-pine-hyprcursor
-        export HYPRCURSOR_SIZE=28
-      '';
-    };
+    # Hyprland session env (replaces former ~/.config/uwsm/env*).
+    xdg.configFile."hypr/env.conf".text = ''
+      env = NIXOS_OZONE_WL,1
+      env = OPENER,xdg-open
+      env = XCURSOR_SIZE,24
+      env = GDK_SCALE,2
+      env = HYPRCURSOR_THEME,rose-pine-hyprcursor
+      env = HYPRCURSOR_SIZE,28
+    '';
 
     xdg.mimeApps = {
       enable = true;
