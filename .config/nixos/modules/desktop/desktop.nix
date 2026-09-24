@@ -16,10 +16,7 @@
   networking.firewall.allowedTCPPorts = [ 57621 ];
 
   programs = {
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
+    hyprland.enable = true;
     firefox.enable = true;
   };
 
@@ -35,7 +32,7 @@
     # https://github.com/phisch/phinger-cursors
     # https://github.com/search?q=hyprcursor&type=repositories
     hyprlock
-    xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-hyprland comes from programs.hyprland
     hyprpolkitagent
     fuzzel
     brightnessctl
@@ -49,6 +46,11 @@
     snapshot
     pinta
   ];
+
+  # Skip start (don't fail) when dbus-activated without a compositor display.
+  systemd.user.services.xdg-desktop-portal-gtk.unitConfig = {
+    ConditionEnvironment = "WAYLAND_DISPLAY";
+  };
 
   services = {
     blueman.enable = true;
