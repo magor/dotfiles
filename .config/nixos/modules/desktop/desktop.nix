@@ -45,6 +45,7 @@
     wofi
     snapshot
     pinta
+    libgourou # toolset for ebook drm removal
   ];
 
   # Skip start (don't fail) when dbus-activated without a compositor display.
