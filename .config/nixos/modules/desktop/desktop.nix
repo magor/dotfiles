@@ -48,6 +48,7 @@
     wofi
     snapshot
     pinta
+    libgourou # toolset for ebook drm removal
   ];
 
   services = {
