@@ -50,11 +50,12 @@ in
       "mesh-cache-1:72hDEmxPyMHSUaFkF0M08idI33CwVu2npVLanENnBrI="
     ];
 
-    # Zkrácení čekání na neodpovídající uzel na absolutní minimum jádra Nixe (1 s)
-    connect-timeout = 1;
+    # Tailscale RTT to mesh nodes is often ~1s; 1s connect-timeout marks live
+    # caches as dead and forces local builds / hard failures.
+    connect-timeout = 5;
 
-    # Neopakovat nezdařené pokusy a přejít rovnou k další cache / lokálnímu buildu
-    download-attempts = 1;
+    # One retry for transient Tailscale blips, then fall through
+    download-attempts = 2;
     fallback = true;
 
     # Ukládání informace o neexistujících cestách (404 / timeout) na 30 minut,
