@@ -131,7 +131,6 @@
     #
 
     programs = {
-      noctalia.enable = true;
       nix-index = {
         enable = true;
       };

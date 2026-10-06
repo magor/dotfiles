@@ -77,6 +77,7 @@
     ];
 
     programs = {
+      noctalia.enable = true;
       alacritty = {
         enable = true;
       };
