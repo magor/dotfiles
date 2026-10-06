@@ -166,6 +166,13 @@
             ./modules/home/backup-doc.nix
           ];
         };
+        homes = mkSystem {
+          hostName = "homes";
+          modules = [
+          ];
+          homeModules = [
+          ];
+        };
         nixodeos = mkSystem {
           hostName = "nixodeos";
           modules = [
