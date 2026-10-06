@@ -87,7 +87,7 @@
       "tailscale.service"
     ];
     wantedBy = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.tailscalesd}/bin/tailscalesd -localapi -address 127.0.0.1:9242";
+    serviceConfig.ExecStart = "${pkgs.tailscalesd}/bin/tailscalesd --localapi --address 127.0.0.1:9242";
     restartIfChanged = true;
   };
 
