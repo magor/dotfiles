@@ -177,6 +177,7 @@
         homes = mkSystem {
           hostName = "homes";
           modules = [
+            ./modules/homeassistant.nix
           ];
           homeModules = [
           ];
