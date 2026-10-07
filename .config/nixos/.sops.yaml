@@ -17,7 +17,9 @@ creation_rules:
     key_groups:
       - age:
           - *user_nixodeos
+          - *user_homes
           - *host_nixodeos
+          - *host_homes
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:
