@@ -7,6 +7,7 @@
 {
   imports = [
     ./neovim
+    ./cleanup-tmp.nix
   ];
 
   config = {
