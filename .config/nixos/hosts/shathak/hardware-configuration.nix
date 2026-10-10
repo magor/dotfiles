@@ -49,11 +49,6 @@
     fsType = "ext4";
   };
 
-  fileSystems."/home/virt" = {
-    device = "/dev/mapper/vg0-virt";
-    fsType = "ext4";
-  };
-
   fileSystems."/home/data" =
     #{ device = "/dev/mapper/vg0-data";
     {
@@ -64,11 +59,6 @@
         "space_cache=v2"
       ];
     };
-
-  fileSystems."/home/steam" = {
-    device = "/dev/mapper/vg0-steam";
-    fsType = "ext4";
-  };
 
   fileSystems."/nix" = {
     device = "/dev/mapper/vg0-nix";
