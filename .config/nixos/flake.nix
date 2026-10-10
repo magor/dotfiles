@@ -126,7 +126,6 @@
           modules = [
             ./modules/desktop
             ./modules/syncthing.nix
-            ./modules/ide.nix
             ./modules/ai.nix
           ];
           homeModules = [
