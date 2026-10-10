@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -44,21 +43,17 @@
     ];
   };
 
-  fileSystems."/home/media" = {
-    device = "/dev/mapper/vg0-media";
-    fsType = "ext4";
+  fileSystems."/home/mirek/media" = {
+    device = "/dev/disk/by-uuid/5708efda-3a46-4e39-87a3-dc24d3293337";
+    fsType = "btrfs";
+    options = [
+      "subvol=@media"
+      "noatime"
+      "discard=async"
+      "compress=zstd"
+      "nofail"
+    ];
   };
-
-  fileSystems."/home/data" =
-    #{ device = "/dev/mapper/vg0-data";
-    {
-      device = "/dev/disk/by-uuid/8e7e3c81-a5f2-4b80-ad2f-1cb52c872bf5";
-      fsType = "btrfs";
-      options = [
-        "nofail"
-        "space_cache=v2"
-      ];
-    };
 
   fileSystems."/nix" = {
     device = "/dev/mapper/vg0-nix";
