@@ -124,6 +124,7 @@
         shathak = mkSystem {
           hostName = "shathak";
           modules = [
+            ./modules/server/sshd.nix
             ./modules/desktop
             ./modules/syncthing.nix
             ./modules/ai.nix
