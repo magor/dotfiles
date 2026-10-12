@@ -64,8 +64,14 @@
   ];
 
   # https://nixos.wiki/wiki/Syncthing
+  # Synced folders stay on the CIFS mount at dataDir (/var/lib/syncthing = ~).
+  # Config + SQLite DB must be on local disk — CIFS breaks SQLite locking
+  # (Syncthing 2.x DB migration fails with "database is locked").
   services.syncthing = {
     enable = true;
+    dataDir = "/var/lib/syncthing";
+    configDir = "/var/lib/syncthing-state";
+    databaseDir = "/var/lib/syncthing-state";
   };
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
