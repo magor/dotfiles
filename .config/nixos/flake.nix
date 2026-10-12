@@ -189,6 +189,7 @@
           modules = [
             ./modules/server
             ./modules/jellyfin.nix
+            ./modules/ai.nix
           ];
         };
         virtmaster = nixpkgs.lib.nixosSystem {
