@@ -184,7 +184,7 @@
             pagers = [
               {
                 colorArg = "always";
-                pager = "delta --light --paging=never --syntax-theme base16-256 -s";
+                pager = "delta --paging=never --syntax-theme base16-256 -s";
               }
             ];
           };
