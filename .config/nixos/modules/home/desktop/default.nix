@@ -64,6 +64,7 @@ in
       grim
       slurp
       wl-clipboard
+      kmonad # keyboard remapping
 
       zathura # pdf viewer
 

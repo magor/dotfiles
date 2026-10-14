@@ -51,40 +51,16 @@
       nethogs
       jq
       ncdu
-      sshfs
-      kmonad
       nh
       nix-inspect
       aria2
       unzip
       just
-      yt-dlp
-
-      # dev
       tig
-      difftastic
-      python3Packages.ipython
-      jdk8
-      cntr
 
       byobu
       tmux
-
-      # direnv helper scripts
-      # https://determinate.systems/posts/nix-direnv/
-      # prepare devenv using remote flake
-      (writeShellScriptBin "dvd" ''
-        echo "use flake \"github:magor/dev-templates?dir=$1\"" >> .envrc
-        direnv allow
-      '')
-      # prepare devenv by instantiating template locally
-      # TODO: check https://github.com/magor/dev-templates/blob/main/flake.nix#L86
-      (writeShellScriptBin "dvt" ''
-        nix flake init --template "github:magor/dev-templates#$1"
-        git init
-        git add flake.nix
-        direnv allow
-      '')
+      # dev tools live in modules/home/dev
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the

@@ -127,6 +127,7 @@
           ];
           homeModules = [
             ./modules/home/desktop
+            ./modules/home/dev
           ];
         };
         gajdos = mkSystem {
@@ -147,6 +148,7 @@
           ];
           homeModules = [
             ./modules/home/desktop
+            ./modules/home/dev
           ];
         };
         thinkpad = mkSystem {
@@ -163,6 +165,7 @@
           ];
           homeModules = [
             ./modules/home/desktop
+            ./modules/home/dev
             ./modules/home/backup-doc.nix
             ./modules/home/thinkpad.nix
           ];
