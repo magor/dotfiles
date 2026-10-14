@@ -12,7 +12,6 @@
     virtio-win
     win-spice
     adwaita-icon-theme
-    parsec-bin
   ];
 
   virtualisation = {

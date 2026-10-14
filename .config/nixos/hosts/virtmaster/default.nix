@@ -10,10 +10,7 @@
   ];
 
   # networking
-  networking = {
-    hostName = "virtmaster"; # Define your hostname.
-    networkmanager.enable = true;
-  };
+  networking.hostName = "virtmaster";
   
   # ssh reverse tunnel
   systemd.services.sshReverseTunnel = {

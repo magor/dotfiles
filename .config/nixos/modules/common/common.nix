@@ -19,8 +19,6 @@
     "flakes"
   ];
 
-  boot.loader.systemd-boot.configurationLimit = 20;
-
   # Set your time zone.
   time.timeZone = "Europe/Prague";
 

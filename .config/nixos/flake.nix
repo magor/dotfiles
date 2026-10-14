@@ -6,8 +6,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     # https://nixos.wiki/wiki/flakes#Importing_packages_from_multiple_channels
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    # TODO named stable nixpkgs
-    # TODO move to unstable
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -84,7 +82,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit lib pkgs-unstable;
+            inherit lib;
             inherit (inputs)
               stylix
               musnix

@@ -1,12 +1,7 @@
 { pkgs, ... }:
 
 {
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
+  # network printer discovery relies on avahi from modules/desktop
   services.printing = {
     enable = true;
     drivers = with pkgs; [
