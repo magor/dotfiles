@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -43,7 +43,15 @@
           }
         ];
       }
-    ];
+    ]
+    ++ lib.optional config.services.prometheus.exporters.smartctl.enable {
+      job_name = "smartctl";
+      static_configs = [
+        {
+          targets = [ "localhost:${toString config.services.prometheus.exporters.smartctl.port}" ];
+        }
+      ];
+    };
   };
 
   # https://nixos.wiki/wiki/Grafana

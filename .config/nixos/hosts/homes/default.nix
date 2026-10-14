@@ -17,6 +17,12 @@
     thermald.enable = true;
     smartd.enable = true;
 
+    # SMART metrics for Grafana; scraped locally by modules/server/stats.nix
+    prometheus.exporters.smartctl = {
+      enable = true;
+      listenAddress = "127.0.0.1";
+    };
+
     btrfs.autoScrub = {
       enable = true;
       interval = "monthly";
