@@ -55,12 +55,8 @@
         -------------------
         -- About lspsaga --
         -------------------
-        local colors, kind
-        colors = { normal_bg = "#3b4252" }
         require("lspsaga").setup({
             ui = {
-                colors = colors,
-                kind = kind,
                 border = "single",
             },
             outline = {
@@ -75,14 +71,12 @@
         -- Find the symbol definition, implementation, reference.
         -- If there is no implementation, it will hide.
         -- When you use action in finder like open, vsplit, then you can use <C-t> to jump back.
-        keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc = "Lsp finder" })
+        keymap("n", "gh", "<cmd>Lspsaga finder<CR>", { silent = true, desc = "Lsp finder" })
 
         -- Code action
         keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true, desc = "Code action" })
         keymap("v", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true, desc = "Code action" })
 
-        -- Rename
-        keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true, desc = "Rename" })
         -- Rename word in whole project
         keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>", { silent = true, desc = "Rename in project" })
 
