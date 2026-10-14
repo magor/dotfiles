@@ -15,10 +15,13 @@
     ./hardware-configuration.nix
   ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/vda"; # or "nodev" for efi only
+  # VPS uses GRUB; override the common systemd-boot default.
+  boot.loader = {
+    systemd-boot.enable = false;
+    grub = {
+      enable = true;
+      device = "/dev/vda"; # or "nodev" for efi only
+    };
   };
 
   users.users = {

@@ -5,11 +5,6 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
   networking.hostName = "homes";
 
   # 24/7 ThinkCentre M920q Tiny (i5-9500T): cool/quiet defaults + durability

@@ -2,6 +2,10 @@
 
 {
   # https://nixos.wiki/wiki/Laptop
+  imports = [
+    ./hardware/bluetooth.nix
+    ./hardware/intel-graphics.nix
+  ];
 
   powerManagement.enable = true;
 
