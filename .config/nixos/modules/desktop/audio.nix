@@ -1,16 +1,9 @@
 {
   pkgs,
-  musnix,
   ...
 }:
 
 {
-  imports = [
-    musnix.nixosModules.musnix
-  ];
-
-  musnix.enable = true;
-
   users.users.mirek.extraGroups = [ "audio" ];
 
   services.pipewire = {
@@ -21,15 +14,6 @@
     };
     pulse.enable = true;
     jack.enable = true;
-    extraConfig.pipewire."92-low-latency" = {
-      "context.properties" = {
-        #"default.clock.rate" = 48000; # default
-        "default.clock.rate" = 44100; # fix rehearsal room drums jitter
-        "default.clock.quantum" = 256;
-        "default.clock.min-quantum" = 128;
-        "default.clock.max-quantum" = 512;
-      };
-    };
   };
 
   # sound/pipewire: rtkit is optional but recommended
