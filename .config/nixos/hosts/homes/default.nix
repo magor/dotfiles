@@ -15,6 +15,7 @@
   services = {
     fwupd.enable = true;
     thermald.enable = true;
+    smartd.enable = true;
 
     btrfs.autoScrub = {
       enable = true;
