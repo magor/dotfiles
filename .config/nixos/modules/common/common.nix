@@ -3,6 +3,11 @@
 {
   # https://nixos.wiki/wiki/Storage_optimization
   nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   # needed for home-manager module
   programs.dconf.enable = true;

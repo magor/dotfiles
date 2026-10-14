@@ -8,6 +8,10 @@ let
       priority = 45;
     } # Server (běží nepřetržitě)
     {
+      host = "homes";
+      priority = 50;
+    } # Always-on home server
+    {
       host = "shathak";
       priority = 60;
     } # Desktop
