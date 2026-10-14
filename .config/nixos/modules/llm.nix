@@ -23,17 +23,21 @@ in
     enable = true;
     #acceleration = null; # Will fallback to CPU optimization for your Intel i5
     package = pkgs.ollama-cpu;
-    environmentVariables = {
-      OLLAMA_ORIGINS = "*";
-    };
+    # Pulled in the background by ollama-model-loader.service.
+    loadModels = [ baseModel ];
   };
 
   # OLLAMA_NUM_THREADS is ignored on 0.30.x; bake num_thread into a derived model.
   systemd.services.ollama-tuned-models = {
     description = "Create Ollama models with CPU thread overrides";
     wantedBy = [ "multi-user.target" ];
-    after = [ "ollama.service" ];
+    after = [
+      "ollama.service"
+      "ollama-model-loader.service"
+    ];
     wants = [ "ollama.service" ];
+    # The loader is Type=exec, so the base model may still be downloading; retry until it exists.
+    startLimitIntervalSec = 0;
     bindsTo = [ "ollama.service" ];
     # HOME is required (CLI panics without it); drop PATH so `path` can set it.
     environment = removeAttrs config.systemd.services.ollama.environment [ "PATH" ];
@@ -45,6 +49,8 @@ in
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+      Restart = "on-failure";
+      RestartSec = "30s";
     };
     script = ''
       set -euo pipefail
