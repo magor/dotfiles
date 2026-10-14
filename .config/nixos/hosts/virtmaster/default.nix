@@ -23,7 +23,7 @@
     description = "Self healing reverse ssh tunnel using Mirek's nixodeos server";
     serviceConfig = {
       Type = "exec";
-      ExecStart = ''${pkgs.openssh}/bin/ssh -vvv -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R 4002:localhost:22 chyron@46.36.38.241'';
+      ExecStart = ''${pkgs.openssh}/bin/ssh -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R 4002:localhost:22 chyron@46.36.38.241'';
       Restart = "always";
       RestartSec = "5s";
     };

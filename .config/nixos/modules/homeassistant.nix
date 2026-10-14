@@ -13,7 +13,7 @@
     enable = true;
     allowedTCPPorts = [
       8123 # Home Assistant Web UI
-      5580 # Matter Server web interface / pairing
+      # 5580 (Matter Server websocket) stays closed: it has no auth and HA reaches it via host network
     ];
     allowedUDPPorts = [
       5353 # mDNS (Avahi/Bonjour) - required for DIRIGERA discovery

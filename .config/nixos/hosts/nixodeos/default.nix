@@ -27,8 +27,9 @@
   users.users = {
     chyron = {
       isNormalUser = true;
+      # Only used for virtmaster's reverse ssh tunnel: no shell, only the remote forward on port 4002.
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHkACZVINP0OWysJE/m2oWzUscqz/khESvbso+nmu6TK root@virtmaster"
+        ''restrict,port-forwarding,permitlisten="4002" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHkACZVINP0OWysJE/m2oWzUscqz/khESvbso+nmu6TK root@virtmaster''
       ];
     };
   };
