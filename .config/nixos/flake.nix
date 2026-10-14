@@ -19,8 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -141,7 +139,6 @@
             ./modules/virt.nix
             ./modules/docker.nix
             ./modules/gaming.nix
-            #./modules/wine.nix
             ./modules/chyron.nix
             ./modules/print.nix
             ./modules/ide.nix
@@ -162,11 +159,9 @@
             ./modules/chyron.nix
             ./modules/syncthing.nix
             ./modules/ide.nix
-            #./modules/thinkfan.nix # disabled due to ocassional problems after suspend - fans keep going
             ./modules/ai.nix
             ./modules/llm.nix
             ./modules/music.nix
-            #inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14 # uses tlp, conflicts with tuned
           ];
           homeModules = [
             ./modules/home/desktop
@@ -201,15 +196,6 @@
             ./modules/virt.nix
           ];
         };
-      };
-      homeConfigurations."mirek" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          stylix.homeModules.stylix
-          noctalia.homeModules.default
-          ./modules/home/common
-          ./modules/home/desktop
-        ];
       };
     };
 }

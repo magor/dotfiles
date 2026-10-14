@@ -40,13 +40,11 @@
     # environment.
     home.packages = with pkgs; [
       # utils
-      zsh # TODO config
       lf # TODO config
       file
       pistol
       btop
       htop
-      tree
       fzf
       ripgrep
       iotop

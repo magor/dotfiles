@@ -1,28 +1,25 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Single source for shell session + Hyprland (hypr/env.conf).
+  # https://nixos.wiki/wiki/Wayland#Electron_and_Chromium
+  # https://nixos.wiki/wiki/Visual_Studio_Code#Wayland
+  sessionEnv = {
+    NIXOS_OZONE_WL = "1";
+    OPENER = "xdg-open";
+    XCURSOR_SIZE = "24";
+    GDK_SCALE = "2"; # scale xwayland apps
+    HYPRCURSOR_THEME = "rose-pine-hyprcursor";
+    HYPRCURSOR_SIZE = "28";
+  };
+in
 {
   config = {
-    home.sessionVariables = {
-      # https://nixos.wiki/wiki/Wayland#Electron_and_Chromium
-      # https://nixos.wiki/wiki/Visual_Studio_Code#Wayland
-      NIXOS_OZONE_WL = "1";
-      OPENER = "xdg-open";
-      XCURSOR_SIZE = "24";
-      GDK_SCALE = "2"; # scale xwayland apps
-      HYPRCURSOR_THEME = "rose-pine-hyprcursor";
-      HYPRCURSOR_SIZE = "28";
-    };
+    home.sessionVariables = sessionEnv;
 
     #wayland.windowManager.hyprland.enable = true;
-    # Hyprland session env (replaces former ~/.config/uwsm/env*).
-    xdg.configFile."hypr/env.conf".text = ''
-      env = NIXOS_OZONE_WL,1
-      env = OPENER,xdg-open
-      env = XCURSOR_SIZE,24
-      env = GDK_SCALE,2
-      env = HYPRCURSOR_THEME,rose-pine-hyprcursor
-      env = HYPRCURSOR_SIZE,28
-    '';
+    xdg.configFile."hypr/env.conf".text =
+      lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "env = ${k},${v}") sessionEnv) + "\n";
 
     xdg.mimeApps = {
       enable = true;

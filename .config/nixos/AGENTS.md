@@ -5,7 +5,7 @@ This file provides instructions for agents operating within the NixOS configurat
 ## Repository Structure (Relative to Root)
 
 - `flake.nix`: Main flake entry point.
-- `hosts/`: Host-specific definitions (gajdos, thinkpad, nixodeos, virtmaster).
+- `hosts/`: Host-specific definitions (gajdos, thinkpad, shathak, homes, nixodeos, virtmaster).
 - `modules/`: Feature-based modules (NixOS and Home Manager).
 - `lib/`: Custom library helpers (e.g., `relativeToRoot`, `scanPaths`).
 - `../../.config/hypr/`: Hyprland configuration (Accessed via relative path if needed).
