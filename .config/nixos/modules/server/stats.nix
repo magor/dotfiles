@@ -83,23 +83,35 @@
 
   systemd.services."tailscalesd" = {
     description = "Prometheus Service Discovery for Tailscale";
+    # the daemon unit is tailscaled.service; its socket may lag startup, so retry
     after = [
-      "tailscale.service"
+      "tailscaled.service"
     ];
+    wants = [ "tailscaled.service" ];
     wantedBy = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.tailscalesd}/bin/tailscalesd --localapi --address 127.0.0.1:9242";
+    serviceConfig = {
+      ExecStart = "${pkgs.tailscalesd}/bin/tailscalesd --localapi --address 127.0.0.1:9242";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
     restartIfChanged = true;
   };
 
   systemd.services."tailscale-serve-grafana" = {
     description = "Expose Grafana to Tailnet via Tailscale Serve";
     after = [
-      "tailscale.service"
+      "tailscaled.service"
       "grafana.service"
     ];
+    wants = [ "tailscaled.service" ];
     wantedBy = [ "multi-user.target" ];
     #serviceConfig.ExecStart = "${pkgs.tailscale}/bin/tailscale serve https 3000";
-    serviceConfig.ExecStart = "${pkgs.tailscale}/bin/tailscale serve 3000";
+    serviceConfig = {
+      ExecStart = "${pkgs.tailscale}/bin/tailscale serve 3000";
+      # tailscaled's socket isn't up yet right after boot
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
     restartIfChanged = true;
   };
 }
