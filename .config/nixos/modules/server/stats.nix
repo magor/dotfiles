@@ -103,7 +103,10 @@
       "tailscaled.service"
       "grafana.service"
     ];
-    wants = [ "tailscaled.service" ];
+    wants = [
+      "tailscaled.service"
+      "grafana.service"
+    ];
     wantedBy = [ "multi-user.target" ];
     #serviceConfig.ExecStart = "${pkgs.tailscale}/bin/tailscale serve https 3000";
     serviceConfig = {
