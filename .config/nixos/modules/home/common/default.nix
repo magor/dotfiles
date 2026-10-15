@@ -170,6 +170,15 @@
         enable = true;
         lfs.enable = true;
       };
+      gh = {
+        enable = true;
+        # git credential helper for github.com / gist.github.com, path kept current by HM
+        gitCredentialHelper.enable = true;
+        settings = {
+          git_protocol = "ssh"; # match the existing ssh remotes (default: https)
+          aliases.co = "pr checkout";
+        };
+      };
       delta = {
         enable = true;
         enableGitIntegration = true;
