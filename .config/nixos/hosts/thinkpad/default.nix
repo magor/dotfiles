@@ -49,8 +49,11 @@
 
   hardware.graphics.extraPackages = with pkgs; [
     vpl-gpu-rt # For newer QSV (Quick Sync Video) support
-    intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
   ];
+
+  services.journald.extraConfig = ''
+    SystemMaxUse=300M
+  '';
 
   # Do NOT change this value
   # unless you have manually inspected all the changes it would make to your configuration,
