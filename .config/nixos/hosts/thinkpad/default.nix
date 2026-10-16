@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -7,8 +7,34 @@
 
   services = {
     fprintd.enable = true; # fingerprint reader
-    throttled.enable = true; # fix intel cpu throttling
+    # Exits on start: "Thermald can't run on this platform" (Lenovo DYTC owns thermals).
+    thermald.enable = lib.mkForce false;
+    btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/" ];
+    };
   };
+
+  # Pass TRIM through LUKS, otherwise fstrim.timer is a no-op.
+  boot.initrd.luks.devices."luks-97ec0d64-8f62-4f0f-a24b-413f572311de" = {
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
+
+  fileSystems."/".options = [
+    "compress=zstd:1"
+    "noatime"
+  ];
+
+  zramSwap.enable = true;
+
+  # musnix forces "performance"; leave the governor to intel_pstate + tuned (EPP).
+  powerManagement.cpuFreqGovernor = lib.mkForce null;
+
+  # Cap charging at 80% to slow battery wear.
+  systemd.tmpfiles.rules = [
+    "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80"
+  ];
 
   networking = {
     hostName = "thinkpad";
