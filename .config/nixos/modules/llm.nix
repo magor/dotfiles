@@ -21,8 +21,11 @@ in
   # Enable the Ollama service to handle local inference
   services.ollama = {
     enable = true;
-    #acceleration = null; # Will fallback to CPU optimization for your Intel i5
-    package = pkgs.ollama-cpu;
+    # Iris Xe via Vulkan: ~5x faster prompt eval than CPU, ~30% slower generation
+    # (qwen2.5-coder:7b, 1k-token prompt: 80 vs 16 tok/s in, 4.4 vs 6.2 tok/s out).
+    package = pkgs.ollama-vulkan;
+    # Ollama ignores integrated GPUs unless asked.
+    environmentVariables.OLLAMA_IGPU_ENABLE = "1";
     # Pulled in the background by ollama-model-loader.service.
     loadModels = [ baseModel ];
   };
