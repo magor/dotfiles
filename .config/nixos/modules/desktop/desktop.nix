@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -54,7 +55,7 @@
   };
 
   services = {
-    blueman.enable = true;
+    blueman.enable = config.hardware.bluetooth.enable;
     gvfs.enable = true;
   };
 

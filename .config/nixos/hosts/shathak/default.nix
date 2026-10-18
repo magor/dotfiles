@@ -9,6 +9,26 @@
 
   networking.hostName = "shathak";
 
+  # 16 GB RAM, no disk swap
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+
+  # RX 5700 XT: early KMS
+  hardware.amdgpu.initrd.enable = true;
+
+  # wired only, no modem
+  networking.modemmanager.enable = false;
+
+  # 960 EVO, 860 QVO, 870 QVO
+  services.smartd.enable = true;
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = [ "/home/media" ];
+  };
+
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #
