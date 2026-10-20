@@ -15,6 +15,8 @@
     };
   };
 
+  boot.loader.timeout = 3;
+
   # Pass TRIM through LUKS, otherwise fstrim.timer is a no-op.
   boot.initrd.luks.devices."luks-97ec0d64-8f62-4f0f-a24b-413f572311de" = {
     allowDiscards = true;
