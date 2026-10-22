@@ -28,6 +28,7 @@ in
     /.git
     ftp-service/data/etc/pureftpd.passwd
     ftp-service/data/etc/pureftpd.pdb
+    .direnv
   '';
 
   systemd.user.services.github-kb-backup = {
