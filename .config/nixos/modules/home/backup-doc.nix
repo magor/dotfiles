@@ -2,9 +2,8 @@
 
 # enable only on one system in your syncthing cluster!
 #
-# /.git is in .stignore so git metadata is not synced to peers.
-# On other Syncthing peers (one-time): rm -rf ~/doc/.git
-# and add "/.git" to their ~/doc/.stignore (.stignore is not synced).
+# /.git is in ~/doc/.stignore (see modules/syncthing.nix) so git metadata
+# is not synced to peers. On other peers (one-time): rm -rf ~/doc/.git
 
 # Quick Operations Reference
 # ---------------------------
@@ -23,14 +22,6 @@ let
 in
 {
   # 1. Define the systemd backup service
-  # Keep .git out of Syncthing (local to this device; .stignore is not synced).
-  home.file."doc/.stignore".text = ''
-    /.git
-    ftp-service/data/etc/pureftpd.passwd
-    ftp-service/data/etc/pureftpd.pdb
-    .direnv
-  '';
-
   systemd.user.services.github-kb-backup = {
     Unit = {
       Description = "Automated Git Backup for Local Knowledge Base";

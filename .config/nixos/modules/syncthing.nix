@@ -74,6 +74,14 @@ in
 
       # https://wiki.nixos.org/wiki/Syncthing#Disable_default_sync_folder
       systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+      # .stignore is not synced, so every peer needs its own copy.
+      home-manager.users.mirek.home.file."doc/.stignore".text = ''
+        /.git
+        ftp-service/data/etc/pureftpd.passwd
+        ftp-service/data/etc/pureftpd.pdb
+        .direnv
+      '';
     }
 
     (lib.mkIf cfg.enable {
