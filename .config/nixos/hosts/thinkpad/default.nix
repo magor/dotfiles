@@ -33,6 +33,12 @@
   # musnix forces "performance"; leave the governor to intel_pstate + tuned (EPP).
   powerManagement.cpuFreqGovernor = lib.mkForce null;
 
+  # Don't sync on battery or over the phone hotspot.
+  services.syncthing.gate = {
+    enable = true;
+    meteredConnections = [ "mg phone" ];
+  };
+
   # Cap charging at 80% to slow battery wear.
   systemd.tmpfiles.rules = [
     "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80"
