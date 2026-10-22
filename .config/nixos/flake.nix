@@ -133,7 +133,6 @@
             ./modules/desktop
             ./modules/syncthing.nix
             ./modules/ai.nix
-            ./modules/keybase.nix
           ];
           homeModules = [
             ./modules/home/desktop
