@@ -72,6 +72,8 @@ in
 
       # dev
       dbeaver-bin
+
+      stremio-linux-shell
     ];
 
     programs = {
