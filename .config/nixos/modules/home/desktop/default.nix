@@ -163,6 +163,17 @@ in
       };
     };
 
+    # Hyprland runs without UWSM, so nothing activates graphical-session.target (which refuses
+    # manual start) and kanshi/udiskie/syncthingtray never start. Started from hypr/autostart.conf.
+    systemd.user.targets.hyprland-session = {
+      Unit = {
+        Description = "Hyprland compositor session";
+        BindsTo = [ "graphical-session.target" ];
+        Wants = [ "graphical-session-pre.target" ];
+        After = [ "graphical-session-pre.target" ];
+      };
+    };
+
     # Workaround for Failed to restart syncthingtray.service: Unit tray.target not found.
     # - https://github.com/nix-community/home-manager/issues/2064
     systemd.user.targets.tray = {
