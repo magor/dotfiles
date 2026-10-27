@@ -8,14 +8,13 @@
 let
   cfg = config.services.syncthing.gate;
 
-  # Stop syncthing on battery or on a metered link (phone hotspot); start it otherwise.
-  gate = pkgs.writeShellApplication {
-    name = "syncthing-gate";
+  # Exit 0 when syncthing may run: on AC and not on a metered link (phone hotspot).
+  check = pkgs.writeShellApplication {
+    name = "syncthing-gate-check";
     runtimeInputs = with pkgs; [
       coreutils
       gnugrep
       networkmanager
-      systemd
     ];
     text = ''
       on_ac=1
@@ -35,11 +34,24 @@ let
         done
       done < <(nmcli -t -f NAME con show --active 2>/dev/null)
 
-      if [ "$on_ac" = 1 ] && [ "$metered" = 0 ]; then
-        echo "on AC, unmetered: starting syncthing"
+      echo "on_ac=$on_ac metered=$metered"
+      [ "$on_ac" = 1 ] && [ "$metered" = 0 ]
+    '';
+  };
+
+  # Start or stop syncthing to match the current power/network state.
+  gate = pkgs.writeShellApplication {
+    name = "syncthing-gate";
+    runtimeInputs = [
+      check
+      pkgs.systemd
+    ];
+    text = ''
+      if syncthing-gate-check; then
+        echo "starting syncthing"
         systemctl start syncthing.service
       else
-        echo "on_ac=$on_ac metered=$metered: stopping syncthing"
+        echo "stopping syncthing"
         systemctl stop syncthing.service
       fi
     '';
@@ -85,6 +97,9 @@ in
     }
 
     (lib.mkIf cfg.enable {
+      # Skip (rather than fail) any start on battery or metered link: boot, switch, manual start.
+      systemd.services.syncthing.serviceConfig.ExecCondition = lib.getExe check;
+
       systemd.services.syncthing-gate = {
         description = "Stop syncthing on battery or metered network";
         after = [
