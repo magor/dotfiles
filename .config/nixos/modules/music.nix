@@ -31,7 +31,7 @@
   '';
 
   environment.systemPackages = with pkgs; [
-    bitwig-studio
+    unstable.bitwig-studio
     carla
     crosspipe
     drumgizmo
