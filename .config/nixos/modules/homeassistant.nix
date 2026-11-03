@@ -32,6 +32,16 @@
           "--net=host"
           "--security-opt=apparmor=unconfined"
         ];
+        # Image defaults (cmd replaces them) + pin to the LAN uplink; otherwise it
+        # advertises itself on tailscale0 instead of the network DIRIGERA lives on
+        cmd = [
+          "--storage-path"
+          "/data"
+          "--paa-root-cert-dir"
+          "/data/credentials"
+          "--primary-interface"
+          "wlo1"
+        ];
         volumes = [
           "/var/lib/matter-server:/data"
         ];
