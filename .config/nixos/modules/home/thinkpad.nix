@@ -1,6 +1,11 @@
-# ThinkPad laptop: idle lock/screen/suspend via Noctalia; keyboard backlight via hypridle.
+# ThinkPad laptop: idle lock/screen/suspend and display brightness (incl. DDC/CI) via Noctalia;
+# keyboard backlight via hypridle.
 {
   config.programs.noctalia.settings = {
+    brightness = {
+      enable_ddcutil = true;
+      minimum_brightness = 0.01; # keep the panel from going fully black
+    };
     idle = {
       behavior_order = [
         "lock"

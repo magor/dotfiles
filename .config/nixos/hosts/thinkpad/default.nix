@@ -84,7 +84,15 @@
     hostName = "thinkpad";
   };
 
-  users.users.mirek.extraGroups = [ "video" ];
+  users.users.mirek.extraGroups = [
+    "video"
+    "i2c"
+  ];
+
+  # External monitor brightness over DDC/CI: Noctalia drives it (brightness.enable_ddcutil in
+  # modules/home/thinkpad.nix) and needs ddcutil on PATH plus /dev/i2c-* access.
+  hardware.i2c.enable = true;
+  environment.systemPackages = [ pkgs.ddcutil ];
 
   # Force the system to use the Intel Media Driver (iHD)
   environment.sessionVariables = {
@@ -94,6 +102,15 @@
   hardware.graphics.extraPackages = with pkgs; [
     vpl-gpu-rt # For newer QSV (Quick Sync Video) support
   ];
+
+  # 0.55.x drops output disable requests (kanshi, wlr-randr, hyprctl keyword) — needed for
+  # turning the panel off with the lid closed; fixed in 0.56 (hyprwm/Hyprland#14547).
+  # Mesa stays on stable: nixpkgs' split mesa-libgbm loads the system driver fine.
+  # TODO: drop once stable ships >= 0.56.
+  programs.hyprland = {
+    package = pkgs.unstable.hyprland;
+    portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
+  };
 
   services.journald.extraConfig = ''
     SystemMaxUse=300M
