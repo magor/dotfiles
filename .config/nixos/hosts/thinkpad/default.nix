@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -14,6 +19,32 @@
       fileSystems = [ "/" ];
     };
   };
+
+  # Skip the fingerprint prompt when the lid is closed (docked, reader out of reach): a lid
+  # check placed right before pam_fprintd jumps over it unless the lid is open.
+  security.pam.services =
+    let
+      lidOpen = pkgs.writeShellScript "lid-open" ''
+        exec ${pkgs.gnugrep}/bin/grep -qs open /proc/acpi/button/lid/*/state
+      '';
+    in
+    lib.genAttrs [ "sudo" "su" "systemd-run0" "polkit-1" ] (name: {
+      rules.auth.lid-open = {
+        order = config.security.pam.services.${name}.rules.auth.fprintd.order - 10;
+        control = "[success=ignore default=1]";
+        modulePath = "${pkgs.linux-pam}/lib/security/pam_exec.so";
+        args = [
+          "quiet"
+          "${lidOpen}"
+        ];
+      };
+    })
+    // {
+      # Noctalia's lock screen checks the password against "login" and reads the fingerprint
+      # itself over D-Bus; pam_fprintd here would grab the reader and stall the password
+      # check for its 30 s timeout. (Its source claims to strip pam_fprintd but doesn't.)
+      login.fprintAuth = false;
+    };
 
   boot.loader.timeout = 3;
 
