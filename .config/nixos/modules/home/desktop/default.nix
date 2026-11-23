@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   # Single source for shell session + Hyprland (hypr/env.conf).
@@ -14,6 +19,8 @@ let
   };
 in
 {
+  imports = [ ./kanshi.nix ];
+
   config = {
     home.sessionVariables = sessionEnv;
 
@@ -97,71 +104,6 @@ in
       syncthing = {
         enable = false; # service is managed by syncthing module on system level
         tray.enable = true;
-      };
-      kanshi = {
-        enable = true;
-        systemdTarget = "graphical-session.target";
-        settings = [
-          # can set defaults like this:
-          #{ output.criteria = "eDP-1";
-          #  output.scale = 1.066667;
-          #}
-          {
-            profile.name = "dell-laptop";
-            profile.outputs = [
-              {
-                criteria = "LG Display 0x06CF Unknown"; # note the missing serial needs to be populated by the "Unknown" string
-                scale = 1.0;
-              }
-            ];
-          }
-          {
-            profile.name = "laptop";
-            profile.outputs = [
-              {
-                criteria = "eDP-1";
-                scale = 1.2;
-              }
-            ];
-          }
-          {
-            profile.name = "thinkpad-home";
-            profile.outputs = [
-              {
-                criteria = "AU Optronics 0xFA9B Unknown"; # thinkpad screen
-                scale = 1.5;
-              }
-              {
-                criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
-                scale = 1.6;
-              }
-            ];
-          }
-          {
-            profile.name = "dell-work";
-            profile.outputs = [
-              {
-                criteria = "LG Display 0x06CF Unknown"; # note the missing serial needs to be populated by the "Unknown" string
-                scale = 1.333333;
-              }
-              {
-                criteria = "Dell Inc. DELL P2423 JWL7VJ3";
-              }
-              {
-                criteria = "Dell Inc. DELL P2423 C1WRVJ3";
-              }
-            ];
-          }
-          {
-            profile.name = "shathak";
-            profile.outputs = [
-              {
-                criteria = "Dell Inc. DELL P3223QE 5KJ4G34";
-                scale = 1.6;
-              }
-            ];
-          }
-        ];
       };
     };
 
