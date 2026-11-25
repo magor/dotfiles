@@ -24,6 +24,7 @@
   environment.systemPackages = with pkgs; [
     chromium
     waybar
+    socat # noctalia hypr-submap plugin listens on hyprland's event socket
     hypridle
     hyprpaper
     hyprcursor
