@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -11,22 +11,6 @@
 
   # networking
   networking.hostName = "virtmaster";
-  
-  # ssh reverse tunnel
-  systemd.services.sshReverseTunnel = {
-    # inspired by https://blog.stigok.com/2018/04/22/self-healing-reverse-ssh-systemd-service.html
-    wantedBy = [ "default.target" ];
-    after = [ "network.target" ];
-    description = "Self healing reverse ssh tunnel using Mirek's nixodeos server";
-    serviceConfig = {
-      Type = "exec";
-      ExecStart = ''${pkgs.openssh}/bin/ssh -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R 4002:localhost:22 chyron@46.36.38.241'';
-      Restart = "always";
-      RestartSec = "5s";
-    };
-  };
-
-  security.sudo.wheelNeedsPassword = false;
 
   users.users.mirek = {
     openssh.authorizedKeys.keys = [
